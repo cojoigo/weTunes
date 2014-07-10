@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ufD-qf-Ogm">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - Song Queue-->
+        <scene sceneID="meU-vd-nVe">
+            <objects>
+                <viewController id="1Np-t3-hh8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cPs-2h-E77"/>
+                        <viewControllerLayoutGuide type="bottom" id="TfJ-vF-1is"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6MR-zh-a4Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54v-OL-C8i">
+                                <rect key="frame" x="24" y="176" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkf-Qv-ikl">
+                                <rect key="frame" x="24" y="138" width="273" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAK-TG-hHO">
+                                <rect key="frame" x="225" y="176" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Don't Skip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Now Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F21-jj-rHE">
+                                <rect key="frame" x="106" y="109" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yAK-TG-hHO" firstAttribute="top" secondItem="Lkf-Qv-ikl" secondAttribute="bottom" constant="8" id="30C-F6-O9K"/>
+                            <constraint firstAttribute="trailing" secondItem="yAK-TG-hHO" secondAttribute="trailing" constant="23" id="5QU-4b-oy9"/>
+                            <constraint firstItem="Lkf-Qv-ikl" firstAttribute="leading" secondItem="6MR-zh-a4Q" secondAttribute="leading" constant="24" id="5ei-DH-seU"/>
+                            <constraint firstItem="Lkf-Qv-ikl" firstAttribute="top" secondItem="cPs-2h-E77" secondAttribute="bottom" constant="74" id="Xda-ub-H8e"/>
+                            <constraint firstItem="54v-OL-C8i" firstAttribute="leading" secondItem="6MR-zh-a4Q" secondAttribute="leading" constant="24" id="ddc-Qv-pu4"/>
+                            <constraint firstAttribute="trailing" secondItem="Lkf-Qv-ikl" secondAttribute="trailing" constant="23" id="eoo-wC-ojQ"/>
+                            <constraint firstItem="54v-OL-C8i" firstAttribute="top" secondItem="Lkf-Qv-ikl" secondAttribute="bottom" constant="8" id="g99-CX-kg1"/>
+                            <constraint firstItem="yAK-TG-hHO" firstAttribute="leading" secondItem="6MR-zh-a4Q" secondAttribute="leading" constant="225" id="gVW-Mh-7jT"/>
+                            <constraint firstAttribute="trailing" secondItem="54v-OL-C8i" secondAttribute="trailing" constant="265" id="mGk-DP-Gts"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Song Queue" id="7uG-f7-eQH">
+                        <barButtonItem key="rightBarButtonItem" title="View" id="DNv-4K-sgo">
+                            <connections>
+                                <segue destination="ksL-gP-Ick" kind="modal" id="nCJ-5b-qK3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rFk-R1-fn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="587" y="22"/>
+        </scene>
+        <!--Add Song Table View Controller - Song Queue-->
+        <scene sceneID="8gY-fy-Jx2">
+            <objects>
+                <tableViewController title="Song Queue" id="05K-oh-zV8" customClass="XYZAddSongTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NLO-Uk-akS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="05K-oh-zV8" id="8Pr-xw-Qg3"/>
+                            <outlet property="delegate" destination="05K-oh-zV8" id="abr-2H-KGn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Song Queue" id="yoI-YJ-XBV">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="mMr-nW-cqB">
+                            <connections>
+                                <segue destination="7Dg-eR-xhB" kind="unwind" unwindAction="unwindSongList:" id="dng-qg-uiw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="p7E-qc-L10"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="77Q-yR-Jhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7Dg-eR-xhB" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1581" y="30"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jqR-lL-0g6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ufD-qf-Ogm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w95-UG-3c6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1Np-t3-hh8" kind="relationship" relationship="rootViewController" id="8pe-MH-Cyj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUR-zS-ehg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61" y="22"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GGt-BG-3xw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ksL-gP-Ick" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="iVE-eX-no7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8FL-Fr-x5Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="05K-oh-zV8" kind="relationship" relationship="rootViewController" id="3vp-uO-d3V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cdK-FT-Bnr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1055" y="30"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
