@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B89381977168600E16CC1 /* XYZViewController.m */; };
 		8FA78C5619676DE000CFC22C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA78C5519676DE000CFC22C /* Foundation.framework */; };
 		8FA78C5819676DE000CFC22C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA78C5719676DE000CFC22C /* CoreGraphics.framework */; };
 		8FA78C5A19676DE000CFC22C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA78C5919676DE000CFC22C /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F7B89371977168600E16CC1 /* XYZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZViewController.h; sourceTree = "<group>"; };
+		8F7B89381977168600E16CC1 /* XYZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZViewController.m; sourceTree = "<group>"; };
 		8FA78C5219676DE000CFC22C /* Party Skiper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Party Skiper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FA78C5519676DE000CFC22C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8FA78C5719676DE000CFC22C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +119,8 @@
 				8FA78C6519676DE000CFC22C /* XYZAppDelegate.m */,
 				8FA78C6719676DE000CFC22C /* Images.xcassets */,
 				8FA78C8419676E0100CFC22C /* iPhoneMain.storyboard */,
+				8F7B89371977168600E16CC1 /* XYZViewController.h */,
+				8F7B89381977168600E16CC1 /* XYZViewController.m */,
 				8FD641E01969E1A400C1FD91 /* XYZAddSongTableViewController.h */,
 				8FD641E11969E1A400C1FD91 /* XYZAddSongTableViewController.m */,
 				8FA78C5C19676DE000CFC22C /* Supporting Files */,
@@ -249,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */,
 				8FA78C6619676DE000CFC22C /* XYZAppDelegate.m in Sources */,
 				8FD641E21969E1A400C1FD91 /* XYZAddSongTableViewController.m in Sources */,
 				8FA78C6219676DE000CFC22C /* main.m in Sources */,

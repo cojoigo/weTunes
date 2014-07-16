@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ufD-qf-Ogm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ugm-7v-np8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--View Controller - Song Queue-->
         <scene sceneID="meU-vd-nVe">
             <objects>
-                <viewController id="1Np-t3-hh8" sceneMemberID="viewController">
+                <viewController id="1Np-t3-hh8" customClass="XYZViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cPs-2h-E77"/>
                         <viewControllerLayoutGuide type="bottom" id="TfJ-vF-1is"/>
@@ -58,15 +58,21 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Song Queue" id="7uG-f7-eQH">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="cBy-Lc-mg4">
+                            <connections>
+                                <segue destination="qsT-m5-adP" kind="unwind" unwindAction="unwindMainView:" id="8QH-ML-bhJ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="View" id="DNv-4K-sgo">
                             <connections>
-                                <segue destination="ksL-gP-Ick" kind="modal" id="nCJ-5b-qK3"/>
+                                <segue destination="ksL-gP-Ick" kind="modal" id="GUy-dg-SpB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFk-R1-fn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qsT-m5-adP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="587" y="22"/>
         </scene>
@@ -87,7 +93,7 @@
                     <navigationItem key="navigationItem" title="Song Queue" id="yoI-YJ-XBV">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="mMr-nW-cqB">
                             <connections>
-                                <segue destination="7Dg-eR-xhB" kind="unwind" unwindAction="unwindSongList:" id="dng-qg-uiw"/>
+                                <segue destination="7Dg-eR-xhB" kind="unwind" unwindAction="unwindMainView:" id="h6l-Rq-UKp"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="p7E-qc-L10"/>
@@ -97,6 +103,68 @@
                 <exit id="7Dg-eR-xhB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1581" y="30"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Mxg-iG-VPI">
+            <objects>
+                <viewController id="ugm-7v-np8" customClass="XYZViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AaG-br-A0e"/>
+                        <viewControllerLayoutGuide type="bottom" id="geC-ua-9R6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wkj-EA-CjQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-fe-TCZ">
+                                <rect key="frame" x="141" y="276" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ufD-qf-Ogm" kind="modal" id="7It-vl-cCm"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWW-Q4-aJl">
+                                <rect key="frame" x="112" y="238" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-08-kqS">
+                                <rect key="frame" x="112" y="170" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PH1-WI-Gd2">
+                                <rect key="frame" x="27" y="174" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-0X-Eb2">
+                                <rect key="frame" x="30" y="242" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqQ-PN-TPw">
+                                <rect key="frame" x="115" y="33" width="91" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wnP-5j-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-379" y="22"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jqR-lL-0g6">

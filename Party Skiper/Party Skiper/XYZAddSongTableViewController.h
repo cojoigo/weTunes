@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface XYZAddSongTableViewController : UITableViewController
-- (IBAction)unwindSongList:(UIStoryboardSegue *)segue;
 @end
