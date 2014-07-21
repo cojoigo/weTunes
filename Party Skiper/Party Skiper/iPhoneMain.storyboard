@@ -86,7 +86,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFk-R1-fn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qsT-m5-adP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="213" y="22"/>
+            <point key="canvasLocation" x="485" y="368"/>
         </scene>
         <!--Add Song Table View Controller - Song Queue-->
         <scene sceneID="8gY-fy-Jx2">
@@ -114,7 +114,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77Q-yR-Jhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Dg-eR-xhB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="675" y="22"/>
+            <point key="canvasLocation" x="1219" y="368"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DFE-Ih-z0P">
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqD-Qz-Qin" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-789" y="22"/>
+            <point key="canvasLocation" x="-869" y="368"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Mxg-iG-VPI">
@@ -233,7 +233,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnP-5j-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DNK-pg-QKF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="22"/>
+            <point key="canvasLocation" x="-379" y="36"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Gve-1L-9H6">
@@ -310,7 +310,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8To-o4-fVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NA4-Ws-CXp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="708"/>
+            <point key="canvasLocation" x="-379" y="684"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jqR-lL-0g6">
@@ -328,7 +328,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUR-zS-ehg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="22"/>
+            <point key="canvasLocation" x="117" y="368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GGt-BG-3xw">
@@ -347,7 +347,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdK-FT-Bnr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="22"/>
+            <point key="canvasLocation" x="851" y="368"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -356,6 +356,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="emI-9W-OcS"/>
+        <segue reference="7It-vl-cCm"/>
     </inferredMetricsTieBreakers>
 </document>
