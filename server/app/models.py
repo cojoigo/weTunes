@@ -26,7 +26,6 @@ class Party(db.Model):
 class User(db.Model):
     """
     A User represents both hosts and guests at a Party.
-    A User does not exist outside of a Party.
     """
 
     id = db.Column(db.Integer, primary_key=True)
