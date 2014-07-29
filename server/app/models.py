@@ -10,7 +10,7 @@ class Party(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, unique=True, nullable=False)
-    password = db.Column(db.String(256))
+    password_hash = db.Column(db.String(256))
     users = db.relationship("User", lazy="dynamic", backref="party")
     song_data = db.Column(db.PickleType)
     creation_time = db.Column(db.Integer)
@@ -20,7 +20,8 @@ class Party(db.Model):
     def to_json(self):
         return {"id": self.id, "song_data": self.song_data,
                 "creation_time": self.creation_time,
-                "update_time": self.update_time}
+                "update_time": self.update_time,
+                "party_name": self.name}
     
 
 class User(db.Model):

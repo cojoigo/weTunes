@@ -1,5 +1,5 @@
 #!/bin/python2
-from flask import jsonify, Response
+from flask import jsonify
 
 
 class GenericError(Exception):
@@ -37,7 +37,7 @@ class NoJSONDataError(GenericError):
     
     def __init__(self):
         super(NoJSONDataError, self).__init__()
-        self.response["message"] += "No JSON data provided"
+        self.response["message"] += "No valid JSON data provided"
 
 
 class MissingInformationError(GenericError):
@@ -56,10 +56,11 @@ class NotFoundInDatabaseError(GenericError):
     Error raised when some resource was not found in the database
     """
 
-    def __init__(self):
+    def __init__(self, details):
         super(NotFoundInDatabaseError, self).__init__()
         self.status_code = 404
         self.response["message"] += "Resource not found in database"
+        self.response["details"] = details
 
 
 class BadCredentialsError(GenericError):
@@ -67,7 +68,7 @@ class BadCredentialsError(GenericError):
     Error raised when incorrect/missing user credentials are provided.
     """
 
-    def __init__(self, details=""):
+    def __init__(self, details):
         super(BadCredentialsError, self).__init__()
         self.status_code = 401
         self.response["message"] += "The credentials provided were incorrect."
