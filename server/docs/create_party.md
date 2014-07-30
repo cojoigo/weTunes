@@ -26,8 +26,8 @@ HTTP Basic, with user_id and user_password.
 ### Body 
 Name | Required? | Value
 -----|-----------|------
-party_name | Yes | The chosen name for the party
-party_password | Yes | The chosen password. None/nil/void if there is no password.
+name | Yes | The chosen name for the party
+password | Yes | The chosen password. None/nil/void if there is no password.
 song_data | No | JSON containing song metadata. See relevant spec page.
 
 ### Response
@@ -37,5 +37,5 @@ id | The unique id for the party.
 song_data | The song data provided
 creation_time | The time of creation in unix time.
 update_time | The time of last update in unix time.
-party_name | The unique name of the party. 
+name | The unique name of the party. 
 

@@ -1,4 +1,4 @@
-create_party
+join_party
 =====================
 
 Overview
@@ -8,7 +8,7 @@ This provides a method to join a party on the server.
 REST Info
 ---------------------
 ### URL
-https://sgoodwin.pythonanywhere.com/join_party/
+https://sgoodwin.pythonanywhere.com/join_party/<party_id>
 
 ### Allowed Methods
 POST
@@ -29,5 +29,5 @@ id | The unique id for the party.
 song_data | The song data provided
 creation_time | The time of creation in unix time.
 update_time | The time of last update in unix time.
-party_name | The unique name of the party. 
+name | The unique name of the party. 
 
