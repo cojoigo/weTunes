@@ -71,14 +71,9 @@ def join_party(*args, **kwargs):
 @decorators.requires_user
 @decorators.requires_party
 def update_party(*args, **kwargs):
-    if request.method == "GET":
-        return _guest_update_party(*args, **kwargs)
-    return _host_update_party(*args, **kwargs)
-
-
-def _guest_update_party(*args, **kwargs):
-    party = kwargs["party"]
-    return jsonify(party.to_json())
+    if request.method == "POST":
+        return _host_update_party(*args, **kwargs)
+    return jsonify(kwargs["party"].to_json())
 
 
 @decorators.requires_host
