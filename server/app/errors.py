@@ -85,3 +85,13 @@ class DatabaseIntegrityError(GenericError):
         self.status_code = 500
         self.response["message"] += "The database failed to insert the data."
         self.response["details"] = str(error)
+
+class InvalidAttributeError(GenericError):
+    """
+    Error raised when a request tries to update an illegal value.
+    """
+
+    def __init__(self, value):
+        super(InvalidAttributeError, self).__init__()
+        self.response["message"] += "Illegal value entered."
+        self.response["details"] = str(value)
