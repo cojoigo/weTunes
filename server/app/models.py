@@ -24,7 +24,8 @@ class Party(db.Model):
         return {"id": self.id, "song_data": self.song_data,
                 "creation_time": self.creation_time,
                 "update_time": self.update_time,
-                "name": self.name}
+                "name": self.name,
+                "user_count" : len(self.users)}
 
     def update_from_dict(self, **kwargs):
         """
