@@ -7,6 +7,7 @@
 //
 
 #import "XYZViewController.h"
+#import "XYZServerCommunication.h"
 
 @interface XYZViewController ()
 
@@ -31,7 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    XYZServerCommunication* comm = [[XYZServerCommunication alloc] init];
+    [comm loadUser];
 }
 
 - (void)didReceiveMemoryWarning
