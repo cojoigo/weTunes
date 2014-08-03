@@ -117,6 +117,7 @@ def _handle_generic_errors(error):
 def _handle_operational_error(error):
     "Error handler for OperationalErrors"
 
+    db.session.rollback()
     return errors.NotFoundInDatabaseError(error).to_json()
 
 
