@@ -90,6 +90,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="guest_party_dontskip_button" destination="yAK-TG-hHO" id="CNl-0G-ZwS"/>
+                        <outlet property="guest_party_nextup_textbox" destination="jIB-On-Ppd" id="WnF-KB-lUa"/>
+                        <outlet property="guest_party_nowplaying_textbox" destination="Lkf-Qv-ikl" id="6b7-x7-dL3"/>
+                        <outlet property="guest_party_skip_button" destination="54v-OL-C8i" id="CR7-vc-OTL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFk-R1-fn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qsT-m5-adP" userLabel="Exit" sceneMemberID="exit"/>
@@ -269,6 +275,11 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="guest_joinparty_browse_button" destination="LdO-I2-soo" id="MiY-zi-5nI"/>
+                        <outlet property="guest_joinparty_login_button" destination="ONI-fe-TCZ" id="Fs9-RQ-HrF"/>
+                        <outlet property="guest_joinparty_partyid_textbox" destination="bKM-08-kqS" id="cZu-zb-3Jk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnP-5j-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DNK-pg-QKF" userLabel="Exit" sceneMemberID="exit"/>
@@ -340,6 +351,11 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="host_createparty_create_button" destination="1Rd-0N-by4" id="b5w-yY-MCS"/>
+                        <outlet property="host_createparty_partyname_textbox" destination="LYc-6X-wy1" id="Rs2-Dr-EWk"/>
+                        <outlet property="host_createparty_password_textbox" destination="de6-T0-4Dj" id="KBY-WF-t3t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8To-o4-fVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NA4-Ws-CXp" userLabel="Exit" sceneMemberID="exit"/>
@@ -439,6 +455,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="host_party_dontskip_button" destination="QZz-eM-Xy1" id="uj3-RY-svY"/>
+                        <outlet property="host_party_nextup_textbox" destination="rXA-Yz-enA" id="ACM-DE-5Cp"/>
+                        <outlet property="host_party_nowplaying_textbox" destination="CYr-Td-zkQ" id="hUV-5h-eLP"/>
+                        <outlet property="host_party_partyinfo_button" destination="1uI-j4-FR1" id="rqj-Tz-m0X"/>
+                        <outlet property="host_party_skip_button" destination="kF7-xU-XhE" id="6kH-Q8-W7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h8-to-YvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jkp-Yv-iF7" userLabel="Exit" sceneMemberID="exit"/>
