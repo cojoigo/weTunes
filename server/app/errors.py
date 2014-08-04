@@ -24,7 +24,7 @@ class IncorrectContentTypeError(GenericError):
     """
     Error raised when the content-type of a request is not application/json
     """
-    
+
     def __init__(self):
         super(IncorrectContentTypeError, self).__init__()
         self.response["message"] += "Not application/json"
@@ -34,7 +34,7 @@ class NoJSONDataError(GenericError):
     """
     Error raised when the content-type of a request is not application/json
     """
-    
+
     def __init__(self):
         super(NoJSONDataError, self).__init__()
         self.response["message"] += "No valid JSON data provided"
@@ -42,7 +42,8 @@ class NoJSONDataError(GenericError):
 
 class MissingInformationError(GenericError):
     """
-    Error raised when there is some required data not provided along with a request
+    Error raised when there is some required data not provided
+    along with a request
     """
 
     def __init__(self, missing_data):
@@ -72,12 +73,13 @@ class BadCredentialsError(GenericError):
         super(BadCredentialsError, self).__init__()
         self.status_code = 401
         self.response["message"] += "The credentials provided were incorrect."
-        self.response["details"] = details 
+        self.response["details"] = details
 
 
 class DatabaseIntegrityError(GenericError):
     """
-    Error raised when some invalid value was tried to be placed into the database.
+    Error raised when some invalid value was tried to be
+    placed into the database.
     """
 
     def __init__(self, error):
@@ -85,6 +87,7 @@ class DatabaseIntegrityError(GenericError):
         self.status_code = 500
         self.response["message"] += "The database failed to insert the data."
         self.response["details"] = str(error)
+
 
 class InvalidAttributeError(GenericError):
     """

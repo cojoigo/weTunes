@@ -2,7 +2,6 @@
 
 import hashlib
 from functools import wraps
-from app import server
 from flask import request
 import models
 import errors
@@ -73,7 +72,8 @@ def requires_vals(required_vals):
         """
         @wraps(function)
         def wrapped(*args, **kwargs):
-            missing_vals = [val for val in required_vals if val not in request.json]
+            missing_vals = [val for val in required_vals
+                            if val not in request.json]
             if len(missing_vals) != 0:
                 raise errors.MissingInformationError(missing_vals)
             return function(*args, **kwargs)

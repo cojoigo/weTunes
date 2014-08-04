@@ -50,10 +50,10 @@ def create_party(*args, **kwargs):
 
     user = kwargs.get("user")
     party_password = request.json.get("password", None)
-    try:
-        password_hash = hashlib.sha512(party_password).hexdigest()
-    except TypeError:
+    if party_password == "" or party_password is None:
         password_hash = None
+    else:
+        password_hash = hashlib.sha512(party_password).hexdigest()
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
                          song_data=request.json.get("song_data", None),
