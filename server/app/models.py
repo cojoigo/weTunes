@@ -25,7 +25,7 @@ class Party(db.Model):
                 "creation_time": self.creation_time,
                 "update_time": self.update_time,
                 "name": self.name,
-                "user_count" : len(self.users)}
+                "user_count" : len(self.users.all())}
 
     def update_from_dict(self, **kwargs):
         """

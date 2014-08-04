@@ -90,6 +90,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="guest_party_dontskip_button" destination="yAK-TG-hHO" id="CNl-0G-ZwS"/>
+                        <outlet property="guest_party_nextup_textbox" destination="jIB-On-Ppd" id="WnF-KB-lUa"/>
+                        <outlet property="guest_party_nowplaying_textbox" destination="Lkf-Qv-ikl" id="6b7-x7-dL3"/>
+                        <outlet property="guest_party_skip_button" destination="54v-OL-C8i" id="CR7-vc-OTL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFk-R1-fn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qsT-m5-adP" userLabel="Exit" sceneMemberID="exit"/>
@@ -187,6 +193,16 @@
                                     <segue destination="oEq-ir-kka" kind="modal" id="xIQ-qy-BNx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muu-AI-F4S">
+                                <rect key="frame" x="130" y="353" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testbutton:" destination="gGv-Jf-jbl" eventType="touchUpInside" id="bdc-uc-5ia"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -222,15 +238,6 @@
                                     <segue destination="Cwi-pT-UnW" kind="modal" id="uhH-AR-73X"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWW-Q4-aJl">
-                                <rect key="frame" x="112" y="238" width="156" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="yjG-xU-xS9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-08-kqS">
                                 <rect key="frame" x="112" y="170" width="156" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -242,13 +249,6 @@
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PH1-WI-Gd2">
                                 <rect key="frame" x="44" y="173" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-0X-Eb2">
-                                <rect key="frame" x="30" y="242" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -285,6 +285,11 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="guest_joinparty_browse_button" destination="LdO-I2-soo" id="MiY-zi-5nI"/>
+                        <outlet property="guest_joinparty_login_button" destination="ONI-fe-TCZ" id="Fs9-RQ-HrF"/>
+                        <outlet property="guest_joinparty_partyid_textbox" destination="bKM-08-kqS" id="cZu-zb-3Jk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnP-5j-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DNK-pg-QKF" userLabel="Exit" sceneMemberID="exit"/>
@@ -335,6 +340,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="CreateParty:" destination="d9z-7r-Qzw" eventType="touchUpInside" id="pry-FT-AMZ"/>
                                     <segue destination="j7f-dH-Jhl" kind="modal" id="fMZ-hL-u2I"/>
                                 </connections>
                             </button>
@@ -356,6 +362,11 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="host_createparty_create_button" destination="1Rd-0N-by4" id="b5w-yY-MCS"/>
+                        <outlet property="host_createparty_partyname_textbox" destination="LYc-6X-wy1" id="Rs2-Dr-EWk"/>
+                        <outlet property="host_createparty_password_textbox" destination="de6-T0-4Dj" id="KBY-WF-t3t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8To-o4-fVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NA4-Ws-CXp" userLabel="Exit" sceneMemberID="exit"/>
@@ -455,6 +466,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="host_party_dontskip_button" destination="QZz-eM-Xy1" id="uj3-RY-svY"/>
+                        <outlet property="host_party_nextup_textbox" destination="rXA-Yz-enA" id="ACM-DE-5Cp"/>
+                        <outlet property="host_party_nowplaying_textbox" destination="CYr-Td-zkQ" id="hUV-5h-eLP"/>
+                        <outlet property="host_party_partyinfo_button" destination="1uI-j4-FR1" id="rqj-Tz-m0X"/>
+                        <outlet property="host_party_skip_button" destination="kF7-xU-XhE" id="6kH-Q8-W7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h8-to-YvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jkp-Yv-iF7" userLabel="Exit" sceneMemberID="exit"/>
@@ -464,7 +482,7 @@
         <!--View Controller - Host - Party Info-->
         <scene sceneID="y7V-WC-sUe">
             <objects>
-                <viewController title="Host - Party Info" id="Jr0-xy-pSu" sceneMemberID="viewController">
+                <viewController title="Host - Party Info" id="Jr0-xy-pSu" customClass="XYZViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JVf-Tb-92l"/>
                         <viewControllerLayoutGuide type="bottom" id="loN-zg-xUd"/>
@@ -539,6 +557,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Party Information" id="990-nY-0dQ"/>
+                    <connections>
+                        <outlet property="host_partyinfo_numberofguests_textbox" destination="ET6-MU-FPp" id="H4S-0N-hoE"/>
+                        <outlet property="host_partyinfo_partyid_textbox" destination="dD5-PX-zKO" id="JiF-GS-Ro5"/>
+                        <outlet property="host_partyinfo_partyname_tetxbox" destination="HhC-xv-a3A" id="S0m-ob-qaO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jt8-Gr-2LD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="htN-Tm-uxI" userLabel="Exit" sceneMemberID="exit"/>

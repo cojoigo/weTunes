@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F72961419896A6500E2688E /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F72961119896A6500E2688E /* Party.m */; };
-		8F72961519896A6500E2688E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F72961319896A6500E2688E /* User.m */; };
 		8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B89381977168600E16CC1 /* XYZViewController.m */; };
 		8F95299A19898ACE003C547A /* XYZServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F95299919898ACE003C547A /* XYZServerCommunication.m */; };
+		8F9529A41990149D003C547A /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9529A11990149D003C547A /* Party.m */; };
+		8F9529A51990149D003C547A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9529A31990149D003C547A /* User.m */; };
 		8FA78C5619676DE000CFC22C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA78C5519676DE000CFC22C /* Foundation.framework */; };
 		8FA78C5819676DE000CFC22C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA78C5719676DE000CFC22C /* CoreGraphics.framework */; };
 		8FA78C5A19676DE000CFC22C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA78C5919676DE000CFC22C /* UIKit.framework */; };
@@ -40,14 +40,14 @@
 
 /* Begin PBXFileReference section */
 		3FD4449B1E994F8880D32891 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F72961019896A6500E2688E /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
-		8F72961119896A6500E2688E /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
-		8F72961219896A6500E2688E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		8F72961319896A6500E2688E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8F7B89371977168600E16CC1 /* XYZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZViewController.h; sourceTree = "<group>"; };
 		8F7B89381977168600E16CC1 /* XYZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZViewController.m; sourceTree = "<group>"; };
 		8F95299819898ACE003C547A /* XYZServerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZServerCommunication.h; sourceTree = "<group>"; };
 		8F95299919898ACE003C547A /* XYZServerCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZServerCommunication.m; sourceTree = "<group>"; };
+		8F9529A01990149D003C547A /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
+		8F9529A11990149D003C547A /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
+		8F9529A21990149D003C547A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8F9529A31990149D003C547A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8FA78C5219676DE000CFC22C /* Party Skiper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Party Skiper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FA78C5519676DE000CFC22C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8FA78C5719676DE000CFC22C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,10 +109,10 @@
 		8F95299C19898C22003C547A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8F72961019896A6500E2688E /* Party.h */,
-				8F72961119896A6500E2688E /* Party.m */,
-				8F72961219896A6500E2688E /* User.h */,
-				8F72961319896A6500E2688E /* User.m */,
+				8F9529A01990149D003C547A /* Party.h */,
+				8F9529A11990149D003C547A /* Party.m */,
+				8F9529A21990149D003C547A /* User.h */,
+				8F9529A31990149D003C547A /* User.m */,
 				8F95299819898ACE003C547A /* XYZServerCommunication.h */,
 				8F95299919898ACE003C547A /* XYZServerCommunication.m */,
 			);
@@ -326,13 +326,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9529A41990149D003C547A /* Party.m in Sources */,
+				8F9529A51990149D003C547A /* User.m in Sources */,
 				8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */,
 				8FA78C6619676DE000CFC22C /* XYZAppDelegate.m in Sources */,
-				8F72961519896A6500E2688E /* User.m in Sources */,
 				8FD641E21969E1A400C1FD91 /* XYZAddSongTableViewController.m in Sources */,
 				8F95299A19898ACE003C547A /* XYZServerCommunication.m in Sources */,
 				8FA78C6219676DE000CFC22C /* main.m in Sources */,
-				8F72961419896A6500E2688E /* Party.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
