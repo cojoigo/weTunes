@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface XYZServerCommunication : NSObject
-- (void)loadUser;
+- (void)createUser;
 - (void)createParty;
+- (void)joinParty;
+- (void)updateParty;
 @end

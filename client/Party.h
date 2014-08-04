@@ -11,6 +11,7 @@
 @interface Party : NSObject
 
 @property (nonatomic, strong) NSString *party_id;
+@property (nonatomic, strong) NSString *party_name;
 @property (nonatomic, strong) NSString *song_data;
 @property (nonatomic, strong) NSString *creation_time;
 @property (nonatomic, strong) NSString *update_time;

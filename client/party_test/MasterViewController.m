@@ -41,8 +41,8 @@
     //setup object mappings
     RKObjectMapping *userMapping = [RKObjectMapping mappingForClass:[User class]];
     [userMapping addAttributeMappingsFromDictionary:@{
-                                                      @"user_password": @"user_password",
-                                                      @"user_name": @"user_name",
+                                                      @"password": @"user_password",
+                                                      @"name": @"user_name",
                                                       @"id": @"user_id"
                                                       }];
     
@@ -58,8 +58,8 @@
     //inverse mapping to perform a POST
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
     [requestMapping addAttributeMappingsFromDictionary:@{
-                                                         @"user_password": @"user_password",
-                                                         @"user_name": @"user_name",
+                                                         @"password": @"user_password",
+                                                         @"name": @"user_name",
                                                          @"id": @"user_id"
                                                          }];
     
@@ -105,6 +105,7 @@
                                                       @"update_time": @"update_time",
                                                       @"creation_time": @"creation_time",
                                                       @"song_data": @"song_data",
+                                                      @"name" : @"party_name",
                                                       @"id": @"party_id"
                                                       }];
     
@@ -123,6 +124,7 @@
                                                          @"update_time": @"update_time",
                                                          @"creation_time": @"creation_time",
                                                          @"song_data": @"song_data",
+                                                         @"name" : @"party_name",
                                                          @"id": @"party_id"
                                                          }];
     
@@ -134,8 +136,8 @@
     [objectManager addRequestDescriptor:requestDescriptor];
     
     NSDictionary *queryParams = @{
-                                  @"party_name" : @"",
-                                  @"party_password" : @"",
+                                  @"name" : @"abcdefgh",
+                                  @"password" : @"",
                                   @"song_data" : @""
                                   };
     //queryParams must have proper JSON structure to get a response
@@ -151,7 +153,7 @@
      }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
      {
-         NSLog(@"Error creating user: %@", error);
+         NSLog(@"Error creating party: %@", error);
      }];
     
 }

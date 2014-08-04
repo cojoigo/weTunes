@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     XYZServerCommunication* comm = [[XYZServerCommunication alloc] init];
-    [comm loadUser];
+    [comm createUser];
 }
 
 - (void)didReceiveMemoryWarning
