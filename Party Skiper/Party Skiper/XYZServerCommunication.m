@@ -13,7 +13,8 @@
 
 @implementation XYZServerCommunication
 
-UILabel* userID;
+User *user;
+//UILabel* userID;
 NSArray *users;
 NSArray *parties;
 
@@ -54,7 +55,7 @@ NSArray *parties;
                                                                                    rootKeyPath:@""
                                                                                         method:RKRequestMethodAny];
     [objectManager addRequestDescriptor:requestDescriptor];
-    
+
     NSDictionary *queryParams = @{ };
     //queryParams must have proper JSON structure to get a response
     //URL at create_user
@@ -64,11 +65,11 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
      {
-         NSLog(@"Success");
+         NSLog(@"Create User Success");
          users = mappingResult.array;
-         UILabel* userID;
-         userID.text = users[0];
-         [self createParty];
+         user = users[0];
+         _user_id = user.user_id;
+         
      }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
      {
@@ -79,7 +80,8 @@ NSArray *parties;
 - (void) createParty
 {
     //initialize RestKit
-    User *user = users[0];
+    //User *user = users[0];
+    NSLog(@"userid: %@",user.user_id);
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     [objectManager.HTTPClient setAuthorizationHeaderWithUsername:user.user_id password:user.user_password];
@@ -130,12 +132,12 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
      {
-         NSLog(@"Success");
+         NSLog(@"Create Party Success");
          parties = mappingResult.array;
      }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
      {
-         NSLog(@"Error creating user: %@", error);
+         NSLog(@"Error creating party: %@", error);
      }];
     
 }

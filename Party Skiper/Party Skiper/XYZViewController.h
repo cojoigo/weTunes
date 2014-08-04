@@ -33,4 +33,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *guest_party_dontskip_button;
 @property (strong, nonatomic) IBOutlet UITextField *guest_party_nextup_textbox;
 
+@property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_partyname_tetxbox;
+@property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_numberofguests_textbox;
+@property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_partyid_textbox;
+
+
+@property (strong, nonatomic) IBOutlet UITextField *test;
 @end

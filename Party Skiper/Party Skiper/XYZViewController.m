@@ -9,11 +9,15 @@
 #import "XYZViewController.h"
 #import "XYZServerCommunication.h"
 
+XYZServerCommunication* comm;
+
 @interface XYZViewController ()
 
 @end
 
 @implementation XYZViewController
+//Stops multiple instances of XYZServerCommunication from being loaded
+BOOL load = false;
 
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue
 {
@@ -32,8 +36,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    XYZServerCommunication* comm = [[XYZServerCommunication alloc] init];
-    [comm loadUser];
+    if (!load)
+    {
+        comm = [[XYZServerCommunication alloc] init];
+        [comm loadUser];
+        load = true;
+    }
+}
+
+//test to make sure user ID is being set and passed along fine
+- (IBAction)testbutton:(id)sender
+{
+    NSLog(@"userid: %@",comm.user_id);
+}
+- (IBAction)JPLogin:(id)sender
+{
+    //    [comm joinparty];
+    /*
+     //Alert sequence can be used for fails or to enter password
+     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+     UITextField * alertTextField = [alert textFieldAtIndex:0];
+     alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+     alertTextField.placeholder = @"Enter password";
+     [alert show];
+     //[alert release];
+     */
+}
+- (IBAction)CreateParty:(id)sender
+{
+    [comm createParty];
 }
 
 - (void)didReceiveMemoryWarning
