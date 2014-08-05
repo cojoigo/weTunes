@@ -13,12 +13,13 @@
 
 @implementation XYZServerCommunication
 
-UILabel *userID;
+User *user;
 NSArray *users;
 NSArray *parties;
 
 - (void)createUser
 {
+    NSLog(@"Create User start");
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
@@ -65,13 +66,11 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Create User Success");
                                     users = mappingResult.array;
-                                    //UILabel* userID;
-                                    //userID.text = users[0];
-                                    
-                                    //Immediately call createParty - this is not exactly what we want, I imagine
-                                    [self joinParty];
+                                    user = users[0];
+                                    _user_id = user.user_id;
+                                    NSLog(@"userid: %@", _user_id);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -82,7 +81,7 @@ NSArray *parties;
 - (void) createParty
 {
     //initialize RestKit
-    User *user = users[0];
+    user = users[0];
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
@@ -138,7 +137,7 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Create Party Success");
                                     parties = mappingResult.array;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -210,7 +209,7 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Join Party Success");
                                     parties = mappingResult.array;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -289,7 +288,7 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Update Party Success");
                                     parties = mappingResult.array;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)

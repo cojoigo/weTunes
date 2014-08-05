@@ -9,6 +9,8 @@
 #import "XYZViewController.h"
 #import "XYZServerCommunication.h"
 
+XYZServerCommunication* comm;
+BOOL didload = false;
 @interface XYZViewController ()
 
 @end
@@ -32,14 +34,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    XYZServerCommunication* comm = [[XYZServerCommunication alloc] init];
-    [comm createUser];
+    if (!didload)
+    {
+        comm = [[XYZServerCommunication alloc] init];
+        [comm createUser];
+        didload = true;
+    }
+}
+- (IBAction)JoinParty:(id)sender
+{
+    [comm joinParty];
+/*
+//Alert sequence can be used for fails or to enter password
+UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+UITextField * alertTextField = [alert textFieldAtIndex:0];
+alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+alertTextField.placeholder = @"Enter password";
+[alert show];
+//[alert release];
+*/
+}
+
+- (IBAction)CreateParty:(id)sender
+{
+    [comm createParty];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)testMV:(id)sender
+{
+    NSLog(@"!!UserID: %@", comm.user_id);
 }
 
 /*

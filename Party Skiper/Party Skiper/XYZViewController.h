@@ -39,4 +39,5 @@
 
 
 @property (strong, nonatomic) IBOutlet UITextField *test;
+@property (strong, nonatomic) IBOutlet UIButton *testbutton;
 @end

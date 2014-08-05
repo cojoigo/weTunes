@@ -200,13 +200,16 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="testbutton:" destination="gGv-Jf-jbl" eventType="touchUpInside" id="bdc-uc-5ia"/>
+                                    <action selector="testMV:" destination="gGv-Jf-jbl" eventType="touchUpInside" id="5Dh-cI-z97"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="WeTunes" id="XcU-8x-gFS"/>
+                    <connections>
+                        <outlet property="testbutton" destination="muu-AI-F4S" id="TlD-HA-Pr0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqD-Qz-Qin" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -235,6 +238,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="JoinParty:" destination="ugm-7v-np8" eventType="touchUpInside" id="Fhk-74-sJP"/>
                                     <segue destination="Cwi-pT-UnW" kind="modal" id="uhH-AR-73X"/>
                                 </connections>
                             </button>
@@ -340,7 +344,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="CreateParty:" destination="d9z-7r-Qzw" eventType="touchUpInside" id="pry-FT-AMZ"/>
+                                    <action selector="CreateParty:" destination="d9z-7r-Qzw" eventType="touchUpInside" id="Yww-4r-dkS"/>
                                     <segue destination="j7f-dH-Jhl" kind="modal" id="fMZ-hL-u2I"/>
                                 </connections>
                             </button>
