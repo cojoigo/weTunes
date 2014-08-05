@@ -44,30 +44,37 @@ BOOL didload = false;
 - (IBAction)JoinParty:(id)sender
 {
     [comm joinParty];
-/*
-//Alert sequence can be used for fails or to enter password
-UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-UITextField * alertTextField = [alert textFieldAtIndex:0];
-alertTextField.placeholder = @"Enter password";
-[alert show];
-//[alert release];
-*/
+    //Alert sequence can be used for fails or to enter password
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField * alertTextField = [alert textFieldAtIndex:0];
+    //alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+    alertTextField.placeholder = @"Enter password";
+    [alert show];
+    [self performSegueWithIdentifier:@"JPSegue" sender:self];
 }
 
 - (IBAction)CreateParty:(id)sender
 {
-    [comm createParty];
+    NSString* partyname = @"7093";
+    [comm createParty:partyname];
+    if (comm.CP)
+    {
+        [self performSegueWithIdentifier:@"CPSegue" sender:self];
+    }
+    else
+    {
+        //Alert sequence can be used for fails or to enter password
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Party Name is not unique" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        [alert show];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)testMV:(id)sender
-{
-    NSLog(@"!!UserID: %@", comm.user_id);
 }
 
 /*

@@ -21,23 +21,20 @@
 @property (strong, nonatomic) IBOutlet UITextField *host_createparty_password_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *host_createparty_create_button;
 
-
+//UI elements for the Host Party page
 @property (strong, nonatomic) IBOutlet UITextField *host_party_nowplaying_textbox;
-@property (strong, nonatomic) IBOutlet UITextField *host_party_nextup_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_skip_button;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_dontskip_button;
+@property (strong, nonatomic) IBOutlet UIButton *host_party_partyinfo_button;
 
-
+//UI Elements for the Guest Party page
 @property (strong, nonatomic) IBOutlet UITextField *guest_party_nowplaying_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *guest_party_skip_button;
 @property (strong, nonatomic) IBOutlet UIButton *guest_party_dontskip_button;
-@property (strong, nonatomic) IBOutlet UITextField *guest_party_nextup_textbox;
 
+//UI Elements for the Host Party Info Page
 @property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_partyname_tetxbox;
 @property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_numberofguests_textbox;
 @property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_partyid_textbox;
 
-
-@property (strong, nonatomic) IBOutlet UITextField *test;
-@property (strong, nonatomic) IBOutlet UIButton *testbutton;
 @end

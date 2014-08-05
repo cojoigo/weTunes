@@ -70,6 +70,8 @@ NSArray *parties;
                                     users = mappingResult.array;
                                     user = users[0];
                                     _user_id = user.user_id;
+                                    _user_name = user.user_name;
+                                    _user_password = user.user_password;
                                     NSLog(@"userid: %@", _user_id);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -78,15 +80,14 @@ NSArray *parties;
                                 }];
 }
 
-- (void) createParty
+- (void) createParty:(NSString*)name
 {
     //initialize RestKit
-    user = users[0];
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     //Send user credentials along with request
-    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:user.user_id password:user.user_password];
+    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:_user_id password:_user_password];
     
     //setup object mappings
     RKObjectMapping *partyMapping = [RKObjectMapping mappingForClass:[Party class]];
@@ -123,9 +124,9 @@ NSArray *parties;
                                                                                    rootKeyPath:@""
                                                                                         method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
-    
+    NSLog(@"party name: %@",name);
     NSDictionary *queryParams = @{
-                                  @"name" : @"12",
+                                  @"name" : name,
                                   @"password" : @"",
                                   @"song_data" : @""
                                   };
@@ -139,12 +140,13 @@ NSArray *parties;
                                 {
                                     NSLog(@"Create Party Success");
                                     parties = mappingResult.array;
+                                    _CP = true;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     NSLog(@"Error creating party: %@", error);
+                                    _CP = false;
                                 }];
-    
 }
 
 - (void) joinParty
