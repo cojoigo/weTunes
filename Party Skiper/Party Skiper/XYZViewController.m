@@ -49,7 +49,6 @@ BOOL didload = false;
 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
 alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 UITextField * alertTextField = [alert textFieldAtIndex:0];
-alertTextField.keyboardType = UIKeyboardTypeNumberPad;
 alertTextField.placeholder = @"Enter password";
 [alert show];
 //[alert release];
