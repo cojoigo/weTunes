@@ -76,6 +76,18 @@ class BadCredentialsError(GenericError):
         self.response["details"] = details
 
 
+class UserNotInPartyError(GenericError):
+    """
+    Error raised when a user tries to access a party
+    they are not a guest/host of.
+    """
+
+    def __init__(self, user, party):
+        self.response["message"] += "User is not in the specified party."
+        self.response["user"] = user
+        self.response["party"] = party
+        
+
 class DatabaseIntegrityError(GenericError):
     """
     Error raised when some invalid value was tried to be

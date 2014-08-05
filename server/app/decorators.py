@@ -8,6 +8,7 @@ import errors
 
 
 def requires_user(function):
+    "Checks if the user exists/the credentials are correct."
     @wraps(function)
     def wrapped(*args, **kwargs):
         if request.authorization is None:
@@ -30,6 +31,7 @@ def requires_user(function):
 
 
 def requires_party(function):
+    "Checks if the specified party exists and validates the password."
     @wraps(function)
     def wrapped(*args, **kwargs):
         party_id = kwargs.get("party_id")
@@ -50,12 +52,25 @@ def requires_party(function):
 
 
 def requires_host(function):
+    "Checks if the user is the host of the party."
     @wraps(function)
     def wrapped(*args, **kwargs):
         user = kwargs["user"]
         party = kwargs["party"]
         if user.id != party.host_id:
             raise errors.BadCredentialsError("User not party host.")
+        return function(*args, **kwargs)
+    return wrapped
+
+
+def requires_user_in_party(function):
+    "Validates that the user is in the party."
+    @wraps(function)
+    def wrapped(*args, **kwargs):
+        user = kwargs["user"]
+        party = kwargs["party"]
+        if user not in party.users.all():
+            raise errors.UserNotInPartyError(user.id, party.id)
         return function(*args, **kwargs)
     return wrapped
 

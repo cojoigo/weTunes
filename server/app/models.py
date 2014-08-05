@@ -10,7 +10,7 @@ class Party(db.Model):
     """
     A Party is a representation of a party 
     """
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(256))
@@ -25,7 +25,7 @@ class Party(db.Model):
                 "creation_time": self.creation_time,
                 "update_time": self.update_time,
                 "name": self.name,
-                "user_count" : len(self.users.all())}
+                "user_count": len(self.users.all())}
 
     def update_from_dict(self, **kwargs):
         """
@@ -45,7 +45,6 @@ class Party(db.Model):
             except AttributeError:
                 raise errors.InvalidAttributeError(key)
         self.update_time = time()
-                
 
     def _check_banned_keys(self, vals):
         banned_vals = ["id", "password_hash", "users",
@@ -53,7 +52,7 @@ class Party(db.Model):
         invalid_vals = [val for val in banned_vals if val in vals]
         if len(invalid_vals) != 0:
             raise errors.InvalidAttributeError(invalid_vals)
-    
+
 
 class User(db.Model):
     """

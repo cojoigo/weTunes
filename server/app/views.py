@@ -82,6 +82,7 @@ def join_party(*args, **kwargs):
 @server.route("/update_party/<int:party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
+@decorators.requires_user_in_party
 @decorators.requires_host
 def update_party(*args, **kwargs):
     """
@@ -97,13 +98,13 @@ def update_party(*args, **kwargs):
 @server.route("/get_party/<int:party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
+@decorators.requires_user_in_party
 def get_party(*args, **kwargs):
     """
     Sends the party information.
     """
 
     return jsonify(kwargs["party"].to_json())
-
 
 
 @server.errorhandler(errors.GenericError)
