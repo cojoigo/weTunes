@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XYZViewController : UIViewController
+@interface XYZViewController : UIViewController <UITextFieldDelegate>
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue;
 
 //UI elements for the Join Party as Guest page

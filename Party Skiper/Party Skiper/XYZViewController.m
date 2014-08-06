@@ -31,6 +31,22 @@ BOOL didload = false;
     return self;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.host_createparty_password_textbox) {
+        [self CreateParty:0];
+        //Call CreatePartyFunction
+    }
+    if(textField == self.guest_joinparty_partyid_textbox) {
+        [self JoinParty:0];
+        //Call Login function
+    }
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,6 +56,9 @@ BOOL didload = false;
         [comm createUser];
         didload = true;
     }
+    self.host_createparty_partyname_textbox.delegate = self;
+    self.host_createparty_password_textbox.delegate = self;
+    self.guest_joinparty_partyid_textbox.delegate = self;
 }
 - (IBAction)JoinParty:(id)sender
 {
@@ -50,13 +69,20 @@ BOOL didload = false;
     UITextField * alertTextField = [alert textFieldAtIndex:0];
     //alertTextField.keyboardType = UIKeyboardTypeNumberPad;
     alertTextField.placeholder = @"Enter password";
+    alertTextField.secureTextEntry = YES;
     [alert show];
     [self performSegueWithIdentifier:@"JPSegue" sender:self];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
 - (IBAction)CreateParty:(id)sender
 {
-    NSString* partyname = @"7093";
+    NSString* partyname = @"7093";//HARDCODED FOR TESTING!!!!! REMOVE THIS BEFORE FINAL!!!!!
     [comm createParty:partyname];
     if (comm.CP)
     {
