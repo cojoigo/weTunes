@@ -59,6 +59,7 @@ BOOL didload = false;
     self.host_createparty_partyname_textbox.delegate = self;
     self.host_createparty_password_textbox.delegate = self;
     self.guest_joinparty_partyid_textbox.delegate = self;
+    self.host_partyinfo_partyid.text = comm.party_id;
 }
 - (IBAction)JoinParty:(id)sender
 {
@@ -96,6 +97,11 @@ BOOL didload = false;
         [alert show];
         
     }
+}
+- (IBAction)PartyInfo:(id)sender
+{
+        //self.host_partyinfo_partyid.text = @"lol";
+        [self performSegueWithIdentifier:@"HPISegue" sender:self];
 }
 
 - (void)didReceiveMemoryWarning

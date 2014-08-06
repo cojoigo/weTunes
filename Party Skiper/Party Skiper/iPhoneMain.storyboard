@@ -396,15 +396,9 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="s60-Mv-PJ8" kind="modal" id="ANJ-UO-Keg"/>
+                                    <action selector="PartyInfo:" destination="ZZJ-pQ-NWI" eventType="touchUpInside" id="xYW-Py-gg1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjd-Tj-FM1">
-                                <rect key="frame" x="24" y="253" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -443,6 +437,7 @@
                         <outlet property="host_party_nowplaying_textbox" destination="CYr-Td-zkQ" id="hUV-5h-eLP"/>
                         <outlet property="host_party_partyinfo_button" destination="1uI-j4-FR1" id="4aF-Ma-Hcc"/>
                         <outlet property="host_party_skip_button" destination="kF7-xU-XhE" id="6kH-Q8-W7D"/>
+                        <segue destination="s60-Mv-PJ8" kind="modal" identifier="HPISegue" id="aTE-TX-4TJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h8-to-YvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -495,25 +490,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dD5-PX-zKO">
-                                <rect key="frame" x="183" y="222" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;&lt;Song history should go here, including an indicator of whether it was skipped or not>>" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="UK5-Uf-uoD">
-                                <rect key="frame" x="46" y="329" width="228" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This page should only be accessable to Host" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="qer-Az-Ite">
-                                <rect key="frame" x="93" y="410" width="135" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-EI-Vqd">
                                 <rect key="frame" x="137" y="269" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -524,13 +500,19 @@
                                     <segue destination="htN-Tm-uxI" kind="unwind" unwindAction="unwindMainView:" id="bBi-5J-5ld"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKk-M7-jE4">
+                                <rect key="frame" x="186" y="225" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Party Information" id="990-nY-0dQ"/>
                     <connections>
                         <outlet property="host_partyinfo_numberofguests_textbox" destination="ET6-MU-FPp" id="H4S-0N-hoE"/>
-                        <outlet property="host_partyinfo_partyid_textbox" destination="dD5-PX-zKO" id="JiF-GS-Ro5"/>
+                        <outlet property="host_partyinfo_partyid" destination="DKk-M7-jE4" id="2Hw-zy-C5Z"/>
                         <outlet property="host_partyinfo_partyname_tetxbox" destination="HhC-xv-a3A" id="S0m-ob-qaO"/>
                     </connections>
                 </viewController>
