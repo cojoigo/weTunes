@@ -14,6 +14,7 @@
 @implementation XYZServerCommunication
 
 User *user;
+Party *party;
 NSArray *users;
 NSArray *parties;
 
@@ -141,16 +142,17 @@ NSArray *parties;
                                 {
                                     NSLog(@"Create Party Success");
                                     parties = mappingResult.array;
-                                    _CP = true;
+                                    party = parties[0];
+                                    _party_id = party.party_id;
+                                    NSLog(@"PartyID: %@", party.party_id);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     NSLog(@"Error creating party: %@", error);
-                                    _CP = false;
                                 }];
 }
 
-- (void) joinParty
+- (void) joinParty:(NSString*)ID
 {
     //initialize RestKit
     User *user = users[0];
@@ -171,10 +173,10 @@ NSArray *parties;
                                                        }];
     
     //We need to append the party name to the end of the join_party url
-    NSString *partyPathBase = @"/join_party";
+    NSString *partyPathBase = @"/join_party/";
     
     //IMPORTANT: we need user to input the party name - how in the nine hells do you get user input in Objective-C?
-    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/10013"];
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:ID];
     
     //register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =

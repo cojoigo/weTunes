@@ -11,7 +11,7 @@
 @interface XYZServerCommunication : NSObject
 - (void)createUser;
 - (void)createParty:(NSString*)name andPassword:(NSString *)pwd;
-- (void)joinParty;
+- (void)joinParty:(NSString*)ID;
 - (void)updateParty;
 @property bool CP;
 //User variables
