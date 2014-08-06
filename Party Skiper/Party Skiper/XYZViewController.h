@@ -37,4 +37,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_numberofguests_textbox;
 @property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_partyid_textbox;
 
+//Internal Elements
+@property (nonatomic, strong) NSString *host_party_name;
+@property (nonatomic, strong) NSString *host_party_password;
 @end

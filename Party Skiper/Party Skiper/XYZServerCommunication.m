@@ -80,7 +80,7 @@ NSArray *parties;
                                 }];
 }
 
-- (void) createParty:(NSString*)name
+- (void) createParty:(NSString*)name andPassword:(NSString *)pwd
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
@@ -125,9 +125,10 @@ NSArray *parties;
                                                                                         method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
     NSLog(@"party name: %@",name);
+    NSLog(@"party password: %@",pwd);
     NSDictionary *queryParams = @{
                                   @"name" : name,
-                                  @"password" : @"",
+                                  @"password" : pwd,
                                   @"song_data" : @""
                                   };
     
