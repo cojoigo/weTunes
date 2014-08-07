@@ -10,6 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 
+
 @interface ViewController ()
 //@property (weak, nonatomic) IBOutlet UILabel *songLabel;
 
@@ -17,13 +18,22 @@
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
 	// Do any additional setup after loading the view, typically from a nib.
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(handleNowPlayingItemChanged:)
+                               name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                             object:self.musicPlayer];
     //self.songLabel.text   = @"test";
     MPMediaItem *currentItem = self.musicPlayer.nowPlayingItem;
     self.songLabel.text   = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,12 +44,14 @@
 
 - (void)handleNowPlayingItemChanged:(id)notification
 {
+    self.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
     // Ask the music player for the current song.
-    MPMediaItem *currentItem = self.musicPlayer.nowPlayingItem;
+    MPMediaItem *currentItem2 = self.musicPlayer.nowPlayingItem;
     
-    // Display the artist, album, and song name for the now-playing media item.
-    // These are all UILabels.
-    self.songLabel.text   = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    self.songLabel.text   = [currentItem2 valueForProperty:MPMediaItemPropertyTitle];
+    if (self.songLabel.text == nil){
+        self.songLabel.text = @"You changed the song";
+    }
 
 }
 
