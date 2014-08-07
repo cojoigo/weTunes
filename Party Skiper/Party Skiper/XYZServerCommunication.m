@@ -13,12 +13,14 @@
 
 @implementation XYZServerCommunication
 
-UILabel *userID;
+User *user;
+Party *party;
 NSArray *users;
 NSArray *parties;
 
 - (void)createUser
 {
+    NSLog(@"Create User start");
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
@@ -65,13 +67,13 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Create User Success");
                                     users = mappingResult.array;
-                                    //UILabel* userID;
-                                    //userID.text = users[0];
-                                    
-                                    //Immediately call createParty - this is not exactly what we want, I imagine
-                                    [self joinParty];
+                                    user = users[0];
+                                    _user_id = user.user_id;
+                                    _user_name = user.user_name;
+                                    _user_password = user.user_password;
+                                    NSLog(@"userid: %@", _user_id);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -79,15 +81,14 @@ NSArray *parties;
                                 }];
 }
 
-- (void) createParty
+- (void) createParty:(NSString*)name andPassword:(NSString *)pwd
 {
     //initialize RestKit
-    User *user = users[0];
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     //Send user credentials along with request
-    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:user.user_id password:user.user_password];
+    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:_user_id password:_user_password];
     
     //setup object mappings
     RKObjectMapping *partyMapping = [RKObjectMapping mappingForClass:[Party class]];
@@ -124,10 +125,11 @@ NSArray *parties;
                                                                                    rootKeyPath:@""
                                                                                         method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
-    
+    NSLog(@"party name: %@",name);
+    NSLog(@"party password: %@",pwd);
     NSDictionary *queryParams = @{
-                                  @"name" : @"12",
-                                  @"password" : @"",
+                                  @"name" : name,
+                                  @"password" : pwd,
                                   @"song_data" : @""
                                   };
     
@@ -138,17 +140,19 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Create Party Success");
                                     parties = mappingResult.array;
+                                    party = parties[0];
+                                    _party_id = party.party_id;
+                                    NSLog(@"PartyID: %@", party.party_id);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     NSLog(@"Error creating party: %@", error);
                                 }];
-    
 }
 
-- (void) joinParty
+- (void) joinParty:(NSString*)ID
 {
     //initialize RestKit
     User *user = users[0];
@@ -169,10 +173,10 @@ NSArray *parties;
                                                        }];
     
     //We need to append the party name to the end of the join_party url
-    NSString *partyPathBase = @"/join_party";
+    NSString *partyPathBase = @"/join_party/";
     
     //IMPORTANT: we need user to input the party name - how in the nine hells do you get user input in Objective-C?
-    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/10013"];
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:ID];
     
     //register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -210,7 +214,7 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Join Party Success");
                                     parties = mappingResult.array;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -289,7 +293,7 @@ NSArray *parties;
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
-                                    NSLog(@"Success");
+                                    NSLog(@"Update Party Success");
                                     parties = mappingResult.array;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)

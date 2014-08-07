@@ -9,6 +9,8 @@
 #import "XYZViewController.h"
 #import "XYZServerCommunication.h"
 
+XYZServerCommunication* comm;
+BOOL didload = false;
 @interface XYZViewController ()
 
 @end
@@ -29,11 +31,77 @@
     return self;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.host_createparty_password_textbox) {
+        [self CreateParty:0];
+        //Call CreatePartyFunction
+    }
+    if(textField == self.guest_joinparty_partyid_textbox) {
+        [self JoinParty:0];
+        //Call Login function
+    }
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    XYZServerCommunication* comm = [[XYZServerCommunication alloc] init];
-    [comm createUser];
+    if (!didload)
+    {
+        comm = [[XYZServerCommunication alloc] init];
+        [comm createUser];
+        didload = true;
+    }
+    self.host_createparty_partyname_textbox.delegate = self;
+    self.host_createparty_password_textbox.delegate = self;
+    self.guest_joinparty_partyid_textbox.delegate = self;
+    self.host_partyinfo_partyid.text = comm.party_id;
+}
+- (IBAction)JoinParty:(id)sender
+{
+    [comm joinParty:_guest_joinparty_partyid_textbox.text];
+    //Alert sequence can be used for fails or to enter password
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField * alertTextField = [alert textFieldAtIndex:0];
+    alertTextField.placeholder = @"Enter password";
+    alertTextField.secureTextEntry = YES;
+    [alert show];
+    //thread
+    [self performSegueWithIdentifier:@"JPSegue" sender:self];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (IBAction)CreateParty:(id)sender
+{
+    [comm createParty:_host_createparty_partyname_textbox.text andPassword:_host_createparty_password_textbox.text];
+    //thread
+    if (true)
+    {
+        NSLog(@"PartyID : %@", comm.party_id);
+        [self performSegueWithIdentifier:@"CPSegue" sender:self];
+    }
+    else
+    {
+        //Alert sequence can be used for fails or to enter password
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Party Name is not unique" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        [alert show];
+        
+    }
+}
+- (IBAction)PartyInfo:(id)sender
+{
+        //self.host_partyinfo_partyid.text = @"lol";
+        [self performSegueWithIdentifier:@"HPISegue" sender:self];
 }
 
 - (void)didReceiveMemoryWarning
