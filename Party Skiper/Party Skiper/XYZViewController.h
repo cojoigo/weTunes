@@ -23,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *host_createparty_create_button;
 
 //UI elements for the Host Party page
-@property (strong, nonatomic) IBOutlet UITextField *host_party_nowplaying_textbox;
+@property (strong, nonatomic) IBOutlet UILabel *host_party_nowplaying_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_skip_button;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_dontskip_button;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_partyinfo_button;

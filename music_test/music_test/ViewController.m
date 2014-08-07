@@ -52,6 +52,7 @@
     if (self.songLabel.text == nil){
         self.songLabel.text = @"You changed the song";
     }
+    [self viewDidLoad];
 
 }
 

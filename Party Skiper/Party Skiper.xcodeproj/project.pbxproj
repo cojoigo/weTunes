@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06FE54E419941E5F0007C51F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FE54E319941E5F0007C51F /* MediaPlayer.framework */; };
+		06FE54E719941ECB0007C51F /* musicDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE54E619941ECB0007C51F /* musicDetails.m */; };
 		8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B89381977168600E16CC1 /* XYZViewController.m */; };
 		8F95299A19898ACE003C547A /* XYZServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F95299919898ACE003C547A /* XYZServerCommunication.m */; };
 		8F9529A41990149D003C547A /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9529A11990149D003C547A /* Party.m */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06FE54E319941E5F0007C51F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		06FE54E519941ECB0007C51F /* musicDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicDetails.h; sourceTree = "<group>"; };
+		06FE54E619941ECB0007C51F /* musicDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicDetails.m; sourceTree = "<group>"; };
 		3FD4449B1E994F8880D32891 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7B89371977168600E16CC1 /* XYZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZViewController.h; sourceTree = "<group>"; };
 		8F7B89381977168600E16CC1 /* XYZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZViewController.m; sourceTree = "<group>"; };
@@ -75,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FE54E419941E5F0007C51F /* MediaPlayer.framework in Frameworks */,
 				8FA78C5819676DE000CFC22C /* CoreGraphics.framework in Frameworks */,
 				8FA78C5A19676DE000CFC22C /* UIKit.framework in Frameworks */,
 				8FA78C5619676DE000CFC22C /* Foundation.framework in Frameworks */,
@@ -115,6 +121,8 @@
 				8F9529A31990149D003C547A /* User.m */,
 				8F95299819898ACE003C547A /* XYZServerCommunication.h */,
 				8F95299919898ACE003C547A /* XYZServerCommunication.m */,
+				06FE54E519941ECB0007C51F /* musicDetails.h */,
+				06FE54E619941ECB0007C51F /* musicDetails.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -142,6 +150,7 @@
 		8FA78C5419676DE000CFC22C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06FE54E319941E5F0007C51F /* MediaPlayer.framework */,
 				8FA78C5519676DE000CFC22C /* Foundation.framework */,
 				8FA78C5719676DE000CFC22C /* CoreGraphics.framework */,
 				8FA78C5919676DE000CFC22C /* UIKit.framework */,
@@ -326,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FE54E719941ECB0007C51F /* musicDetails.m in Sources */,
 				8F9529A41990149D003C547A /* Party.m in Sources */,
 				8F9529A51990149D003C547A /* User.m in Sources */,
 				8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */,

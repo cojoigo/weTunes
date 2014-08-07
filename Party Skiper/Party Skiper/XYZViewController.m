@@ -8,6 +8,8 @@
 
 #import "XYZViewController.h"
 #import "XYZServerCommunication.h"
+#import "musicDetails.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 XYZServerCommunication* comm;
 BOOL didload = false;
@@ -16,6 +18,7 @@ BOOL didload = false;
 @end
 
 @implementation XYZViewController
+
 
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue
 {
@@ -63,7 +66,27 @@ BOOL didload = false;
     self.host_partyinfo_partyid.text = comm.party_id;
     self.host_partyinfo_partyname_label.text = comm.party_name;
     
-
+    [self.view addSubview:self.host_party_nowplaying_textbox];
+    
+    musicDetails *musicObject;
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(handleNowPlayingItemChanged:)
+                               name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                             object:musicObject];
+    
+    MPMediaItem *currentItem = musicObject.song.nowPlayingItem;
+    NSString *title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    NSString *artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    NSMutableString *song_data = [NSMutableString string];
+    if (title != nil){
+        [song_data appendString:title];
+        [song_data appendString:@" by "];
+        [song_data appendString:artist];
+    }
+    self.host_party_nowplaying_textbox.text = song_data;
+    
 }
 
 - (IBAction)JoinParty:(id)sender
@@ -128,5 +151,26 @@ BOOL didload = false;
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)handleNowPlayingItemChanged:(id)notification {
+    musicDetails *musicObject;
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(handleNowPlayingItemChanged:)
+                               name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                             object:musicObject];
+    
+    MPMediaItem *currentItem = musicObject.song.nowPlayingItem;
+    NSString *title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    NSString *artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    NSMutableString *song_data = [NSMutableString string];
+    if (title != nil){
+        [song_data appendString:title];
+        [song_data appendString:@" by "];
+        [song_data appendString:artist];
+    }
+    self.host_party_nowplaying_textbox.text = song_data;
+    [self viewDidLoad];
+}
 
 @end
