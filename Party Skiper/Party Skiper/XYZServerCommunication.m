@@ -81,7 +81,7 @@ NSArray *parties;
                                 }];
 }
 
-- (void) createParty:(NSString*)name andPassword:(NSString *)pwd
+- (NSString*) createParty:(NSString*)name andPassword:(NSString *)pwd
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
@@ -132,9 +132,7 @@ NSArray *parties;
                                   @"password" : pwd,
                                   @"song_data" : @""
                                   };
-    
-    //Party *party;
-    
+    _server_rsp = nil;
     [objectManager postObject:nil
                          path:@"/create_party"
                    parameters:queryParams
@@ -144,15 +142,22 @@ NSArray *parties;
                                     parties = mappingResult.array;
                                     party = parties[0];
                                     _party_id = party.party_id;
-                                    NSLog(@"PartyID: %@", party.party_id);
+                                    _party_name = party.party_id;
+                                    _server_rsp = @"success";
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     NSLog(@"Error creating party: %@", error);
+                                    _server_rsp = @"failure";
                                 }];
+    while (_server_rsp == nil)
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    return _server_rsp;
 }
 
-- (void) joinParty:(NSString*)ID
+- (NSString*) joinParty:(NSString*)ID andPassword:(NSString *)pwd
 {
     //initialize RestKit
     User *user = users[0];
@@ -208,21 +213,28 @@ NSArray *parties;
     NSDictionary *queryParams = @{
                                   @"password" : @""
                                   };
-    
+    _server_rsp = nil;
     [objectManager postObject:nil
                          path:partyPathUrl
                    parameters:queryParams
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
                                     NSLog(@"Join Party Success");
+                                    _server_rsp = @"success";
                                     parties = mappingResult.array;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     NSLog(@"Error joining party: %@", error);
+                                    _server_rsp = @"failure";
                                     //If we get here, implement a check to make sure the error is 'wrong password'
                                     //If so, we need to create a dialog box to prompt the user for the party password and then resend this exact same POST, but with the updated password
                                 }];
+    while (_server_rsp == nil)
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    return _server_rsp;
 }
 
 - (void) updateParty

@@ -63,16 +63,33 @@ BOOL didload = false;
 }
 - (IBAction)JoinParty:(id)sender
 {
-    [comm joinParty:_guest_joinparty_partyid_textbox.text];
-    //Alert sequence can be used for fails or to enter password
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField * alertTextField = [alert textFieldAtIndex:0];
-    alertTextField.placeholder = @"Enter password";
-    alertTextField.secureTextEntry = YES;
-    [alert show];
-    //thread
-    [self performSegueWithIdentifier:@"JPSegue" sender:self];
+    NSString *rsp;
+    rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:@""];
+    if ([rsp  isEqual: @"success"])
+    {
+           [self performSegueWithIdentifier:@"JPSegue" sender:self];
+    }
+    else
+    {
+        //Alert sequence can be used for fails or to enter password
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField * alertTextField = [alert textFieldAtIndex:0];
+        alertTextField.placeholder = @"Enter password";
+        alertTextField.secureTextEntry = YES;
+        [alert show];
+        //thread
+        rsp = nil;
+        rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:alertTextField.text];
+        if ([rsp  isEqual: @"success"])
+        {
+            [self performSegueWithIdentifier:@"JPSegue" sender:self];
+        }
+        else
+        {
+            [self performSegueWithIdentifier:@"JPSegue" sender:self];
+        }
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -83,9 +100,9 @@ BOOL didload = false;
 
 - (IBAction)CreateParty:(id)sender
 {
-    [comm createParty:_host_createparty_partyname_textbox.text andPassword:_host_createparty_password_textbox.text];
-    //thread
-    if (true)
+    NSString *rsp;
+    rsp = [comm createParty:_host_createparty_partyname_textbox.text andPassword:_host_createparty_password_textbox.text];
+    if ([rsp  isEqual: @"success"])
     {
         NSLog(@"PartyID : %@", comm.party_id);
         [self performSegueWithIdentifier:@"CPSegue" sender:self];

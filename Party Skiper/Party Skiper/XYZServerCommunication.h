@@ -10,10 +10,10 @@
 
 @interface XYZServerCommunication : NSObject
 - (void)createUser;
-- (void)createParty:(NSString*)name andPassword:(NSString *)pwd;
-- (void)joinParty:(NSString*)ID;
+- (NSString*)createParty:(NSString*)name andPassword:(NSString *)pwd;
+- (NSString*)joinParty:(NSString*)ID andPassword:(NSString *)pwd;
 - (void)updateParty;
-@property bool CP;
+@property (nonatomic, strong) NSString *server_rsp;
 //User variables
 @property (nonatomic, strong) NSString *user_password;
 @property (nonatomic, strong) NSString *user_name;
