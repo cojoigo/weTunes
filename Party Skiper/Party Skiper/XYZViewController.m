@@ -59,6 +59,7 @@ BOOL didload = false;
     self.host_createparty_partyname_textbox.delegate = self;
     self.host_createparty_password_textbox.delegate = self;
     self.guest_joinparty_partyid_textbox.delegate = self;
+    self.guest_joinparty_password_textbox.delegate = self;
     self.host_partyinfo_partyid.text = comm.party_id;
     self.host_partyinfo_partyname_label.text = comm.party_name;
     
@@ -68,7 +69,7 @@ BOOL didload = false;
 - (IBAction)JoinParty:(id)sender
 {
     NSString *rsp;
-    rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:@""];
+    rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:_guest_joinparty_password_textbox.text];
     if ([rsp  isEqual: @"success"])
     {
            [self performSegueWithIdentifier:@"JPSegue" sender:self];
@@ -76,23 +77,8 @@ BOOL didload = false;
     else
     {
         //Alert sequence can be used for fails or to enter password
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter party password:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        UITextField * alertTextField = [alert textFieldAtIndex:0];
-        alertTextField.placeholder = @"Enter password";
-        alertTextField.secureTextEntry = YES;
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please Enter a party password" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         [alert show];
-        //thread
-        rsp = nil;
-        rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:alertTextField.text];
-        if ([rsp  isEqual: @"success"])
-        {
-            [self performSegueWithIdentifier:@"JPSegue" sender:self];
-        }
-        else
-        {
-            [self performSegueWithIdentifier:@"JPSegue" sender:self];
-        }
     }
 }
 

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *guest_joinparty_partyid_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *guest_joinparty_browse_button;
 @property (strong, nonatomic) IBOutlet UIButton *guest_joinparty_login_button;
+@property (strong, nonatomic) IBOutlet UITextField *guest_joinparty_password_textbox;
 
 //UI elements for the Create Party as Host page
 @property (strong, nonatomic) IBOutlet UITextField *host_createparty_partyname_textbox;

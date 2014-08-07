@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M3M-UD-DE4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M3M-UD-DE4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -244,6 +244,18 @@
                                     <segue destination="Q2E-y1-ZaD" kind="modal" id="5ay-Ws-ASU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fub-7S-hz9">
+                                <rect key="frame" x="30" y="239" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9WU-2C-QdJ">
+                                <rect key="frame" x="112" y="238" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -266,6 +278,7 @@
                         <outlet property="guest_joinparty_browse_button" destination="LdO-I2-soo" id="MiY-zi-5nI"/>
                         <outlet property="guest_joinparty_login_button" destination="ONI-fe-TCZ" id="Fs9-RQ-HrF"/>
                         <outlet property="guest_joinparty_partyid_textbox" destination="bKM-08-kqS" id="cZu-zb-3Jk"/>
+                        <outlet property="guest_joinparty_password_textbox" destination="9WU-2C-QdJ" id="3g1-sx-eZw"/>
                         <segue destination="Cwi-pT-UnW" kind="modal" identifier="JPSegue" id="Xdy-5p-CB5"/>
                     </connections>
                 </viewController>
