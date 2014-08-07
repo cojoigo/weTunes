@@ -33,7 +33,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *guest_party_dontskip_button;
 
 //UI Elements for the Host Party Info Page
-@property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_partyname_tetxbox;
+@property (strong, nonatomic) IBOutlet UILabel *host_partyinfo_partyname_label;
 @property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_numberofguests_textbox;
 @property (strong, nonatomic) IBOutlet UILabel *host_partyinfo_partyid;
 

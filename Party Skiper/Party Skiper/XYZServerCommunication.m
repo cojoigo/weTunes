@@ -144,6 +144,7 @@ NSArray *parties;
                                     parties = mappingResult.array;
                                     party = parties[0];
                                     _party_id = party.party_id;
+                                    _party_name = party.party_name;
                                     NSLog(@"PartyID: %@", party.party_id);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
