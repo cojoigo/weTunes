@@ -60,7 +60,11 @@ BOOL didload = false;
     self.host_createparty_password_textbox.delegate = self;
     self.guest_joinparty_partyid_textbox.delegate = self;
     self.host_partyinfo_partyid.text = comm.party_id;
+    self.host_partyinfo_partyname_label.text = comm.party_name;
+    
+
 }
+
 - (IBAction)JoinParty:(id)sender
 {
     NSString *rsp;
@@ -115,6 +119,7 @@ BOOL didload = false;
         
     }
 }
+
 - (IBAction)PartyInfo:(id)sender
 {
         //self.host_partyinfo_partyid.text = @"lol";
