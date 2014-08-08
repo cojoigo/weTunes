@@ -108,3 +108,18 @@ class InvalidAttributeError(GenericError):
         super(InvalidAttributeError, self).__init__()
         self.response["message"] = "Illegal value entered."
         self.response["details"] = str(value)
+
+
+class OutOfSyncError(GenericError):
+    """
+    Error raised when a guest tries to vote on a song that isn't current
+    Not an error that gets displayed to the guest, but should cause
+    the client to refresh the party data.
+
+    Shouldn't happen too much, but it is not abnormal for it to
+    occur.
+    """
+
+    def __init__(self):
+        super(InvalidAttributeError, self).__init__()
+        self.response["message"] = "Your local party data is not up-to-date."

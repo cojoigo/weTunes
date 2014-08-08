@@ -19,6 +19,8 @@ def verify_content_type():
             raise errors.IncorrectContentTypeError()
         try:
             request.json
+
+
         except:
             raise errors.NoJSONDataError()
 
@@ -31,7 +33,8 @@ def create_user(*args, **kwargs):
     """
     user_password = str(uuid.uuid4())
     password_hash = hashlib.sha512(user_password).hexdigest()
-    user = models.User(password_hash=password_hash)
+    user = models.User(password_hash=password_hash, vote_data={"uuid": None,
+                                                               "vote": None})
     db.session.add(user)
     db.session.commit()
     user_json = user.to_json()
@@ -54,9 +57,12 @@ def create_party(*args, **kwargs):
         password_hash = None
     else:
         password_hash = hashlib.sha512(party_password).hexdigest()
+
+    song_data = request.json.get("song_data", {})
+    song_data["vote_data"] = {"-1": 0, "1": 0}
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
-                         song_data=request.json.get("song_data", {}),
+                         song_data=song_data,
                          creation_time=time(),
                          update_time=time(),
                          users=[],
@@ -126,10 +132,28 @@ def get_parties(*args, **kwargs):
 @decorators.requires_user
 @decorators.requires_party
 @decorators.requires_user_in_party
+@decorators.requires_vals(["song_title", "vote"])
 def vote(*args, **kwargs):
     """
     Interface for voting on a party.
     """
+
+    user = kwargs["user"]
+    party = kwargs["party"]
+    song_title = request.json["song_title"]
+    vote = request.json["vote"]
+    if song_title != party.song_data.get("title", None):
+        raise errors.OutOfSyncError()
+    if party.song_data["uuid"] == user.vote_data["uuid"]:
+        if vote != user.vote_data["vote"]:
+            party.song_data["vote_data"][str(user.vote_data["vote"])] -= 1
+            user.vote_data["vote"] *= -1
+            party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
+    else:
+        user.vote_data["uuid"] == party.song_data["uuid"]
+        party.song_data["vote_data"][str(user.vote_data)] += 1
+
+    return jsonify(party.to_json())
 
 
 @server.route("/clean", methods=["GET"])

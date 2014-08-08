@@ -1,6 +1,7 @@
 #!/bin/python2
 
 from time import time
+import uuid
 import hashlib
 from app import db
 import errors
@@ -40,10 +41,17 @@ class Party(db.Model):
                 party_password).hexdigest()
         except TypeError:
             pass
+        song_data = kwargs.get("song_data", {})
+        song_data.pop("vote_data", None)
+        if "song_title" in song_data:
+            song_data["uuid"] = uuid.uuid4()
         for key in kwargs:
             try:
-                getattr(self, key)
-                setattr(self, key, kwargs[key])
+                attr = getattr(self, key)
+                if type(attr) == dict and type(key) == dict:
+                    attr.update(key)
+                else:
+                    setattr(self, key, kwargs[key])
             except AttributeError:
                 raise errors.InvalidAttributeError(key)
         self.update_time = time()
@@ -66,6 +74,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(256), nullable=False)
     # Required to have a relationship, otherwise not used
     party_id = db.Column(db.Integer, db.ForeignKey("party.id"))
+    vote_data = db.Column(db.PickleType)
+    update_time = db.Column(db.Integer)
 
     def to_json(self):
         return {"id": self.id, "name": self.name}
