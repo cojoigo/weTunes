@@ -32,8 +32,9 @@
                              object:self.musicPlayer];
     //self.songLabel.text   = @"test";
     MPMediaItem *currentItem = self.musicPlayer.nowPlayingItem;
-    self.songLabel.text   = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    
+    if (currentItem != nil){
+        self.songLabel.text   = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +54,6 @@
         self.songLabel.text = @"You changed the song";
     }
     [self viewDidLoad];
-
 }
 
 @end

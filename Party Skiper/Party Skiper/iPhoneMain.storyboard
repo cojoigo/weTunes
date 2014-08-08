@@ -382,6 +382,9 @@
                                 <state key="normal" title="Skip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextSong:" destination="ZZJ-pQ-NWI" eventType="touchUpInside" id="x7o-PG-28k"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZz-eM-Xy1">
                                 <rect key="frame" x="225" y="176" width="72" height="30"/>

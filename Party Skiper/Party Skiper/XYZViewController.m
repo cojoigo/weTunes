@@ -66,10 +66,11 @@ BOOL didload = false;
     self.host_partyinfo_partyid.text = comm.party_id;
     self.host_partyinfo_partyname_label.text = comm.party_name;
     
-    [self.view addSubview:self.host_party_nowplaying_textbox];
+    //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
     
     musicDetails *musicObject;
     
+    musicObject.song.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
@@ -77,16 +78,15 @@ BOOL didload = false;
                              object:musicObject];
     
     MPMediaItem *currentItem = musicObject.song.nowPlayingItem;
-    NSString *title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    NSString *artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
-    NSMutableString *song_data = [NSMutableString string];
-    if (title != nil){
-        [song_data appendString:title];
-        [song_data appendString:@" by "];
-        [song_data appendString:artist];
+    musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    musicObject.songData = [NSMutableString string];
+    if (musicObject.title != nil){
+        [musicObject.songData appendString:musicObject.title];
+        [musicObject.songData appendString:@" by "];
+        [musicObject.songData appendString:musicObject.artist];
+        self.host_party_nowplaying_textbox.text = musicObject.songData;
     }
-    self.host_party_nowplaying_textbox.text = song_data;
-    
 }
 
 - (IBAction)JoinParty:(id)sender
@@ -154,6 +154,7 @@ BOOL didload = false;
 
 - (void)handleNowPlayingItemChanged:(id)notification {
     musicDetails *musicObject;
+    musicObject.song.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
@@ -161,16 +162,22 @@ BOOL didload = false;
                              object:musicObject];
     
     MPMediaItem *currentItem = musicObject.song.nowPlayingItem;
-    NSString *title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    NSString *artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
-    NSMutableString *song_data = [NSMutableString string];
-    if (title != nil){
-        [song_data appendString:title];
-        [song_data appendString:@" by "];
-        [song_data appendString:artist];
+    musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    musicObject.songData = [NSMutableString string];
+    if (musicObject.title != nil){
+        [musicObject.songData appendString:musicObject.title];
+        [musicObject.songData appendString:@" by "];
+        [musicObject.songData appendString:musicObject.artist];
     }
-    self.host_party_nowplaying_textbox.text = song_data;
+    self.host_party_nowplaying_textbox.text = musicObject.songData;
     [self viewDidLoad];
+}
+
+- (IBAction)nextSong:(id)sender
+{
+    musicDetails *musicObject;
+    [musicObject.song skipToNextItem];
 }
 
 @end

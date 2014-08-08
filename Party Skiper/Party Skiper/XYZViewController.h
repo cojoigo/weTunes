@@ -11,6 +11,7 @@
 @interface XYZViewController : UIViewController <UITextFieldDelegate>
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue;
 
+
 //UI elements for the Join Party as Guest page
 @property (strong, nonatomic) IBOutlet UITextField *guest_joinparty_partyid_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *guest_joinparty_browse_button;

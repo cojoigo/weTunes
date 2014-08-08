@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *artist;
 @property (nonatomic, strong) NSMutableString *songData;
+- (IBAction)nextSong:(id)sender;
 
 @end
