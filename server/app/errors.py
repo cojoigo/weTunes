@@ -11,7 +11,7 @@ class GenericError(Exception):
         super(GenericError, self).__init__()
         self.status_code = 400
         self.response = {}
-        self.response["message"] = self.__class__.__name__ + ": "
+        self.response["error_name"] = self.__class__.__name__
 
     def to_json(self):
         "Returns the response dictionary as a json object"
@@ -27,7 +27,7 @@ class IncorrectContentTypeError(GenericError):
 
     def __init__(self):
         super(IncorrectContentTypeError, self).__init__()
-        self.response["message"] += "Not application/json"
+        self.response["message"] = "Not application/json"
 
 
 class NoJSONDataError(GenericError):
@@ -37,7 +37,7 @@ class NoJSONDataError(GenericError):
 
     def __init__(self):
         super(NoJSONDataError, self).__init__()
-        self.response["message"] += "No valid JSON data provided"
+        self.response["message"] = "No valid JSON data provided"
 
 
 class MissingInformationError(GenericError):
@@ -48,7 +48,7 @@ class MissingInformationError(GenericError):
 
     def __init__(self, missing_data):
         super(MissingInformationError, self).__init__()
-        self.response["message"] += "Missing required data"
+        self.response["message"] = "Missing required data"
         self.response["missing_data"] = missing_data
 
 
@@ -57,11 +57,10 @@ class NotFoundInDatabaseError(GenericError):
     Error raised when some resource was not found in the database
     """
 
-    def __init__(self, details):
+    def __init__(self, message):
         super(NotFoundInDatabaseError, self).__init__()
         self.status_code = 404
-        self.response["message"] += "Resource not found in database"
-        self.response["details"] = details
+        self.response["message"] = message
 
 
 class BadCredentialsError(GenericError):
@@ -69,11 +68,10 @@ class BadCredentialsError(GenericError):
     Error raised when incorrect/missing user credentials are provided.
     """
 
-    def __init__(self, details):
+    def __init__(self, message):
         super(BadCredentialsError, self).__init__()
         self.status_code = 401
-        self.response["message"] += "The credentials provided were incorrect."
-        self.response["details"] = details
+        self.response["message"] = message
 
 
 class UserNotInPartyError(GenericError):
@@ -83,10 +81,10 @@ class UserNotInPartyError(GenericError):
     """
 
     def __init__(self, user, party):
-        self.response["message"] += "User is not in the specified party."
+        self.response["message"] = "User is not in the specified party."
         self.response["user"] = user
         self.response["party"] = party
-        
+
 
 class DatabaseIntegrityError(GenericError):
     """
@@ -97,7 +95,7 @@ class DatabaseIntegrityError(GenericError):
     def __init__(self, error):
         super(DatabaseIntegrityError, self).__init__()
         self.status_code = 500
-        self.response["message"] += "The database failed to insert the data."
+        self.response["message"] = "The database failed to insert the data."
         self.response["details"] = str(error)
 
 
@@ -108,5 +106,5 @@ class InvalidAttributeError(GenericError):
 
     def __init__(self, value):
         super(InvalidAttributeError, self).__init__()
-        self.response["message"] += "Illegal value entered."
+        self.response["message"] = "Illegal value entered."
         self.response["details"] = str(value)

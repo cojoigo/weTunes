@@ -8,7 +8,7 @@ import errors
 
 class Party(db.Model):
     """
-    A Party is a representation of a party 
+    A Party is a representation of a party
     """
 
     id = db.Column(db.Integer, primary_key=True)
@@ -32,10 +32,12 @@ class Party(db.Model):
         Updates the object from a dictionary,
         ensures improper attributes don't get set.
         """
+
         self._check_banned_keys(kwargs)
         party_password = kwargs.pop("password", None)
         try:
-            kwargs["password_hash"] = hashlib.sha512(party_password).hexdigest()
+            kwargs["password_hash"] = hashlib.sha512(
+                party_password).hexdigest()
         except TypeError:
             pass
         for key in kwargs:
@@ -62,6 +64,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, nullable=True)
     password_hash = db.Column(db.String(256), nullable=False)
+    # Required to have a relationship, otherwise not used
     party_id = db.Column(db.Integer, db.ForeignKey("party.id"))
 
     def to_json(self):

@@ -44,7 +44,7 @@ def create_user(*args, **kwargs):
 @decorators.requires_vals(["name"])
 def create_party(*args, **kwargs):
     """
-    Creates a party on the server and returns the detials
+    Creates a party on the server and returns the details
     See docs/create_party.md for more details.
     """
 
@@ -56,7 +56,7 @@ def create_party(*args, **kwargs):
         password_hash = hashlib.sha512(party_password).hexdigest()
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
-                         song_data=request.json.get("song_data", None),
+                         song_data=request.json.get("song_data", {}),
                          creation_time=time(),
                          update_time=time(),
                          users=[],
@@ -105,6 +105,46 @@ def get_party(*args, **kwargs):
     """
 
     return jsonify(kwargs["party"].to_json())
+
+
+@server.route("/get_parties", methods=["GET"])
+@decorators.requires_user
+def get_parties(*args, **kwargs):
+    """
+    Returns a list of all parties
+    """
+
+    party_list = models.Party.query.all()
+    json_party_list = [p.to_json() for p in party_list]
+    # Flask jsonify has bug with raw arrays, use
+    # standard json lib instead
+    import json
+    return json.dumps(json_party_list)
+
+
+@server.route("/vote/<int:party_id>", methods=["POST"])
+@decorators.requires_user
+@decorators.requires_party
+@decorators.requires_user_in_party
+def vote(*args, **kwargs):
+    """
+    Interface for voting on a party.
+    """
+
+
+@server.route("/clean", methods=["GET"])
+def clean(*args, **kwargs):
+    """
+    Removes old parties from the database.
+    Called via a cronjob on the server.
+    """
+
+    cutoff_time = time() - (60 * 30)
+    parties = models.Party.query.all()
+    [db.session.delete(p) for p in parties
+     if p.update_time < cutoff_time]
+    db.session.commit()
+    return "Done."
 
 
 @server.errorhandler(errors.GenericError)
