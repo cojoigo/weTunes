@@ -46,10 +46,10 @@ class MissingInformationError(GenericError):
     along with a request
     """
 
-    def __init__(self, missing_data):
+    def __init__(self, details):
         super(MissingInformationError, self).__init__()
         self.response["message"] = "Missing required data"
-        self.response["missing_data"] = missing_data
+        self.response["details"] = details
 
 
 class NotFoundInDatabaseError(GenericError):
@@ -101,7 +101,8 @@ class DatabaseIntegrityError(GenericError):
 
 class InvalidAttributeError(GenericError):
     """
-    Error raised when a request tries to update an illegal value.
+    Error raised when a request tries to update an illegal attribute
+    or the given value is invalid for some reason.
     """
 
     def __init__(self, value):

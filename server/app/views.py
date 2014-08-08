@@ -142,6 +142,8 @@ def vote(*args, **kwargs):
     party = kwargs["party"]
     song_title = request.json["song_title"]
     vote = request.json["vote"]
+    if vote != -1 and vote != 1:
+        raise errors.InvalidAttributeError("vote")
     if song_title != party.song_data.get("title", None):
         raise errors.OutOfSyncError()
     if party.song_data["uuid"] == user.vote_data["uuid"]:
