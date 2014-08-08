@@ -114,7 +114,7 @@ def get_parties(*args, **kwargs):
     Returns a list of all parties
     """
 
-    party_list = models.Party.query.all()
+    party_list = models.Party.query.all() or []
     json_party_list = [p.to_json() for p in party_list]
     # Flask jsonify has bug with raw arrays, use
     # standard json lib instead
