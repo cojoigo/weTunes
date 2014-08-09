@@ -101,11 +101,11 @@ def update_party(*args, **kwargs):
     return jsonify(party.to_json())
 
 
-@server.route("/get_party/<int:party_id>", methods=["POST"])
+@server.route("/refresh_party/<int:party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
 @decorators.requires_user_in_party
-def get_party(*args, **kwargs):
+def refresh_party(*args, **kwargs):
     """
     Sends the party information.
     """
@@ -152,7 +152,7 @@ def vote(*args, **kwargs):
             user.vote_data["vote"] *= -1
             party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
     else:
-        user.vote_data["uuid"] == party.song_data["uuid"]
+        user.vote_data["uuid"] = party.song_data["uuid"]
         party.song_data["vote_data"][str(user.vote_data)] += 1
 
     return jsonify(party.to_json())
