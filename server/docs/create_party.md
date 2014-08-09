@@ -22,20 +22,20 @@ Content-type | application/json
 ### Authentication
 HTTP Basic, with user_id and user_password.
 
-
 ### Body 
 Name | Required? | Value
 -----|-----------|------
 name | Yes | The chosen name for the party
-password | Yes | The chosen password. None/nil/void if there is no password.
+password | No | The chosen password. 
 song_data | No | JSON containing song metadata. See relevant spec page.
 
 ### Response
 Name | Value
 -----|------
 id | The unique id for the party.
-song_data | The song data provided
+song_data | The song data, including the vote counts.
 creation_time | The time of creation in unix time.
 update_time | The time of last update in unix time.
-name | The unique name of the party. 
+name | The unique name of the party.
+user_count | The number of users in the party.
 

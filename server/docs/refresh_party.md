@@ -1,22 +1,15 @@
-join_party
+refresh_party
 =====================
 
 Overview
 ---------------------
-This provides a method to join a party on the server. 
+This provides a method to get the updated info for a party.
 
-REST Info
----------------------
 ### URL
-https://sgoodwin.pythonanywhere.com/join_party/<party_id>
+https://sgoodwin.pythonanywhere.com/refresh_party/<party_id>
 
 ### Allowed Methods
-POST
-
-### Headers
-Name | Value
------|------
-Content-type | application/json
+GET
 
 ### Authentication
 HTTP Basic, with user_id and user_password.
@@ -30,7 +23,7 @@ password | Depends | The party's password. Needed if the party has a password.
 Name | Value
 -----|------
 id | The unique id for the party.
-song_data | The song data provided
+song_data | The song data, including the vote counts.
 creation_time | The time of creation in unix time.
 update_time | The time of last update in unix time.
 name | The unique name of the party. 

@@ -35,7 +35,7 @@ class Party(db.Model):
         """
 
         self._check_banned_keys(kwargs)
-        party_password = kwargs.pop("password", None)
+        party_password = kwargs.pop("new_password", None)
         try:
             kwargs["password_hash"] = hashlib.sha512(
                 party_password).hexdigest()
