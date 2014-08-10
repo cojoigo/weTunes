@@ -18,6 +18,7 @@
 
 @implementation ViewController
 
+@synthesize musicPlayer;
 
 
 - (void)viewDidLoad
@@ -53,7 +54,11 @@
     if (self.songLabel.text == nil){
         self.songLabel.text = @"You changed the song";
     }
-    [self viewDidLoad];
+    [self.view setNeedsDisplay];
+}
+
+- (IBAction)nextSong:(id)sender {
+    [musicPlayer skipToNextItem];
 }
 
 @end

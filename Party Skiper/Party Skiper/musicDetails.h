@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface musicDetails : NSObject
+@interface musicDetails : NSObject <MPMediaPickerControllerDelegate>
 
-@property (nonatomic, retain) MPMusicPlayerController *song;
+@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *artist;
 @property (nonatomic, strong) NSMutableString *songData;

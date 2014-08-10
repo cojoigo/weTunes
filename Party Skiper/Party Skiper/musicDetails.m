@@ -9,5 +9,12 @@
 #import "musicDetails.h"
 
 @implementation musicDetails
+@synthesize musicPlayer;
+
+- (IBAction)nextSong:(id)sender
+{
+    musicDetails *musicObject;
+    [musicObject.musicPlayer skipToNextItem];
+}
 
 @end

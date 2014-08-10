@@ -18,7 +18,10 @@ BOOL didload = false;
 @end
 
 @implementation XYZViewController
-
+- (IBAction)skipButtonPressed:(id)sender {
+    musicDetails *musicObject;
+    [musicObject nextSong: (id)sender];
+}
 
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue
 {
@@ -71,16 +74,16 @@ BOOL didload = false;
     
     musicDetails *musicObject;
     
-    musicObject.song.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
+    musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                              object:musicObject];
     
-    MPMediaItem *currentItem = musicObject.song.nowPlayingItem;
-    musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
+    musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
+    musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
     musicObject.songData = [NSMutableString string];
     if (musicObject.title != nil){
         [musicObject.songData appendString:musicObject.title];
@@ -154,14 +157,14 @@ BOOL didload = false;
 
 - (void)handleNowPlayingItemChanged:(id)notification {
     musicDetails *musicObject;
-    musicObject.song.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
+    musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                              object:musicObject];
     
-    MPMediaItem *currentItem = musicObject.song.nowPlayingItem;
+    MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
     musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
     musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
     musicObject.songData = [NSMutableString string];
@@ -171,13 +174,7 @@ BOOL didload = false;
         [musicObject.songData appendString:musicObject.artist];
     }
     self.host_party_nowplaying_textbox.text = musicObject.songData;
-    [self viewDidLoad];
-}
-
-- (IBAction)nextSong:(id)sender
-{
-    musicDetails *musicObject;
-    [musicObject.song skipToNextItem];
+    [self.view setNeedsDisplay];
 }
 
 

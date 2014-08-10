@@ -10,10 +10,12 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <MPMediaPickerControllerDelegate>
 
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (weak, nonatomic) IBOutlet UILabel *songLabel;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
 
+- (IBAction)nextSong:(id)sender;
 
 @end
