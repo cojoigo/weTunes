@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *user_id;
 //Party variables
 @property (nonatomic, strong) NSString *party_id;
+@property (nonatomic, strong) NSString *party_password;
 @property (nonatomic, strong) NSString *party_name;
 @property (nonatomic, strong) NSDictionary *song_data;
 @property (nonatomic, strong) NSString *creation_time;
