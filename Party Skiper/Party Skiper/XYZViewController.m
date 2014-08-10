@@ -22,7 +22,6 @@ BOOL didload = false;
 
 - (IBAction)skipButtonPressed:(id)sender {
     musicDetails *musicObject = [[musicDetails alloc] init];
-    //[musicObject.musicPlayer skipToNextItem];
     [musicObject nextSong:(id)sender];
 }
 
@@ -181,6 +180,7 @@ BOOL didload = false;
     self.host_party_nowplaying_textbox.text = musicObject.songData;
     [self.host_party_nowplaying_textbox setNeedsDisplay];
     //[self.view setNeedsDisplay];
+    [comm updateParty:musicObject.songData];
 }
 
 

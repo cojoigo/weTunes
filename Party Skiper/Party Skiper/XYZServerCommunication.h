@@ -12,7 +12,7 @@
 - (void)createUser;
 - (NSString*)createParty:(NSString*)name andPassword:(NSString *)pwd;
 - (NSString*)joinParty:(NSString*)ID andPassword:(NSString *)pwd;
-- (void)updateParty;
+- (void)updateParty:(NSMutableString *)song_name;
 - (void)refreshParty;
 - (void)vote:(NSNumber*) votedecision;
 

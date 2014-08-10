@@ -267,7 +267,7 @@ NSArray *parties;
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
-                                  @"password" : @{}
+                                  @"password" : pwd
                                   };
     _server_rsp = nil;
     [objectManager postObject:nil
@@ -294,7 +294,7 @@ NSArray *parties;
     return _server_rsp;
 }
 
-- (void) updateParty
+- (void) updateParty: (NSMutableString *)song_name
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
@@ -350,12 +350,13 @@ NSArray *parties;
     //An easy way to initialize the song_data in the Party is to initialize it via the POST
     //To do that, we make a temp dictionary with the data to be set and send it with the POST
     NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
-    NSDictionary *temp_song_data = @{@"song_name" : @"", @"vote_data" : temp_vote_data};
+    NSDictionary *temp_song_data = @{@"song_name" : song_name, @"vote_data" : temp_vote_data};
+    NSLog (@"song name: %@", song_name);
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
                                   @"name" : @"1test", //test is the party name, must be unique
-                                  @"password" : @{}, //password should be saved from create_party
+                                  @"password" : _party_password, //password should be saved from create_party
                                   @"song_data" : temp_song_data
                                   };
     
