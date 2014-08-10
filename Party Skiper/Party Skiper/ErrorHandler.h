@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ErrorHandler : NSObject
-+ (void) parseError:(NSDictionary *)error;
++ (NSString*) parseError:(NSDictionary *)error;
 @end

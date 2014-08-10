@@ -99,8 +99,7 @@ BOOL didload = false;
     }
     else
     {
-        //Alert sequence can be used for fails or to enter password
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please Enter a party password" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:rsp delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -123,7 +122,7 @@ BOOL didload = false;
     else
     {
         //Alert sequence can be used for fails or to enter password
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Party Name is not unique" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:rsp delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
         [alert show];
         
     }

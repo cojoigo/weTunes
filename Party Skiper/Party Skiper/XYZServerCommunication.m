@@ -77,8 +77,9 @@ NSArray *parties;
                                 }
                       	failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    [ErrorHandler parseError:error.userInfo];
-                                    //NSLog(@"Error creating user: %@", error);
+                                    NSString* errorparse;
+                                    errorparse = [ErrorHandler parseError:error.userInfo];
+                                    NSLog(@"Error creating user: %@", errorparse);
                                 }];
 }
 
@@ -150,9 +151,9 @@ NSArray *parties;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    [ErrorHandler parseError:error.userInfo];
-                                    //NSLog(@"Error creating party: %@", error);
-                                    _server_rsp = @"failure";
+                                    _server_rsp = [ErrorHandler parseError:error.userInfo];
+                                    NSLog(@"Error creating party: %@", _server_rsp);
+                                    //_server_rsp = @"failure";
 
                                 }];
     while (_server_rsp == nil)
@@ -201,8 +202,9 @@ NSArray *parties;
                                 }
                      failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    [ErrorHandler parseError:error.userInfo];
-                                    //NSLog(@"Error getting parties: %@", error);
+                                    NSString* errorparse;
+                                    errorparse = [ErrorHandler parseError:error.userInfo];
+                                    NSLog(@"Error getting parties: %@", errorparse);
                                 }];
 }
 
@@ -272,11 +274,8 @@ NSArray *parties;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    [ErrorHandler parseError:error.userInfo];
-                                    //NSLog(@"Error joining party: %@", error);
-                                    _server_rsp = @"failure";
-                                    //If we get here, implement a check to make sure the error is 'wrong password'
-                                    //If so, we need to create a dialog box to prompt the user for the party password and then resend this exact same POST, but with the updated password
+                                    _server_rsp = [ErrorHandler parseError:error.userInfo];
+                                    NSLog(@"Error joining party: %@", _server_rsp);
                                 }];
     while (_server_rsp == nil)
     {
