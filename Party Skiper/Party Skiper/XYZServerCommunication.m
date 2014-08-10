@@ -309,7 +309,7 @@ NSArray *parties;
                                                        @"update_time": @"update_time",
                                                        @"creation_time": @"creation_time",
                                                        @"song_data": @"song_data",
-                                                       @"name" : @"name",
+                                                       @"name" : @"party_name",
                                                        @"id": @"party_id"
                                                        }];
     
@@ -335,7 +335,7 @@ NSArray *parties;
                                                          @"update_time": @"update_time",
                                                          @"creation_time": @"creation_time",
                                                          @"song_data": @"song_data",
-                                                         @"name" : @"name",
+                                                         @"name" : @"party_name",
                                                          @"id": @"party_id"
                                                          }];
     
@@ -395,7 +395,7 @@ NSArray *parties;
                                                        @"update_time": @"update_time",
                                                        @"creation_time": @"creation_time",
                                                        @"song_data": @"song_data",
-                                                       @"name" : @"name",
+                                                       @"name" : @"party_name",
                                                        @"id": @"party_id"
                                                        }];
     
@@ -419,7 +419,7 @@ NSArray *parties;
                                                          @"update_time": @"update_time",
                                                          @"creation_time": @"creation_time",
                                                          @"song_data": @"song_data",
-                                                         @"name" : @"name",
+                                                         @"name" : @"party_name",
                                                          @"id": @"party_id"
                                                          }];
     
@@ -455,7 +455,7 @@ NSArray *parties;
     
 }
 
-- (void) vote:(NSNumber*) votedecision :(NSString*) songname
+- (void) vote:(NSNumber*) votedecision withSongName:(NSString*) songname
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
@@ -471,7 +471,7 @@ NSArray *parties;
                                                        @"update_time": @"update_time",
                                                        @"creation_time": @"creation_time",
                                                        @"song_data": @"song_data",
-                                                       @"name" : @"name",
+                                                       @"name" : @"party_name",
                                                        @"id": @"party_id"
                                                        }];
     
@@ -498,7 +498,7 @@ NSArray *parties;
                                                          @"update_time": @"update_time",
                                                          @"creation_time": @"creation_time",
                                                          @"song_data": @"song_data",
-                                                         @"name" : @"name",
+                                                         @"name" : @"party_name",
                                                          @"id": @"party_id"
                                                          }];
     
