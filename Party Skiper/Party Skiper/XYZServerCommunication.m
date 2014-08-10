@@ -130,11 +130,17 @@ NSArray *parties;
     NSLog(@"party name: %@",name);
     NSLog(@"party password: %@",pwd);
     
+    //The song_data element of the Party class is a dictionary with a dictionary in it.
+    //An easy way to initialize the song_data in the Party is to initialize it via the POST
+    //To do that, we make a temp dictionary with the data to be set and send it with the POST
+    NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
+    NSDictionary *temp_song_data = @{@"song_name" : @"", @"vote_data" : temp_vote_data};
+    
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
                                   @"name" : name,
                                   @"password" : pwd,
-                                  @"song_data" : @{}
+                                  @"song_data" : temp_song_data
                                   };
     _server_rsp = nil;
     [objectManager postObject:nil
@@ -338,11 +344,17 @@ NSArray *parties;
                                                                                         method:RKRequestMethodAny];
     [objectManager addRequestDescriptor:requestDescriptor];
     
+    //The song_data element of the Party class is a dictionary with a dictionary in it.
+    //An easy way to initialize the song_data in the Party is to initialize it via the POST
+    //To do that, we make a temp dictionary with the data to be set and send it with the POST
+    NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
+    NSDictionary *temp_song_data = @{@"song_name" : @"", @"vote_data" : temp_vote_data};
+    
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
                                   @"name" : @"1test", //test is the party name, must be unique
-                                  @"password" : @{},
-                                  @"song_data" : @{}
+                                  @"password" : @{}, //password should be saved from create_party
+                                  @"song_data" : temp_song_data
                                   };
     
     
@@ -384,11 +396,8 @@ NSArray *parties;
                                                        @"id": @"party_id"
                                                        }];
     
-    //We need to append the party name to the end of the url
+    //We need to append the party id to the end of the url
     NSString *partyPathBase = @"/refresh_party/";
-    
-    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
-    //How do we get that?
     NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
