@@ -9,7 +9,7 @@ This provides a method to get the updated info for a party.
 https://sgoodwin.pythonanywhere.com/refresh_party/<party_id>
 
 ### Allowed Methods
-GET
+POST
 
 ### Authentication
 HTTP Basic, with user_id and user_password.
