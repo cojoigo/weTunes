@@ -9,6 +9,7 @@
 #import <RestKit/RestKit.h>
 #import "User.h"
 #import "Party.h"
+#import "ErrorHandler.h"
 #import "XYZServerCommunication.h"
 
 @implementation XYZServerCommunication
@@ -22,7 +23,7 @@ NSArray *parties;
 {
     NSLog(@"Create User start");
     //initialize RestKit
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     
@@ -58,9 +59,8 @@ NSArray *parties;
                                                                                         method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
     
+    //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{ };
-    //queryParams must have proper JSON structure to get a response
-    //URL at create_user
     
     [objectManager postObject:nil
                          path:@"/create_user"
@@ -75,16 +75,17 @@ NSArray *parties;
                                     _user_password = user.user_password;
                                     NSLog(@"userid: %@", _user_id);
                                 }
-                      failure:^(RKObjectRequestOperation *operation, NSError *error)
+                      	failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    NSLog(@"Error creating user: %@", error);
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error creating user: %@", error);
                                 }];
 }
 
 - (NSString*) createParty:(NSString*)name andPassword:(NSString *)pwd
 {
     //initialize RestKit
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     //Send user credentials along with request
@@ -127,10 +128,12 @@ NSArray *parties;
     [objectManager addRequestDescriptor:requestDescriptor];
     NSLog(@"party name: %@",name);
     NSLog(@"party password: %@",pwd);
+    
+    //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
                                   @"name" : name,
                                   @"password" : pwd,
-                                  @"song_data" : @""
+                                  @"song_data" : @{}
                                   };
     _server_rsp = nil;
     [objectManager postObject:nil
@@ -147,8 +150,10 @@ NSArray *parties;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    NSLog(@"Error creating party: %@", error);
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error creating party: %@", error);
                                     _server_rsp = @"failure";
+
                                 }];
     while (_server_rsp == nil)
     {
@@ -157,11 +162,54 @@ NSArray *parties;
     return _server_rsp;
 }
 
+- (void) getParties
+{
+    //initialize RestKit
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
+    //Make sure all REST requests are json
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    //Send user credentials along with request
+    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:user.user_id password:user.user_password];
+    
+    //setup object mappings
+    RKObjectMapping *partyMapping = [RKObjectMapping mappingForClass:[Party class]];
+    [partyMapping addAttributeMappingsFromDictionary:@{
+                                                       @"user_count" : @"user_count",
+                                                       @"name" : @"party_name",
+                                                       @"update_time": @"update_time",
+                                                       @"creation_time": @"creation_time",
+                                                       @"song_data": @"song_data",
+                                                       @"id": @"party_id"
+                                                       }];
+    
+    //register mappings with the provider using a response descriptor
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:partyMapping
+                                                 method:RKRequestMethodAny
+                                            pathPattern:@"/get_parties"
+                                                keyPath:@""
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [objectManager addResponseDescriptor:responseDescriptor];
+    
+    [objectManager getObject:nil
+                        path:@"/get_parties"
+                  parameters:nil
+                     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+                                {
+                                    NSLog(@"Get Parties Success");
+                                    //parties = mappingResult.array;
+                                }
+                     failure:^(RKObjectRequestOperation *operation, NSError *error)
+                                {
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error getting parties: %@", error);
+                                }];
+}
+
 - (NSString*) joinParty:(NSString*)ID andPassword:(NSString *)pwd
 {
     //initialize RestKit
-    User *user = users[0];
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     //Send user credentials along with request
@@ -180,7 +228,7 @@ NSArray *parties;
     //We need to append the party name to the end of the join_party url
     NSString *partyPathBase = @"/join_party/";
     
-    //IMPORTANT: we need user to input the party name - how in the nine hells do you get user input in Objective-C?
+    //IMPORTANT: we need to update the other party methods to have this ID as well!
     NSString *partyPathUrl = [partyPathBase stringByAppendingString:ID];
     
     //register mappings with the provider using a response descriptor
@@ -208,10 +256,9 @@ NSArray *parties;
                                                                                         method:RKRequestMethodAny];
     [objectManager addRequestDescriptor:requestDescriptor];
     
-
-    
+    //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
-                                  @"password" : @""
+                                  @"password" : @{}
                                   };
     _server_rsp = nil;
     [objectManager postObject:nil
@@ -225,7 +272,8 @@ NSArray *parties;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    NSLog(@"Error joining party: %@", error);
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error joining party: %@", error);
                                     _server_rsp = @"failure";
                                     //If we get here, implement a check to make sure the error is 'wrong password'
                                     //If so, we need to create a dialog box to prompt the user for the party password and then resend this exact same POST, but with the updated password
@@ -240,8 +288,7 @@ NSArray *parties;
 - (void) updateParty
 {
     //initialize RestKit
-    User *user = users[0];
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://sgoodwin.pythonanywhere.com"]];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     //Send user credentials along with request
@@ -260,8 +307,9 @@ NSArray *parties;
     //We need to append the party name to the end of the join_party url
     NSString *partyPathBase = @"/update_party";
     
-    //IMPORTANT: we need user to input the party name - how in the nine hells do you get user input in Objective-C?
-    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/test500"];
+    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
+    //How do we get that?
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/1"];
     
     //register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -289,10 +337,11 @@ NSArray *parties;
                                                                                         method:RKRequestMethodAny];
     [objectManager addRequestDescriptor:requestDescriptor];
     
+    //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
-                                  @"name" : @"test", //test is the party name, must be unique
-                                  @"password" : @"",
-                                  @"song_data" : @""
+                                  @"name" : @"1test", //test is the party name, must be unique
+                                  @"password" : @{},
+                                  @"song_data" : @{}
                                   };
     
     
@@ -310,7 +359,158 @@ NSArray *parties;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
-                                    NSLog(@"Error updating party: %@", error);
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error updating party: %@", error);
+                                }];
+}
+
+- (void) refreshParty
+{
+    //initialize RestKit
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
+    //Make sure all REST requests are json
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    //Send user credentials along with request
+    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:user.user_id password:user.user_password];
+    //setup object mappings
+    RKObjectMapping *partyMapping = [RKObjectMapping mappingForClass:[Party class]];
+    [partyMapping addAttributeMappingsFromDictionary:@{
+                                                       @"update_time": @"update_time",
+                                                       @"creation_time": @"creation_time",
+                                                       @"song_data": @"song_data",
+                                                       @"name" : @"name",
+                                                       @"id": @"party_id"
+                                                       }];
+    
+    //We need to append the party name to the end of the url
+    NSString *partyPathBase = @"/refresh_party";
+    
+    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
+    //How do we get that?
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/1"];
+    
+    //register mappings with the provider using a response descriptor
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:partyMapping
+                                                 method:RKRequestMethodAny
+                                            pathPattern:partyPathUrl
+                                                keyPath:@""
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [objectManager addResponseDescriptor:responseDescriptor];
+    
+    //inverse mapping to perform a POST
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
+    [requestMapping addAttributeMappingsFromDictionary:@{
+                                                         @"update_time": @"update_time",
+                                                         @"creation_time": @"creation_time",
+                                                         @"song_data": @"song_data",
+                                                         @"name" : @"name",
+                                                         @"id": @"party_id"
+                                                         }];
+    
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping
+                                                                                   objectClass:[Party class]
+                                                                                   rootKeyPath:@""
+                                                                                        method:RKRequestMethodAny];
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
+    //queryParams is the message sent to the server as part of the POST
+    NSDictionary *queryParams = @{
+                                  @"password" : @{}
+                                  };
+    
+    //Due to the nature of refreshParty, we have to call this function repeatedly.
+    //Not sure how to best go about that...
+    
+    [objectManager postObject:nil
+                         path:partyPathUrl
+                   parameters:queryParams
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+                                {
+                                    NSLog(@"Refresh Party Success");
+                                    parties = mappingResult.array;
+                                }
+                      failure:^(RKObjectRequestOperation *operation, NSError *error)
+                                {
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error refreshing party: %@", error);
+                                }];
+    
+}
+
+- (void) vote
+{
+    //initialize RestKit
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
+    //Make sure all REST requests are json
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    //Send user credentials along with request
+    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:user.user_id password:user.user_password];
+    
+    //setup object mappings
+    RKObjectMapping *partyMapping = [RKObjectMapping mappingForClass:[Party class]];
+    [partyMapping addAttributeMappingsFromDictionary:@{
+                                                       @"user_count" : @"user_count",
+                                                       @"update_time": @"update_time",
+                                                       @"creation_time": @"creation_time",
+                                                       @"song_data": @"song_data",
+                                                       @"name" : @"name",
+                                                       @"id": @"party_id"
+                                                       }];
+    
+    //We need to append the party name to the end of the join_party url
+    NSString *partyPathBase = @"/vote";
+    
+    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
+    //How do we get that?
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/1"];
+    
+    //register mappings with the provider using a response descriptor
+    RKResponseDescriptor *responseDescriptor =
+    [RKResponseDescriptor responseDescriptorWithMapping:partyMapping
+                                                 method:RKRequestMethodAny
+                                            pathPattern:partyPathUrl
+                                                keyPath:@""
+                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [objectManager addResponseDescriptor:responseDescriptor];
+    
+    //inverse mapping to perform a POST
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
+    [requestMapping addAttributeMappingsFromDictionary:@{
+                                                         @"user_count" : @"user_count",
+                                                         @"update_time": @"update_time",
+                                                         @"creation_time": @"creation_time",
+                                                         @"song_data": @"song_data",
+                                                         @"name" : @"name",
+                                                         @"id": @"party_id"
+                                                         }];
+    
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping
+                                                                                   objectClass:[Party class]
+                                                                                   rootKeyPath:@""
+                                                                                        method:RKRequestMethodAny];
+    [objectManager addRequestDescriptor:requestDescriptor];
+    
+    //queryParams is the message sent to the server as part of the POST
+    NSDictionary *queryParams = @{
+                                  @"song_title" : @"", //song_title requires data from media player
+                                  @"vote" : @{} //vote should be 1 for skip or -1 for don't skip, depending on user input
+                                  };
+    
+    [objectManager postObject:nil
+                         path:partyPathUrl
+                   parameters:queryParams
+                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+                                {
+                                    NSLog(@"Vote Success");
+                                    parties = mappingResult.array;
+                                }
+                      failure:^(RKObjectRequestOperation *operation, NSError *error)
+                                {
+                                    [ErrorHandler parseError:error.userInfo];
+                                    //NSLog(@"Error updating party: %@", error);
                                 }];
 }
 @end

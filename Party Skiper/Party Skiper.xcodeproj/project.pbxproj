@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		06FE54E419941E5F0007C51F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FE54E319941E5F0007C51F /* MediaPlayer.framework */; };
 		06FE54E719941ECB0007C51F /* musicDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE54E619941ECB0007C51F /* musicDetails.m */; };
+		8CE949FC199673B5008F1332 /* ErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE949FB199673B5008F1332 /* ErrorHandler.m */; };
 		8F7B89391977168600E16CC1 /* XYZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B89381977168600E16CC1 /* XYZViewController.m */; };
 		8F95299A19898ACE003C547A /* XYZServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F95299919898ACE003C547A /* XYZServerCommunication.m */; };
 		8F9529A41990149D003C547A /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9529A11990149D003C547A /* Party.m */; };
@@ -45,6 +46,8 @@
 		06FE54E519941ECB0007C51F /* musicDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicDetails.h; sourceTree = "<group>"; };
 		06FE54E619941ECB0007C51F /* musicDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicDetails.m; sourceTree = "<group>"; };
 		3FD4449B1E994F8880D32891 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CE949FA199673B5008F1332 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
+		8CE949FB199673B5008F1332 /* ErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandler.m; sourceTree = "<group>"; };
 		8F7B89371977168600E16CC1 /* XYZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZViewController.h; sourceTree = "<group>"; };
 		8F7B89381977168600E16CC1 /* XYZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZViewController.m; sourceTree = "<group>"; };
 		8F95299819898ACE003C547A /* XYZServerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZServerCommunication.h; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				8F95299919898ACE003C547A /* XYZServerCommunication.m */,
 				06FE54E519941ECB0007C51F /* musicDetails.h */,
 				06FE54E619941ECB0007C51F /* musicDetails.m */,
+				8CE949FA199673B5008F1332 /* ErrorHandler.h */,
+				8CE949FB199673B5008F1332 /* ErrorHandler.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE949FC199673B5008F1332 /* ErrorHandler.m in Sources */,
 				06FE54E719941ECB0007C51F /* musicDetails.m in Sources */,
 				8F9529A41990149D003C547A /* Party.m in Sources */,
 				8F9529A51990149D003C547A /* User.m in Sources */,

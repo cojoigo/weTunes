@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *song_data;
 @property (nonatomic, strong) NSString *creation_time;
 @property (nonatomic, strong) NSString *update_time;
+@property (nonatomic, strong) NSString *user_count;
 
 @end
