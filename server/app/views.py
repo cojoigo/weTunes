@@ -73,7 +73,7 @@ def create_party(*args, **kwargs):
     return jsonify(party.to_json())
 
 
-@server.route("/join_party/<int:party_id>", methods=["POST"])
+@server.route("/join_party/<party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
 def join_party(*args, **kwargs):
@@ -85,7 +85,7 @@ def join_party(*args, **kwargs):
     return jsonify(kwargs["party"].to_json())
 
 
-@server.route("/update_party/<int:party_id>", methods=["POST"])
+@server.route("/update_party/<party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
 @decorators.requires_user_in_party
@@ -101,7 +101,7 @@ def update_party(*args, **kwargs):
     return jsonify(party.to_json())
 
 
-@server.route("/refresh_party/<int:party_id>", methods=["POST"])
+@server.route("/refresh_party/<party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
 @decorators.requires_user_in_party
@@ -128,7 +128,7 @@ def get_parties(*args, **kwargs):
     return json.dumps(json_party_list)
 
 
-@server.route("/vote/<int:party_id>", methods=["POST"])
+@server.route("/vote/<party_id>", methods=["POST"])
 @decorators.requires_user
 @decorators.requires_party
 @decorators.requires_user_in_party

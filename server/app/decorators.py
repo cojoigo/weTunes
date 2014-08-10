@@ -35,7 +35,13 @@ def requires_party(function):
     @wraps(function)
     def wrapped(*args, **kwargs):
         party_id = kwargs.get("party_id")
-        party = models.Party.query.get(party_id)
+        try:
+            party_id = int(party_id)
+            party = models.Party.query.get(party_id)
+        except ValueError:
+            party_id = str(party_id)
+            party = models.Party.query.filter(
+                models.Party.name == party_id).first()
         if party is None:
             raise errors.NotFoundInDatabaseError("Party not found.")
         if party.password_hash is not None:
