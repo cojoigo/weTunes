@@ -65,6 +65,7 @@ BOOL didload = false;
     self.guest_joinparty_password_textbox.delegate = self;
     self.host_partyinfo_partyid.text = comm.party_id;
     self.host_partyinfo_partyname_label.text = comm.party_name;
+    self.host_partyinfo_numberguests_label.text = comm.user_count;
     
     //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
     
@@ -179,4 +180,14 @@ BOOL didload = false;
     [musicObject.song skipToNextItem];
 }
 
+
+- (IBAction)guestVote_Skip:(id)sender {
+    
+    [comm vote:[NSNumber numberWithInt:1] ];
+}
+
+
+- (IBAction)guestVote_DontSkip:(id)sender {
+    [comm vote:[NSNumber numberWithInt:-1] ];
+}
 @end

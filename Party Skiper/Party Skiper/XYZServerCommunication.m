@@ -269,6 +269,8 @@ NSArray *parties;
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
                                     NSLog(@"Join Party Success");
+                                    _party_id = party.party_id;
+                                    _party_name = party.party_name;
                                     _server_rsp = @"success";
                                     parties = mappingResult.array;
                                 }
@@ -304,11 +306,11 @@ NSArray *parties;
                                                        }];
     
     //We need to append the party name to the end of the join_party url
-    NSString *partyPathBase = @"/update_party";
+    NSString *partyPathBase = @"/update_party/";
     
     //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
     //How do we get that?
-    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/1"];
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -374,6 +376,7 @@ NSArray *parties;
     //setup object mappings
     RKObjectMapping *partyMapping = [RKObjectMapping mappingForClass:[Party class]];
     [partyMapping addAttributeMappingsFromDictionary:@{
+                                                       @"user_count" : @"user_count",
                                                        @"update_time": @"update_time",
                                                        @"creation_time": @"creation_time",
                                                        @"song_data": @"song_data",
@@ -382,11 +385,11 @@ NSArray *parties;
                                                        }];
     
     //We need to append the party name to the end of the url
-    NSString *partyPathBase = @"/refresh_party";
+    NSString *partyPathBase = @"/refresh_party/";
     
     //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
     //How do we get that?
-    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/1"];
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -400,6 +403,7 @@ NSArray *parties;
     //inverse mapping to perform a POST
     RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
     [requestMapping addAttributeMappingsFromDictionary:@{
+                                                         @"user_count" : @"user_count",
                                                          @"update_time": @"update_time",
                                                          @"creation_time": @"creation_time",
                                                          @"song_data": @"song_data",
@@ -438,7 +442,7 @@ NSArray *parties;
     
 }
 
-- (void) vote
+- (void) vote:(NSNumber*) votedecision
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
@@ -459,11 +463,11 @@ NSArray *parties;
                                                        }];
     
     //We need to append the party name to the end of the join_party url
-    NSString *partyPathBase = @"/vote";
+    NSString *partyPathBase = @"/vote/";
     
     //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
     //How do we get that?
-    NSString *partyPathUrl = [partyPathBase stringByAppendingString:@"/1"];
+    NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -495,7 +499,7 @@ NSArray *parties;
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
                                   @"song_title" : @"", //song_title requires data from media player
-                                  @"vote" : @{} //vote should be 1 for skip or -1 for don't skip, depending on user input
+                                  @"vote" : votedecision //vote should be 1 for skip or -1 for don't skip, depending on user input
                                   };
     
     [objectManager postObject:nil

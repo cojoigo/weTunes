@@ -13,6 +13,9 @@
 - (NSString*)createParty:(NSString*)name andPassword:(NSString *)pwd;
 - (NSString*)joinParty:(NSString*)ID andPassword:(NSString *)pwd;
 - (void)updateParty;
+- (void)refreshParty;
+- (void)vote:(NSNumber*) votedecision;
+
 @property (nonatomic, strong) NSString *server_rsp;
 //User variables
 @property (nonatomic, strong) NSString *user_password;
@@ -24,4 +27,5 @@
 @property (nonatomic, strong) NSString *song_data;
 @property (nonatomic, strong) NSString *creation_time;
 @property (nonatomic, strong) NSString *update_time;
+@property (nonatomic, strong) NSString *user_count;
 @end

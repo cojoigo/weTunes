@@ -36,8 +36,8 @@
 
 //UI Elements for the Host Party Info Page
 @property (strong, nonatomic) IBOutlet UILabel *host_partyinfo_partyname_label;
-@property (strong, nonatomic) IBOutlet UITextField *host_partyinfo_numberofguests_textbox;
 @property (strong, nonatomic) IBOutlet UILabel *host_partyinfo_partyid;
+@property (strong, nonatomic) IBOutlet UILabel *host_partyinfo_numberguests_label;
 
 //Internal Elements
 @property (nonatomic, strong) NSString *host_party_name;
