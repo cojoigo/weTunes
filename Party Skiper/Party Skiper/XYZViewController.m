@@ -186,11 +186,11 @@ BOOL didload = false;
 
 - (IBAction)guestVote_Skip:(id)sender {
     
-    [comm vote:[NSNumber numberWithInt:1] ];
+    [comm vote:[NSNumber numberWithInt:1] :_guest_party_nowplaying_textbox.text];
 }
 
 
 - (IBAction)guestVote_DontSkip:(id)sender {
-    [comm vote:[NSNumber numberWithInt:-1] ];
+    [comm vote:[NSNumber numberWithInt:-1] :_guest_party_nowplaying_textbox.text];
 }
 @end
