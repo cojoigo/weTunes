@@ -134,8 +134,9 @@ BOOL didload = false;
 
 - (IBAction)PartyInfo:(id)sender
 {
-        //self.host_partyinfo_partyid.text = @"lol";
-        [self performSegueWithIdentifier:@"HPISegue" sender:self];
+    //self.host_partyinfo_partyid.text = @"lol";
+    [self performSegueWithIdentifier:@"HPISegue" sender:self];
+    [comm refreshParty];
 }
 
 - (void)didReceiveMemoryWarning
