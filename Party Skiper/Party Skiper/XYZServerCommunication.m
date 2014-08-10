@@ -153,6 +153,7 @@ NSArray *parties;
                                     party = parties[0];
                                     _party_id = party.party_id;
                                     _party_name = party.party_name;
+                                    _party_password = pwd;
                                     _server_rsp = @"success";
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -277,6 +278,7 @@ NSArray *parties;
                                     NSLog(@"Join Party Success");
                                     _party_id = party.party_id;
                                     _party_name = party.party_name;
+                                    _party_password = pwd;
                                     _server_rsp = @"success";
                                     parties = mappingResult.array;
                                 }
@@ -429,7 +431,7 @@ NSArray *parties;
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
-                                  @"password" : @{}
+                                  @"password" : _party_password
                                   };
     
     //Due to the nature of refreshParty, we have to call this function repeatedly.
@@ -442,6 +444,7 @@ NSArray *parties;
                                 {
                                     NSLog(@"Refresh Party Success");
                                     parties = mappingResult.array;
+                                    _user_count = party.user_count;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -451,7 +454,7 @@ NSArray *parties;
     
 }
 
-- (void) vote:(NSNumber*) votedecision
+- (void) vote:(NSNumber*) votedecision :(NSString*) songname
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
@@ -507,7 +510,7 @@ NSArray *parties;
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
-                                  @"song_title" : @"", //song_title requires data from media player
+                                  @"song_title" : songname, //song_title requires data from media player
                                   @"vote" : votedecision //vote should be 1 for skip or -1 for don't skip, depending on user input
                                   };
     

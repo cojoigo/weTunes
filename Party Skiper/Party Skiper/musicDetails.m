@@ -11,10 +11,9 @@
 @implementation musicDetails
 @synthesize musicPlayer;
 
-- (IBAction)nextSong:(id)sender
-{
-    musicDetails *musicObject;
-    [musicObject.musicPlayer skipToNextItem];
+- (IBAction)nextSong:(id)sender {
+    self.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+    [musicPlayer skipToNextItem];
 }
 
 @end

@@ -18,9 +18,12 @@ BOOL didload = false;
 @end
 
 @implementation XYZViewController
+
+
 - (IBAction)skipButtonPressed:(id)sender {
-    musicDetails *musicObject;
-    [musicObject nextSong: (id)sender];
+    musicDetails *musicObject = [[musicDetails alloc] init];
+    //[musicObject.musicPlayer skipToNextItem];
+    [musicObject nextSong:(id)sender];
 }
 
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue
@@ -72,7 +75,7 @@ BOOL didload = false;
     
     //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
     
-    musicDetails *musicObject;
+    musicDetails *musicObject = [[musicDetails alloc] init];
     
     musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -134,8 +137,9 @@ BOOL didload = false;
 
 - (IBAction)PartyInfo:(id)sender
 {
-        //self.host_partyinfo_partyid.text = @"lol";
-        [self performSegueWithIdentifier:@"HPISegue" sender:self];
+    //self.host_partyinfo_partyid.text = @"lol";
+    [self performSegueWithIdentifier:@"HPISegue" sender:self];
+    [comm refreshParty];
 }
 
 - (void)didReceiveMemoryWarning
@@ -156,7 +160,8 @@ BOOL didload = false;
 */
 
 - (void)handleNowPlayingItemChanged:(id)notification {
-    musicDetails *musicObject;
+    [self.view setNeedsDisplay];
+    musicDetails *musicObject = [[musicDetails alloc] init];
     musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
@@ -174,17 +179,18 @@ BOOL didload = false;
         [musicObject.songData appendString:musicObject.artist];
     }
     self.host_party_nowplaying_textbox.text = musicObject.songData;
-    [self.view setNeedsDisplay];
+    [self.host_party_nowplaying_textbox setNeedsDisplay];
+    //[self.view setNeedsDisplay];
 }
 
 
 - (IBAction)guestVote_Skip:(id)sender {
     
-    [comm vote:[NSNumber numberWithInt:1] ];
+    [comm vote:[NSNumber numberWithInt:1] :_guest_party_nowplaying_textbox.text];
 }
 
 
 - (IBAction)guestVote_DontSkip:(id)sender {
-    [comm vote:[NSNumber numberWithInt:-1] ];
+    [comm vote:[NSNumber numberWithInt:-1] :_guest_party_nowplaying_textbox.text];
 }
 @end
