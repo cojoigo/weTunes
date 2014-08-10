@@ -45,6 +45,7 @@ class Party(db.Model):
         song_data.pop("vote_data", None)
         if "song_title" in song_data:
             song_data["uuid"] = uuid.uuid4()
+            song_data["vote_data"] = {"-1": 0, "1": 0}
         for key in kwargs:
             try:
                 attr = getattr(self, key)
