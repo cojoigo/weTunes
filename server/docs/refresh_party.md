@@ -6,7 +6,7 @@ Overview
 This provides a method to get the updated info for a party.
 
 ### URL
-https://sgoodwin.pythonanywhere.com/refresh_party/party\_id
+https://sgoodwin.pythonanywhere.com/refresh_party/party_id
 
 ### Allowed Methods
 POST

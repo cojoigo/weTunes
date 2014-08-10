@@ -6,7 +6,7 @@ Overview
 This provides a method to vote to skip on the current song.
 
 ### URL
-https://sgoodwin.pythonanywhere.com/vote/<party_id>
+https://sgoodwin.pythonanywhere.com/vote/party_id
 
 ### Allowed Methods
 POST

@@ -8,7 +8,7 @@ This provides a method to update an existing party's information.
 REST Info
 ---------------------
 ### URL
-https://sgoodwin.pythonanywhere.com/update_party/<party_id>
+https://sgoodwin.pythonanywhere.com/update_party/party_id
 
 ### Allowed Methods
 POST

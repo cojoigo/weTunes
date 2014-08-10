@@ -8,7 +8,7 @@ This provides a method to join a party on the server.
 REST Info
 ---------------------
 ### URL
-https://sgoodwin.pythonanywhere.com/join_party/<party_id>
+https://sgoodwin.pythonanywhere.com/join_party/party_id
 
 ### Allowed Methods
 POST
