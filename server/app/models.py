@@ -33,7 +33,7 @@ class Party(db.Model):
         Updates the object from a dictionary,
         ensures improper attributes don't get set.
         """
-
+        print kwargs
         self._check_banned_keys(kwargs)
         party_password = kwargs.pop("new_password", None)
         try:
