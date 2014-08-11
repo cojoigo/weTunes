@@ -13,7 +13,8 @@
 
 XYZServerCommunication* comm;
 BOOL didload = false;
-BOOL inparty = false;
+BOOL hostingparty = false;
+BOOL joinparty = false;
 @interface XYZViewController ()
 
 @end
@@ -73,7 +74,7 @@ BOOL inparty = false;
     self.host_partyinfo_partyname_label.text = comm.party_name;
     
     //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
-    if (inparty)
+    if (hostingparty)
     {
         musicDetails *musicObject = [[musicDetails alloc] init];
         musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
@@ -95,16 +96,25 @@ BOOL inparty = false;
             [musicObject.songData appendString:@" by "];
             [musicObject.songData appendString:musicObject.artist];
             self.host_party_nowplaying_textbox.text = musicObject.songData;
-            self.guest_party_nowplaying_textbox.text = musicObject.songData;
             [comm updateParty:musicObject.songData];
         }
         //Update the party info for guest and host!!
-        [NSTimer scheduledTimerWithTimeInterval:20
+        [NSTimer scheduledTimerWithTimeInterval:10
                                      target:self
                                    selector:@selector(timerFired:)
                                    userInfo:nil
                                     repeats:YES];
         NSLog(@"Vote skip, Vote dontskip: %@, %@", comm.skipvotes, comm.dontskipvotes);
+    }
+    if (joinparty)
+    {
+        [NSTimer scheduledTimerWithTimeInterval:10
+                                         target:self
+                                       selector:@selector(timerFired:)
+                                       userInfo:nil
+                                        repeats:YES];
+        NSLog(@"songtitle:%@", [comm valueForKeyPath:@"song_data.song_title"]);
+        self.guest_party_nowplaying_textbox.text = [comm valueForKeyPath:@"song_data.song_title"];
     }
 }
 
@@ -121,13 +131,15 @@ BOOL inparty = false;
     self.host_party_skip.text = comm.skipvotes;
     self.host_party_dontskip.text = comm.dontskipvotes;
 }
+
 - (IBAction)JoinParty:(id)sender
 {
     NSString *rsp;
     rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:_guest_joinparty_password_textbox.text];
     if ([rsp  isEqual: @"success"])
     {
-        inparty = true;
+        joinparty = true;
+        hostingparty = false;
         [self performSegueWithIdentifier:@"JPSegue" sender:self];
     }
     else
@@ -146,11 +158,12 @@ BOOL inparty = false;
 - (IBAction)CreateParty:(id)sender
 {
     NSString *rsp;
-    rsp = [comm createParty:_host_createparty_partyname_textbox.text andPassword:_host_createparty_password_textbox.text];
+    rsp = [comm createParty:_host_createparty_partyname_textbox.text andPassword:_host_createparty_password_textbox.text andSongName:_host_party_nowplaying_textbox.text];
     if ([rsp  isEqual: @"success"])
     {
         NSLog(@"PartyID : %@", comm.party_id);
-        inparty = true;
+        hostingparty = true;
+        joinparty = false;
         [self performSegueWithIdentifier:@"CPSegue" sender:self];
         [self viewDidAppear:(YES)];
     }
@@ -192,16 +205,20 @@ BOOL inparty = false;
 }
 */
 
+- (IBAction)guestVote_Skip:(id)sender {
+    
+    [comm vote:[NSNumber numberWithInt:1] withSongName:_guest_party_nowplaying_textbox.text];
+}
+
 - (void)handleNowPlayingItemChanged:(id)notification {
-   // [self.view setNeedsDisplay];
-  /*  musicDetails *musicObject = [[musicDetails alloc] init];
+    /*musicDetails *musicObject = [[musicDetails alloc] init];
     musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
     musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-                             object:musicObject];
+                             object:musicObject.musicPlayer];
     
     MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
     musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
@@ -212,21 +229,10 @@ BOOL inparty = false;
         [musicObject.songData appendString:musicObject.title];
         [musicObject.songData appendString:@" by "];
         [musicObject.songData appendString:musicObject.artist];
-    }
-    self.host_party_nowplaying_textbox.text = musicObject.songData;
-    [self.host_party_nowplaying_textbox setNeedsDisplay];
-    //[self.view setNeedsDisplay];
-    [comm updateParty:musicObject.songData];*/
+    }*/
+    //[comm updateParty:musicObject.songData];
     NSLog(@"iojfphow98wfhp289hfpoihefwpiohfewqiouefhwiouweqfhiuowqhofeiuwhqwefoiuhfqwoiuqefhfqweoiuh");
-    [self viewDidLoad];
 }
-
-
-- (IBAction)guestVote_Skip:(id)sender {
-    
-    [comm vote:[NSNumber numberWithInt:1] withSongName:_guest_party_nowplaying_textbox.text];
-}
-
 
 - (IBAction)guestVote_DontSkip:(id)sender {
     [comm vote:[NSNumber numberWithInt:-1] withSongName:_guest_party_nowplaying_textbox.text];

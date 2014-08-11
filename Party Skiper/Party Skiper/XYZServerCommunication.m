@@ -83,7 +83,7 @@ NSArray *parties;
                                 }];
 }
 
-- (NSString*) createParty:(NSString*)name andPassword:(NSString *)pwd
+- (NSString*) createParty:(NSString*)name andPassword:(NSString *)pwd andSongName:(NSString*)song_name
 {
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
@@ -127,11 +127,9 @@ NSArray *parties;
                                                                                    rootKeyPath:@""
                                                                                         method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor];
-    NSLog(@"party name: %@",name);
-    NSLog(@"party password: %@",pwd);
     
     NSDictionary *temp_song_data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                            @"a", @"song_title",
+                                                                            song_name, @"song_title",
                                                                             nil];
     
     //queryParams is the message sent to the server as part of the POST
@@ -152,17 +150,14 @@ NSArray *parties;
                                     _party_id = party.party_id;
                                     _party_name = party.party_name;
                                     _party_password = pwd;
-                                    NSLog(@"%@", [party valueForKeyPath:@"_song_data.vote_data"]);
-                                    _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
-                                    _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
+                                    _skipvotes = @"0";
+                                    _dontskipvotes = @"0";
                                     _server_rsp = @"success";
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     _server_rsp = [ErrorHandler parseError:error.userInfo];
                                     NSLog(@"Error creating party: %@", _server_rsp);
-                                    //_server_rsp = @"failure";
-
                                 }];
     while (_server_rsp == nil)
     {
@@ -277,11 +272,13 @@ NSArray *parties;
                       success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
                                     NSLog(@"Join Party Success");
+                                    parties = mappingResult.array;
+                                    party = parties[0];
                                     _party_id = party.party_id;
                                     _party_name = party.party_name;
                                     _party_password = pwd;
                                     _server_rsp = @"success";
-                                    parties = mappingResult.array;
+                                    _song_data = party.song_data;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -347,16 +344,15 @@ NSArray *parties;
                                                                                         method:RKRequestMethodAny];
     [objectManager addRequestDescriptor:requestDescriptor];
     
-    //The song_data element of the Party class is a dictionary with a dictionary in it.
-    //An easy way to initialize the song_data in the Party is to initialize it via the POST
-    //To do that, we make a temp dictionary with the data to be set and send it with the POST
-    NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
-    NSDictionary *temp_song_data = @{@"song_name" : song_name, @"vote_data" : temp_vote_data};
+    NSDictionary *temp_song_data = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    song_name, @"song_title",
+                                    nil];
+    
     NSLog (@"song name: %@", song_name);
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
-                                  @"name" : @"1test", //test is the party name, must be unique
+                                  @"name" : _party_name, //test is the party name, must be unique
                                   @"password" : _party_password, //password should be saved from create_party
                                   @"song_data" : temp_song_data
                                   };
@@ -373,6 +369,8 @@ NSArray *parties;
                                 {
                                     NSLog(@"Update Party Success");
                                     parties = mappingResult.array;
+                                    party = parties[0];
+                                    _song_data = party.song_data;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -452,13 +450,13 @@ NSArray *parties;
                                     _song_data = party.song_data;
                                     _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
                                     _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
-                                    NSLog(@"%@,%@",_skipvotes, _dontskipvotes);
-                                    
+                                    NSLog(@"VOTING: %@ to %@",_skipvotes, _dontskipvotes);
+                                    NSLog(@"SONG NAME: %@",[party valueForKeyPath:@"_song_data.song_name"]);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     [ErrorHandler parseError:error.userInfo];
-                                    //NSLog(@"Error refreshing party: %@", error);
+                                    NSLog(@"Error refreshing party: %@", error);
                                 }];
 
 }
@@ -530,11 +528,18 @@ NSArray *parties;
                                 {
                                     NSLog(@"Vote Success");
                                     parties = mappingResult.array;
+                                    party = parties[0];
+                                    _user_count = party.user_count;
+                                    _song_data = party.song_data;
+                                    _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
+                                    _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
+                                    NSLog(@"VOTING: %@ to %@",_skipvotes, _dontskipvotes);
+                                    NSLog(@"SONG NAME: %@",[party valueForKeyPath:@"_song_data.song_name"]);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
                                     [ErrorHandler parseError:error.userInfo];
-                                    //NSLog(@"Error updating party: %@", error);
+                                    NSLog(@"Error updating party (vote): %@", error);
                                 }];
 }
 @end

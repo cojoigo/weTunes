@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSString *artist;
 @property (nonatomic, strong) NSMutableString *songData;
 - (IBAction)nextSong:(id)sender;
+- (void)handleNowPlayingItemChanged:(id)notification;
 
 @end

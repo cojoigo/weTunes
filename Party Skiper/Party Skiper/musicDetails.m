@@ -7,6 +7,7 @@
 //
 
 #import "musicDetails.h"
+#import "XYZServerCommunication.h"
 
 @implementation musicDetails
 @synthesize musicPlayer;
