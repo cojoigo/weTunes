@@ -81,6 +81,7 @@ class UserNotInPartyError(GenericError):
     """
 
     def __init__(self, user, party):
+        super(BadCredentialsError, self).__init__()
         self.response["message"] = "User is not in the specified party."
         self.response["user"] = user
         self.response["party"] = party
