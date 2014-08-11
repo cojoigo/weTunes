@@ -58,8 +58,8 @@ def create_party(*args, **kwargs):
 
     song_data = request.json.get("song_data", {})
     # This following line is mostly for testing.
-    song_data["song_title"] = request.json.get("song_title", None)
     song_data["vote_data"] = {"-1": 0, "1": 0}
+    print song_data
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
                          song_data=song_data,
