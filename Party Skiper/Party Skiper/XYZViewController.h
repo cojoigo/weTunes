@@ -27,11 +27,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *host_party_nowplaying_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_skip_button;
 @property (strong, nonatomic) IBOutlet UIButton *host_party_partyinfo_button;
-@property (strong, nonatomic) IBOutlet UILabel *host_party_skipvotes_label;
-@property (strong, nonatomic) IBOutlet UILabel *host_party_dontskip_label;
+@property (strong, nonatomic) IBOutlet UILabel *host_party_dontskip;
+@property (strong, nonatomic) IBOutlet UILabel *host_party_skip;
 
 //UI Elements for the Guest Party page
-@property (strong, nonatomic) IBOutlet UILabel *guest_party_nowplaying_textbox;
+@property (strong, nonatomic) IBOutlet UITextField *guest_party_nowplaying_textbox;
 @property (strong, nonatomic) IBOutlet UIButton *guest_party_skip_button;
 @property (strong, nonatomic) IBOutlet UIButton *guest_party_dontskip_button;
 
