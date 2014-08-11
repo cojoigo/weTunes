@@ -59,6 +59,7 @@ def create_party(*args, **kwargs):
     song_data = request.json.get("song_data", {})
     # This following line is mostly for testing.
     song_data["vote_data"] = {"-1": 0, "1": 0}
+    song_data["uuid"] = str(uuid.uuid4())
     print song_data
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
@@ -153,6 +154,8 @@ def vote(*args, **kwargs):
         raise errors.InvalidAttributeError("vote")
     if song_title != party.song_data.get("song_title", None):
         raise errors.OutOfSyncError()
+    print party.song_data
+    print user.vote_data
     if party.song_data["uuid"] == user.vote_data["uuid"]:
         if vote != user.vote_data["vote"]:
             party.song_data["vote_data"][str(user.vote_data["vote"])] -= 1
