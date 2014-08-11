@@ -122,5 +122,5 @@ class OutOfSyncError(GenericError):
     """
 
     def __init__(self):
-        super(InvalidAttributeError, self).__init__()
+        super(OutOfSyncError, self).__init__()
         self.response["message"] = "Your local party data is not up-to-date."
