@@ -18,9 +18,7 @@ def verify_content_type():
         if "application/json" not in request.headers["content-type"]:
             raise errors.IncorrectContentTypeError()
         try:
-            request.json
-
-
+            print request.json
         except:
             raise errors.NoJSONDataError()
 
