@@ -160,7 +160,8 @@ def vote(*args, **kwargs):
             party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
     else:
         user.vote_data["uuid"] = party.song_data["uuid"]
-        party.song_data["vote_data"][str(user.vote_data)] += 1
+        user.vote_data["vote"] = vote
+        party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
 
     return jsonify(party.to_json())
 
