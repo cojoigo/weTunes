@@ -83,15 +83,24 @@ BOOL didload = false;
                              object:musicObject];
     
     //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
-    musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
-    musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
+    //musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
+    //musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
+    //musicObject.songData = [NSMutableString string];
+    musicObject.title = @"foo";
+    musicObject.artist = @"connor";
     musicObject.songData = [NSMutableString string];
+    NSLog(@"Music Object Title: %@",musicObject.title);
     if (musicObject.title != nil){
         [musicObject.songData appendString:musicObject.title];
         [musicObject.songData appendString:@" by "];
         [musicObject.songData appendString:musicObject.artist];
         self.host_party_nowplaying_textbox.text = musicObject.songData;
+        NSLog(@"Now Playing: %@",musicObject.songData);
     }
+    self.host_party_skipvotes_label.text = [comm.song_data objectForKey:@"vote_data.1"];
+    self.host_party_dontskip_label.text = [comm.song_data objectForKey:@"vote_data.-1"];
+    NSLog(@"songdatatemp: %@", [comm.song_data objectForKey:@"song_name"]);
+    NSLog(@"Vote Not Skips: %@", [comm.song_data objectForKey:@"vote_data.-1"]);
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -177,9 +186,11 @@ BOOL didload = false;
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                              object:musicObject];
     
-    MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
-    musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
+    //musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    //musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+    musicObject.title = @"foo";
+    musicObject.artist = @"connor";
     musicObject.songData = [NSMutableString string];
     if (musicObject.title != nil){
         [musicObject.songData appendString:musicObject.title];
