@@ -104,6 +104,7 @@ def update_party(*args, **kwargs):
 
     party = kwargs["party"]
     party.update_from_dict(**request.json)
+    db.session.add(party)
     db.session.commit()
     return jsonify(party.to_json())
 
@@ -163,6 +164,8 @@ def vote(*args, **kwargs):
         user.vote_data["vote"] = vote
         party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
 
+    db.session.add(party)
+    db.session.add(user)
     db.session.commit()
     return jsonify(party.to_json())
 
@@ -212,4 +215,6 @@ def add_user_to_party(user, party):
         return
     party.users.append(user)
     user.party = party
+    db.session.add(user)
+    db.session.add(party)
     db.session.commit()
