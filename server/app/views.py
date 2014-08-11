@@ -57,6 +57,8 @@ def create_party(*args, **kwargs):
         password_hash = hashlib.sha512(party_password).hexdigest()
 
     song_data = request.json.get("song_data", {})
+    # This following line is mostly for testing.
+    song_data["song_title"] = request.json.get("song_title", None)
     song_data["vote_data"] = {"-1": 0, "1": 0}
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
@@ -65,6 +67,13 @@ def create_party(*args, **kwargs):
                          update_time=time(),
                          users=[],
                          host_id=user.id)
+    # party = models.Party(name=request.json["name"],
+    #                      users=[],
+    #                      password_hash=password_hash,
+    #                      host_id=user.id,
+    #                      update_time=time(),
+    #                      creation_time=time())
+    # party.update_from_dict({"song_title": })
     db.session.add(party)
     db.session.commit()
     add_user_to_party(user, party)
