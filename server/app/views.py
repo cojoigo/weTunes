@@ -142,7 +142,7 @@ def vote(*args, **kwargs):
     vote = request.json["vote"]
     if vote != -1 and vote != 1:
         raise errors.InvalidAttributeError("vote")
-    if song_title != party.song_data.get("title", None):
+    if song_title != party.song_data.get("song_title", None):
         raise errors.OutOfSyncError()
     if party.song_data["uuid"] == user.vote_data["uuid"]:
         if vote != user.vote_data["vote"]:
