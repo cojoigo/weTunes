@@ -435,6 +435,7 @@ NSArray *parties;
                                     NSLog(@"Refresh Party Success");
                                     parties = mappingResult.array;
                                     _user_count = party.user_count;
+                                    _song_data = party.song_data;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
