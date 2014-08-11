@@ -427,6 +427,7 @@ NSArray *parties;
     //Due to the nature of refreshParty, we have to call this function repeatedly.
     //Not sure how to best go about that...
     
+
     [objectManager postObject:nil
                          path:partyPathUrl
                    parameters:queryParams
@@ -434,6 +435,7 @@ NSArray *parties;
                                 {
                                     NSLog(@"Refresh Party Success");
                                     parties = mappingResult.array;
+                                    party = parties[0];
                                     _user_count = party.user_count;
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -441,7 +443,7 @@ NSArray *parties;
                                     [ErrorHandler parseError:error.userInfo];
                                     //NSLog(@"Error refreshing party: %@", error);
                                 }];
-    
+
 }
 
 - (void) vote:(NSNumber*) votedecision withSongName:(NSString*) songname

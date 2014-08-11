@@ -70,7 +70,6 @@ BOOL didload = false;
     self.guest_joinparty_password_textbox.delegate = self;
     self.host_partyinfo_partyid.text = comm.party_id;
     self.host_partyinfo_partyname_label.text = comm.party_name;
-    self.host_partyinfo_numberguests_label.text = comm.user_count;
     
     //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
     
@@ -94,7 +93,12 @@ BOOL didload = false;
         self.host_party_nowplaying_textbox.text = musicObject.songData;
     }
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(comm.user_count != nil)
+        self.host_partyinfo_numberguests_label.text = comm.user_count;
 
+}
 - (IBAction)JoinParty:(id)sender
 {
     NSString *rsp;
@@ -139,6 +143,11 @@ BOOL didload = false;
     //self.host_partyinfo_partyid.text = @"lol";
     [self performSegueWithIdentifier:@"HPISegue" sender:self];
     [comm refreshParty];
+    while(comm.user_count ==  nil)
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    [self viewDidAppear:(YES)];
 }
 
 - (void)didReceiveMemoryWarning

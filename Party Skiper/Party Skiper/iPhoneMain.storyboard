@@ -522,7 +522,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrC-5h-ySQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OY-En-3Ux">
                                 <rect key="frame" x="186" y="175" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -534,7 +534,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Party Information" id="990-nY-0dQ"/>
                     <connections>
-                        <outlet property="host_partyinfo_numberguests_label" destination="UrC-5h-ySQ" id="dpp-HC-V6h"/>
+                        <outlet property="host_partyinfo_numberguests_label" destination="5OY-En-3Ux" id="7Bg-kG-1oM"/>
                         <outlet property="host_partyinfo_partyid" destination="DKk-M7-jE4" id="2Hw-zy-C5Z"/>
                         <outlet property="host_partyinfo_partyname_label" destination="XE8-Ec-NTD" id="zKo-Xi-vQL"/>
                     </connections>
