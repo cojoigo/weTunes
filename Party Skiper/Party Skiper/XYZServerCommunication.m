@@ -16,7 +16,6 @@
 
 User *user;
 Party *party;
-
 NSArray *users;
 NSArray *parties;
 
@@ -131,9 +130,11 @@ NSArray *parties;
     NSLog(@"party name: %@",name);
     NSLog(@"party password: %@",pwd);
     
-    NSDictionary *temp_song_data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        @"This is a song title", @"song_title",
-                                        nil];
+    //The song_data element of the Party class is a dictionary with a dictionary in it.
+    //An easy way to initialize the song_data in the Party is to initialize it via the POST
+    //To do that, we make a temp dictionary with the data to be set and send it with the POST
+    NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
+    NSDictionary *temp_song_data = @{@"song_name" : @"", @"vote_data" : temp_vote_data};
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
@@ -150,7 +151,6 @@ NSArray *parties;
                                     NSLog(@"Create Party Success");
                                     parties = mappingResult.array;
                                     party = parties[0];
-                                    NSLog(@"%@", [party valueForKeyPath:@"_song_data.vote_data"]);
                                     _party_id = party.party_id;
                                     _party_name = party.party_name;
                                     _party_password = pwd;
@@ -315,6 +315,9 @@ NSArray *parties;
     
     //We need to append the party name to the end of the join_party url
     NSString *partyPathBase = @"/update_party/";
+    
+    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
+    //How do we get that?
     NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
@@ -343,9 +346,12 @@ NSArray *parties;
                                                                                         method:RKRequestMethodAny];
     [objectManager addRequestDescriptor:requestDescriptor];
     
-    NSDictionary *temp_song_data = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"This is a song title", @"song_title",
-                                    nil];
+    //The song_data element of the Party class is a dictionary with a dictionary in it.
+    //An easy way to initialize the song_data in the Party is to initialize it via the POST
+    //To do that, we make a temp dictionary with the data to be set and send it with the POST
+    NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
+    NSDictionary *temp_song_data = @{@"song_name" : song_name, @"vote_data" : temp_vote_data};
+    NSLog (@"song name: %@", song_name);
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
@@ -353,6 +359,11 @@ NSArray *parties;
                                   @"password" : _party_password, //password should be saved from create_party
                                   @"song_data" : temp_song_data
                                   };
+    
+    
+    
+    //Due to the nature of updateParty, we have to call this function repeatedly.
+    //Not sure how to best go about that...
     
     [objectManager postObject:nil
                          path:partyPathUrl
