@@ -166,6 +166,7 @@ def vote(*args, **kwargs):
         user.vote_data["vote"] = vote
         party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
 
+    db.session.commit()
     return jsonify(party.to_json())
 
 
