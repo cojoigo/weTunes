@@ -155,8 +155,6 @@ NSArray *parties;
                                     NSLog(@"%@", [party valueForKeyPath:@"_song_data.vote_data"]);
                                     _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
                                     _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
-                                    NSLog(@"skip:%@", _skipvotes);
-                                    NSLog(@"dontskip%@", _dontskipvotes);
                                     _server_rsp = @"success";
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
@@ -452,6 +450,10 @@ NSArray *parties;
                                     party = parties[0];
                                     _user_count = party.user_count;
                                     _song_data = party.song_data;
+                                    _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
+                                    _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
+                                    NSLog(@"%@,%@",_skipvotes, _dontskipvotes);
+                                    
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {

@@ -13,6 +13,7 @@
 
 XYZServerCommunication* comm;
 BOOL didload = false;
+BOOL inparty = false;
 @interface XYZViewController ()
 
 @end
@@ -72,30 +73,47 @@ BOOL didload = false;
     self.host_partyinfo_partyname_label.text = comm.party_name;
     
     //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
-    
-    musicDetails *musicObject = [[musicDetails alloc] init];
-    
-    musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self
+    if (inparty)
+    {
+        musicDetails *musicObject = [[musicDetails alloc] init];
+        musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+        musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self
                            selector:@selector(handleNowPlayingItemChanged:)
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-                             object:musicObject];
+                             object:musicObject.musicPlayer];
     
-    //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
-    musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
-    musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
-    musicObject.songData = [NSMutableString string];
-    if (musicObject.title != nil){
-        [musicObject.songData appendString:musicObject.title];
-        [musicObject.songData appendString:@" by "];
-        [musicObject.songData appendString:musicObject.artist];
-        self.host_party_nowplaying_textbox.text = musicObject.songData;
-        self.guest_party_nowplaying_textbox.text = musicObject.songData;
-        [comm updateParty:musicObject.songData];
+        MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
+        musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
+        musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+        musicObject.songData = [NSMutableString string];
+        NSLog(@"songtitle: %@", musicObject.title);
+        if (musicObject.title != nil)
+        {
+            [musicObject.songData appendString:musicObject.title];
+            [musicObject.songData appendString:@" by "];
+            [musicObject.songData appendString:musicObject.artist];
+            self.host_party_nowplaying_textbox.text = musicObject.songData;
+            self.guest_party_nowplaying_textbox.text = musicObject.songData;
+            [comm updateParty:musicObject.songData];
+        }
+        //Update the party info for guest and host!!
+        [NSTimer scheduledTimerWithTimeInterval:20
+                                     target:self
+                                   selector:@selector(timerFired:)
+                                   userInfo:nil
+                                    repeats:YES];
+        NSLog(@"Vote skip, Vote dontskip: %@, %@", comm.skipvotes, comm.dontskipvotes);
     }
-    NSLog(@"Vote skip, Vote dontskip: %@, %@", comm.skipvotes, comm.dontskipvotes);
 }
+
+- (void) timerFired:(NSTimer*)theTimer
+{
+    [comm refreshParty];
+    [self viewDidAppear:(YES)];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if(comm.user_count != nil)
@@ -109,7 +127,8 @@ BOOL didload = false;
     rsp = [comm joinParty:_guest_joinparty_partyid_textbox.text andPassword:_guest_joinparty_password_textbox.text];
     if ([rsp  isEqual: @"success"])
     {
-           [self performSegueWithIdentifier:@"JPSegue" sender:self];
+        inparty = true;
+        [self performSegueWithIdentifier:@"JPSegue" sender:self];
     }
     else
     {
@@ -131,6 +150,7 @@ BOOL didload = false;
     if ([rsp  isEqual: @"success"])
     {
         NSLog(@"PartyID : %@", comm.party_id);
+        inparty = true;
         [self performSegueWithIdentifier:@"CPSegue" sender:self];
         [self viewDidAppear:(YES)];
     }
@@ -173,8 +193,9 @@ BOOL didload = false;
 */
 
 - (void)handleNowPlayingItemChanged:(id)notification {
-    [self.view setNeedsDisplay];
-    musicDetails *musicObject = [[musicDetails alloc] init];
+   // [self.view setNeedsDisplay];
+  /*  musicDetails *musicObject = [[musicDetails alloc] init];
+    musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
     musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
@@ -186,6 +207,7 @@ BOOL didload = false;
     musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
     musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
     musicObject.songData = [NSMutableString string];
+    NSLog(@"111songtitle: %@", musicObject.title);
     if (musicObject.title != nil){
         [musicObject.songData appendString:musicObject.title];
         [musicObject.songData appendString:@" by "];
@@ -194,7 +216,9 @@ BOOL didload = false;
     self.host_party_nowplaying_textbox.text = musicObject.songData;
     [self.host_party_nowplaying_textbox setNeedsDisplay];
     //[self.view setNeedsDisplay];
-    [comm updateParty:musicObject.songData];
+    [comm updateParty:musicObject.songData];*/
+    NSLog(@"iojfphow98wfhp289hfpoihefwpiohfewqiouefhwiouweqfhiuowqhofeiuwhqwefoiuhfqwoiuqefhfqweoiuh");
+    [self viewDidLoad];
 }
 
 
