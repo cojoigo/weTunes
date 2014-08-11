@@ -83,27 +83,25 @@ BOOL didload = false;
                              object:musicObject];
     
     //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
-    //musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
-    //musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
-    musicObject.title = @"My Jam";
-    musicObject.artist = @"Connor Igo";
+    musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
+    musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
     musicObject.songData = [NSMutableString string];
     if (musicObject.title != nil){
         [musicObject.songData appendString:musicObject.title];
         [musicObject.songData appendString:@" by "];
         [musicObject.songData appendString:musicObject.artist];
         self.host_party_nowplaying_textbox.text = musicObject.songData;
+        self.guest_party_nowplaying_textbox.text = musicObject.songData;
+        [comm updateParty:musicObject.songData];
     }
-    self.host_party_skip.text = [comm.song_data objectForKey:@"vote_data.1"];
-    self.host_party_dontskip.text = [comm.song_data objectForKey:@"vote_data.-1"];
-    NSLog(@"songnametemp: %@", [comm.song_data objectForKey:@"song_name"]);
-    NSLog(@"Vote Skip: %@", [comm.song_data objectForKey:@"vote_data.1"]);
+    NSLog(@"Vote skip, Vote dontskip: %@, %@", comm.skipvotes, comm.dontskipvotes);
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if(comm.user_count != nil)
         self.host_partyinfo_numberguests_label.text = comm.user_count;
-
+    self.host_party_skip.text = comm.skipvotes;
+    self.host_party_dontskip.text = comm.dontskipvotes;
 }
 - (IBAction)JoinParty:(id)sender
 {
@@ -134,6 +132,7 @@ BOOL didload = false;
     {
         NSLog(@"PartyID : %@", comm.party_id);
         [self performSegueWithIdentifier:@"CPSegue" sender:self];
+        [self viewDidAppear:(YES)];
     }
     else
     {

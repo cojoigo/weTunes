@@ -29,4 +29,6 @@
 @property (nonatomic, strong) NSString *creation_time;
 @property (nonatomic, strong) NSString *update_time;
 @property (nonatomic, strong) NSString *user_count;
+@property (nonatomic, strong) NSString *skipvotes;
+@property (nonatomic, strong) NSString *dontskipvotes;
 @end

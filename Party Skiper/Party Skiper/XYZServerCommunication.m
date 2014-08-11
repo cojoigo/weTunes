@@ -130,11 +130,9 @@ NSArray *parties;
     NSLog(@"party name: %@",name);
     NSLog(@"party password: %@",pwd);
     
-    //The song_data element of the Party class is a dictionary with a dictionary in it.
-    //An easy way to initialize the song_data in the Party is to initialize it via the POST
-    //To do that, we make a temp dictionary with the data to be set and send it with the POST
-    NSDictionary *temp_vote_data = @{@"1": @"0", @"-1": @"0"};
-    NSDictionary *temp_song_data = @{@"song_name" : @"", @"vote_data" : temp_vote_data};
+    NSDictionary *temp_song_data = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                            @"a", @"song_title",
+                                                                            nil];
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
@@ -154,6 +152,11 @@ NSArray *parties;
                                     _party_id = party.party_id;
                                     _party_name = party.party_name;
                                     _party_password = pwd;
+                                    NSLog(@"%@", [party valueForKeyPath:@"_song_data.vote_data"]);
+                                    _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
+                                    _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
+                                    NSLog(@"skip:%@", _skipvotes);
+                                    NSLog(@"dontskip%@", _dontskipvotes);
                                     _server_rsp = @"success";
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
