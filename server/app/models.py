@@ -3,8 +3,48 @@
 from time import time
 import uuid
 import hashlib
+from sqlalchemy.ext.mutable import Mutable
 from app import db
 import errors
+
+
+class MutableDict(Mutable, dict):
+    """
+    Implementation of dictionary that allows mutation
+    Taken from SQlAlchemy's website.
+    Why this isn't in SQlAlchemy already, I don't know.
+    """
+
+    @classmethod
+    def coerce(cls, key, value):
+        "Convert plain dictionaries to MutableDict."
+
+        if not isinstance(value, MutableDict):
+            if isinstance(value, dict):
+                return MutableDict(value)
+
+            # this call will raise ValueError
+            return Mutable.coerce(key, value)
+        else:
+            return value
+
+    def __setitem__(self, key, value):
+        "Detect dictionary set events and emit change events."
+
+        dict.__setitem__(self, key, value)
+        self.changed()
+
+    def __delitem__(self, key):
+        "Detect dictionary del events and emit change events."
+
+        dict.__delitem__(self, key)
+        self.changed()
+
+    def __getstate__(self):
+        return dict(self)
+
+    def __setstate__(self, state):
+        self.update(state)
 
 
 class Party(db.Model):
@@ -16,7 +56,7 @@ class Party(db.Model):
     name = db.Column(db.String(128), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(256))
     users = db.relationship("User", lazy="dynamic", backref="party")
-    song_data = db.Column(db.PickleType)
+    song_data = db.Column(MutableDict.as_mutable(db.PickleType))
     creation_time = db.Column(db.Integer)
     update_time = db.Column(db.Integer)
     host_id = db.Column(db.Integer, nullable=False)
@@ -73,9 +113,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, nullable=True)
     password_hash = db.Column(db.String(256), nullable=False)
-    # Required to have a relationship, otherwise not used
     party_id = db.Column(db.Integer, db.ForeignKey("party.id"))
-    vote_data = db.Column(db.PickleType)
+    vote_data = db.Column(MutableDict.as_mutable(db.PickleType))
     update_time = db.Column(db.Integer)
 
     def to_json(self):
