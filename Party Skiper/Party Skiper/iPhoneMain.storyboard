@@ -68,16 +68,13 @@
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="KP1-qd-30r">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9dm-EL-yqi">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9dm-EL-yqi">
                                 <rect key="frame" x="218" y="5" width="86" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Song Queue">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="05K-oh-zV8" kind="modal" id="dzw-qG-6r5"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -92,47 +89,6 @@
                 <exit id="qsT-m5-adP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1476" y="26"/>
-        </scene>
-        <!--Add Song Table View Controller - Guest - Song Queue-->
-        <scene sceneID="8gY-fy-Jx2">
-            <objects>
-                <tableViewController title="Guest - Song Queue" id="05K-oh-zV8" customClass="XYZAddSongTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NLO-Uk-akS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="V9o-JA-rbT">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Song Queue" id="8dd-eZ-c76">
-                                    <barButtonItem key="leftBarButtonItem" title="Back" id="euB-Bo-VNu">
-                                        <connections>
-                                            <segue destination="7Dg-eR-xhB" kind="unwind" unwindAction="unwindMainView:" id="0oc-1Z-LyF"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="05K-oh-zV8" id="8Pr-xw-Qg3"/>
-                            <outlet property="delegate" destination="05K-oh-zV8" id="abr-2H-KGn"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Song Queue" id="yoI-YJ-XBV">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="mMr-nW-cqB">
-                            <connections>
-                                <segue destination="7Dg-eR-xhB" kind="unwind" unwindAction="unwindMainView:" id="h6l-Rq-UKp"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="p7E-qc-L10"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="77Q-yR-Jhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="7Dg-eR-xhB" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1925" y="26"/>
         </scene>
         <!--View Controller - Opening Screen-->
         <scene sceneID="DFE-Ih-z0P">
@@ -235,7 +191,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LdO-I2-soo">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LdO-I2-soo">
                                 <rect key="frame" x="137" y="200" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -462,16 +418,13 @@
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="P2A-rV-jmB">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k6L-5d-wxg">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k6L-5d-wxg">
                                 <rect key="frame" x="218" y="5" width="86" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Song Queue">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="5lf-iq-VUa" kind="modal" id="5XI-29-Bod"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -539,8 +492,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE8-Ec-NTD">
-                                <rect key="frame" x="186" y="121" width="114" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE8-Ec-NTD">
+                                <rect key="frame" x="147" y="121" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -567,47 +520,6 @@
                 <exit id="htN-Tm-uxI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2461" y="1330"/>
-        </scene>
-        <!--Add Song Table View Controller - Host - Song Queue-->
-        <scene sceneID="5km-LZ-xGI">
-            <objects>
-                <tableViewController title="Host - Song Queue" id="5lf-iq-VUa" customClass="XYZAddSongTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eI7-SA-rXm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="exv-vF-BWn">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Song Queue" id="Mfc-Yd-YWS">
-                                    <barButtonItem key="leftBarButtonItem" title="Back" id="53N-vV-1wS">
-                                        <connections>
-                                            <segue destination="QK8-lk-KSu" kind="unwind" unwindAction="unwindMainView:" id="Rp0-P7-gxg"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="5lf-iq-VUa" id="qhx-id-EOZ"/>
-                            <outlet property="delegate" destination="5lf-iq-VUa" id="ksg-5l-Hrg"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Song Queue" id="fGf-7N-rPP">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="JRc-79-LXs">
-                            <connections>
-                                <segue destination="QK8-lk-KSu" kind="unwind" unwindAction="unwindMainView:" id="cbj-Ey-2J4"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8ub-gm-RYI"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0gz-dV-RYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="QK8-lk-KSu" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1939" y="684"/>
         </scene>
         <!--Add Song Table View Controller - Party List-->
         <scene sceneID="gM3-xR-Ho7">
