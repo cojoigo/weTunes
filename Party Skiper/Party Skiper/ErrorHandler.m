@@ -18,16 +18,6 @@
     //Check each error, output a specific message from server for each
     if([fullErrMessage rangeOfString:@"IncorrectContentTypeError"].location != NSNotFound)
     {
-        //This block of code does not work for some unknown reason, but it's far more efficient
-#if 0
-        //Create substring to find  "message" : "  in error string
-        NSRange range = [fullErrMessage rangeOfString:@"\"message\" : \""];
-        NSString *errMessage = [fullErrMessage substringFromIndex:NSMaxRange(range)];
-
-        //Output the server's error message
-        return(@"%@", errMessage);
-#endif
-        
         //Copy the server's error message to display to user
         return(@"Request not in application/json format!");
     }

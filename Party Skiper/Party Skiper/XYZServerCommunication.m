@@ -19,9 +19,14 @@ Party *party;
 NSArray *users;
 NSArray *parties;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* method:       createUser
+* parameters:   none
+* return value: none
+* description:  sends a POST request to fill in the User class with id, name, and password
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (void)createUser
 {
-    NSLog(@"Create User start");
     //initialize RestKit
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://sgoodwin.pythonanywhere.com"]];
     //Make sure all REST requests are json
@@ -83,6 +88,13 @@ NSArray *parties;
                                 }];
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * method:       createParty
+ * parameters:   party name, party password(optional), song name(optional)
+ * return value: server response flag
+ * description:  sends a POST request to fill in the Party class with the above information
+ *                  the song name parameter can be filled to initialize the class with a song
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (NSString*) createParty:(NSString*)name andPassword:(NSString *)pwd andSongName:(NSString*)song_name
 {
     //initialize RestKit
@@ -166,6 +178,14 @@ NSArray *parties;
     return _server_rsp;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * method:       getParties
+ * parameters:   none
+ * return value: none
+ * description:  sends a GET request to display a list of all parties on the server
+ * 
+ * NOTE: Unfinished and not integrated with the rest of the code. Kept here for future development
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (void) getParties
 {
     //initialize RestKit
@@ -210,6 +230,12 @@ NSArray *parties;
                                 }];
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * method:       joinParty
+ * parameters:   party ID, party password
+ * return value: server response flag
+ * description:  sends a POST request to fill in the Party class to join the selected party
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (NSString*) joinParty:(NSString*)ID andPassword:(NSString *)pwd
 {
     //initialize RestKit
@@ -290,6 +316,13 @@ NSArray *parties;
     return _server_rsp;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * method:       updateParty
+ * parameters:   song name
+ * return value: none
+ * description:  sends a POST request to update information on the server regarding a specific
+ *                  party - only the host may ever call this method
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (void) updateParty: (NSMutableString *)song_name
 {
     //initialize RestKit
@@ -370,6 +403,13 @@ NSArray *parties;
                                 }];
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * method:       refreshParty
+ * parameters:   none
+ * return value: none
+ * description:  sends a POST request to update the Party class with new information pulled
+ *                  from the server about the song name & vote data
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (void) refreshParty
 {
     //initialize RestKit
@@ -448,6 +488,13 @@ NSArray *parties;
 
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * method:       vote
+ * parameters:   vote decision, current song name
+ * return value: none
+ * description:  sends a POST request to the server with a vote and song name attached - with
+ *                  the current song name, the server can check for repeat votes
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 - (void) vote:(NSNumber*) votedecision withSongName:(NSString*) songname
 {
     //initialize RestKit
