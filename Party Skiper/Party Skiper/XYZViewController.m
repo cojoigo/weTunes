@@ -25,11 +25,11 @@ BOOL joinparty = false;
 - (IBAction)skipButtonPressed:(id)sender {
     musicDetails *musicObject = [[musicDetails alloc] init];
     [musicObject nextSong:(id)sender];
+    [self.view setNeedsDisplay];
 }
 
 - (IBAction)unwindMainView:(UIStoryboardSegue *)segue
 {
-    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -130,6 +130,7 @@ BOOL joinparty = false;
         self.host_partyinfo_numberguests_label.text = comm.user_count;
     self.host_party_skip.text = comm.skipvotes;
     self.host_party_dontskip.text = comm.dontskipvotes;
+    
 }
 
 - (IBAction)JoinParty:(id)sender

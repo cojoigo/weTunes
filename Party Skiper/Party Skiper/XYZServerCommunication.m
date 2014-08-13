@@ -314,8 +314,6 @@ NSArray *parties;
     //We need to append the party name to the end of the join_party url
     NSString *partyPathBase = @"/update_party/";
     
-    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
-    //How do we get that?
     NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
@@ -348,7 +346,7 @@ NSArray *parties;
                                     song_name, @"song_title",
                                     nil];
     
-    NSLog (@"song name: %@", song_name);
+    NSLog (@"UPDATE PARTY song name: %@", song_name);
     
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
@@ -356,11 +354,6 @@ NSArray *parties;
                                   @"password" : _party_password, //password should be saved from create_party
                                   @"song_data" : temp_song_data
                                   };
-    
-    
-    
-    //Due to the nature of updateParty, we have to call this function repeatedly.
-    //Not sure how to best go about that...
     
     [objectManager postObject:nil
                          path:partyPathUrl
@@ -450,8 +443,8 @@ NSArray *parties;
                                     _song_data = party.song_data;
                                     _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
                                     _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
-                                    NSLog(@"VOTING: %@ to %@",_skipvotes, _dontskipvotes);
-                                    NSLog(@"SONG NAME: %@",[party valueForKeyPath:@"_song_data.song_name"]);
+                                    NSLog(@"Refresh: VOTING: %@ to %@",_skipvotes, _dontskipvotes);
+                                    NSLog(@"Refresh: SONG NAME: %@",[party valueForKeyPath:@"_song_data.song_title"]);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -533,8 +526,8 @@ NSArray *parties;
                                     _song_data = party.song_data;
                                     _skipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.1"]];
                                     _dontskipvotes = [NSString stringWithFormat:@"%@",[party valueForKeyPath:@"_song_data.vote_data.-1"] ];
-                                    NSLog(@"VOTING: %@ to %@",_skipvotes, _dontskipvotes);
-                                    NSLog(@"SONG NAME: %@",[party valueForKeyPath:@"_song_data.song_name"]);
+                                    NSLog(@"Vote: VOTING: %@ to %@",_skipvotes, _dontskipvotes);
+                                    NSLog(@"Vote: SONG NAME: %@",[party valueForKeyPath:@"_song_data.song_title"]);
                                 }
                       failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
