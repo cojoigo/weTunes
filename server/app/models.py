@@ -64,8 +64,8 @@ class Party(db.Model):
 
     def to_json(self):
         temp_song_data = copy.deepcopy(self.song_data)
-        skip_votes = temp_song_data.pop("skip_votes")
-        dont_skip_votes = temp_song_data.pop("dont_skip_votes")
+        skip_votes = temp_song_data.pop("skip_votes", None)
+        dont_skip_votes = temp_song_data.pop("dont_skip_votes", None)
         temp_song_data["vote_data"] = {"1": skip_votes, "-1": dont_skip_votes}
         return {"id": self.id, "song_data": temp_song_data,
                 "creation_time": self.creation_time,
