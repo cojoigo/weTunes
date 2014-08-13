@@ -155,7 +155,7 @@ def vote(*args, **kwargs):
         raise errors.InvalidAttributeError("vote")
     if song_title != party.song_data.get("song_title", None):
         raise errors.OutOfSyncError()
-    if party.song_data["uuid"] == user.vote_data["uuid"]:
+    if party.song_data.get("uuid", None) == user.vote_data.get("uuid", None):
         if vote != user.vote_data["vote"]:
             party.song_data["skip_votes"] += vote
             party.song_data["dont_skip_votes"] -= vote
