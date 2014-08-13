@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54v-OL-C8i">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54v-OL-C8i">
                                 <rect key="frame" x="24" y="176" width="56" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Skip"/>
@@ -24,13 +24,13 @@
                                     <action selector="guestVote_Skip:" destination="1Np-t3-hh8" eventType="touchUpInside" id="A1C-eM-sno"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkf-Qv-ikl">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkf-Qv-ikl">
                                 <rect key="frame" x="24" y="138" width="273" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAK-TG-hHO">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAK-TG-hHO">
                                 <rect key="frame" x="225" y="176" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Don't Skip">
@@ -40,32 +40,14 @@
                                     <action selector="guestVote_DontSkip:" destination="1Np-t3-hh8" eventType="touchUpInside" id="vWd-Kx-WKO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Now Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F21-jj-rHE">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Now Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F21-jj-rHE">
                                 <rect key="frame" x="106" y="109" width="109" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="109" id="cC8-ih-Afa"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Lkf-Qv-ikl" secondAttribute="centerY" constant="131" id="6CH-ju-YnG"/>
-                            <constraint firstAttribute="centerY" secondItem="yAK-TG-hHO" secondAttribute="centerY" constant="93" id="B7P-bA-ZMj"/>
-                            <constraint firstItem="yAK-TG-hHO" firstAttribute="leading" secondItem="54v-OL-C8i" secondAttribute="trailing" constant="170" id="D1n-Bs-RDY"/>
-                            <constraint firstAttribute="centerX" secondItem="Lkf-Qv-ikl" secondAttribute="centerX" constant="-0.5" id="Js6-l5-Yls"/>
-                            <constraint firstAttribute="centerX" secondItem="F21-jj-rHE" secondAttribute="centerX" constant="-0.5" id="UAU-Qr-j0p"/>
-                            <constraint firstItem="54v-OL-C8i" firstAttribute="top" secondItem="Lkf-Qv-ikl" secondAttribute="bottom" constant="8" id="YKN-Xt-PnK"/>
-                            <constraint firstAttribute="centerY" secondItem="54v-OL-C8i" secondAttribute="centerY" constant="93" id="ioD-Y5-Hqj"/>
-                            <constraint firstItem="Lkf-Qv-ikl" firstAttribute="top" secondItem="F21-jj-rHE" secondAttribute="bottom" constant="8" id="noE-zL-s7M"/>
-                            <constraint firstItem="yAK-TG-hHO" firstAttribute="top" secondItem="Lkf-Qv-ikl" secondAttribute="bottom" constant="8" id="pMf-Cq-QU2"/>
-                            <constraint firstAttribute="centerY" secondItem="F21-jj-rHE" secondAttribute="centerY" constant="164.5" id="tah-3z-FUL"/>
-                            <constraint firstAttribute="centerX" secondItem="54v-OL-C8i" secondAttribute="centerX" constant="120.5" id="vbl-yW-DyT"/>
-                            <constraint firstAttribute="centerX" secondItem="yAK-TG-hHO" secondAttribute="centerX" constant="-101" id="wp5-fz-y6O"/>
-                            <constraint firstAttribute="centerX" secondItem="yAK-TG-hHO" secondAttribute="centerX" constant="-101" id="z29-GI-cK9"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Party" id="6Jd-en-zo6">
@@ -186,12 +168,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-fe-TCZ">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-fe-TCZ">
                                 <rect key="frame" x="123" y="305" width="74" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="74" id="0z8-og-snZ"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,12 +179,9 @@
                                     <action selector="JoinParty:" destination="ugm-7v-np8" eventType="touchUpInside" id="Fhk-74-sJP"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-08-kqS">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-08-kqS">
                                 <rect key="frame" x="112" y="170" width="156" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="lAj-p6-4FT"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
