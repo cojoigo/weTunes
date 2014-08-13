@@ -74,6 +74,7 @@ class Party(db.Model):
         ensures improper attributes don't get set.
         """
         print kwargs
+        kwargs.pop("password", None)
         self._check_banned_keys(kwargs)
         party_password = kwargs.pop("new_password", None)
         try:
@@ -82,6 +83,7 @@ class Party(db.Model):
         except TypeError:
             pass
         song_data = kwargs.get("song_data", {})
+        print song_data
         song_data.pop("vote_data", None)
         if "song_title" in song_data:
             song_data["uuid"] = str(uuid.uuid4())
