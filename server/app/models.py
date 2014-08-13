@@ -1,6 +1,7 @@
 #!/bin/python2
 
 from time import time
+import copy
 import uuid
 import hashlib
 from sqlalchemy.ext.mutable import Mutable
@@ -62,7 +63,11 @@ class Party(db.Model):
     host_id = db.Column(db.Integer, nullable=False)
 
     def to_json(self):
-        return {"id": self.id, "song_data": self.song_data,
+        temp_song_data = copy.deepcopy(self.song_data)
+        skip_votes = temp_song_data.pop("skip_votes")
+        dont_skip_votes = temp_song_data.pop("dont_skip_votes")
+        temp_song_data["vote_data"] = {"1": skip_votes, "-1": dont_skip_votes}
+        return {"id": self.id, "song_data": temp_song_data,
                 "creation_time": self.creation_time,
                 "update_time": self.update_time,
                 "name": self.name,
@@ -84,10 +89,13 @@ class Party(db.Model):
             pass
         song_data = kwargs.get("song_data", {})
         print song_data
-        song_data.pop("vote_data", None)
+        song_data.pop("skip_votes", None)
+        song_data.pop("dont_skip_votes", None)
         if "song_title" in song_data:
             song_data["uuid"] = str(uuid.uuid4())
-            song_data["vote_data"] = {"-1": 0, "1": 0}
+            song_data["skip_votes"] = 0
+            song_data["dont_skip_votes"] = 0
+
         for key in kwargs:
             try:
                 attr = getattr(self, key)

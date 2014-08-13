@@ -58,7 +58,8 @@ def create_party(*args, **kwargs):
 
     song_data = request.json.get("song_data", {})
     # This following line is mostly for testing.
-    song_data["vote_data"] = {"-1": 0, "1": 0}
+    song_data["skip_votes"] = 0
+    song_data["dont_skip_votes"] = 0
     song_data["uuid"] = str(uuid.uuid4())
     party = models.Party(name=request.json.get("name"),
                          password_hash=password_hash,
@@ -156,13 +157,17 @@ def vote(*args, **kwargs):
         raise errors.OutOfSyncError()
     if party.song_data["uuid"] == user.vote_data["uuid"]:
         if vote != user.vote_data["vote"]:
-            party.song_data["vote_data"][str(user.vote_data["vote"])] -= 1
+            party.song_data["skip_votes"] += vote
+            party.song_data["dont_skip_votes"] -= vote
             user.vote_data["vote"] *= -1
-            party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
     else:
         user.vote_data["uuid"] = party.song_data["uuid"]
         user.vote_data["vote"] = vote
-        party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
+        #party.song_data["vote_data"][str(user.vote_data["vote"])] += 1
+        if vote == 1:
+            party.song_data["skip_votes"] += 1
+        else:
+            party.song_data["dont_skip_votes"] += 1
 
     db.session.add(party)
     db.session.add(user)
@@ -217,4 +222,6 @@ def add_user_to_party(user, party):
     user.party = party
     db.session.add(user)
     db.session.add(party)
-    db.session.commit()
+    db.session.commit
+
+    
