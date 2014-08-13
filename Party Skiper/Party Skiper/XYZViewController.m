@@ -168,8 +168,8 @@ BOOL joinparty = false;
     }
     if (joinparty)
     {
-        self.host_party_nowplaying_textbox.text = [comm valueForKeyPath:@"song_data.song_title"];
-        [self.host_party_nowplaying_textbox setNeedsDisplay];
+        self.guest_party_nowplaying_textbox.text = [comm valueForKeyPath:@"song_data.song_title"];
+        [self.guest_party_nowplaying_textbox setNeedsDisplay];
     }
     [comm refreshParty];
     [self viewDidAppear:(YES)];
