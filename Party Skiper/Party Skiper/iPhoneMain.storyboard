@@ -186,7 +186,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-fe-TCZ">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-fe-TCZ">
                                 <rect key="frame" x="123" y="305" width="74" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -209,14 +209,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Party ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PH1-WI-Gd2">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PH1-WI-Gd2">
                                 <rect key="frame" x="44" y="173" width="67" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fub-7S-hz9">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fub-7S-hz9">
                                 <rect key="frame" x="30" y="238" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -230,15 +230,6 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Fub-7S-hz9" firstAttribute="top" secondItem="PH1-WI-Gd2" secondAttribute="bottom" constant="44" id="Gfo-Pq-mI6"/>
-                            <constraint firstAttribute="centerY" secondItem="ONI-fe-TCZ" secondAttribute="centerY" constant="-53" id="H9T-od-VqF"/>
-                            <constraint firstAttribute="centerX" secondItem="PH1-WI-Gd2" secondAttribute="centerX" constant="82.5" id="KPj-TK-odD"/>
-                            <constraint firstAttribute="centerY" secondItem="Fub-7S-hz9" secondAttribute="centerY" constant="34.5" id="Kaz-6h-2J6"/>
-                            <constraint firstAttribute="centerX" secondItem="ONI-fe-TCZ" secondAttribute="centerX" id="VIp-tX-WkF"/>
-                            <constraint firstAttribute="centerY" secondItem="PH1-WI-Gd2" secondAttribute="centerY" constant="100.5" id="ZcI-fT-j26"/>
-                            <constraint firstAttribute="centerX" secondItem="Fub-7S-hz9" secondAttribute="centerX" constant="89.5" id="rPd-wT-R45"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Join Party" id="QUb-qE-lQ5">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="PTF-vt-Y8f">
