@@ -80,14 +80,14 @@ BOOL joinparty = false;
         musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
         musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self
+        [notificationCenter addObserver:musicObject
                            selector:@selector(handleNowPlayingItemChanged:)
                                name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                              object:musicObject.musicPlayer];
     
-        MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
-        musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-        musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
+        //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
+        musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
+        musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
         musicObject.songData = [NSMutableString string];
         NSLog(@"songtitle: %@", musicObject.title);
         if (musicObject.title != nil)
@@ -208,30 +208,6 @@ BOOL joinparty = false;
 - (IBAction)guestVote_Skip:(id)sender {
     
     [comm vote:[NSNumber numberWithInt:1] withSongName:_guest_party_nowplaying_textbox.text];
-}
-
-- (void)handleNowPlayingItemChanged:(id)notification {
-    /*musicDetails *musicObject = [[musicDetails alloc] init];
-    musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
-    musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self
-                           selector:@selector(handleNowPlayingItemChanged:)
-                               name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-                             object:musicObject.musicPlayer];
-    
-    MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
-    musicObject.title = [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    musicObject.artist = [currentItem valueForProperty:MPMediaItemPropertyArtist];
-    musicObject.songData = [NSMutableString string];
-    NSLog(@"111songtitle: %@", musicObject.title);
-    if (musicObject.title != nil){
-        [musicObject.songData appendString:musicObject.title];
-        [musicObject.songData appendString:@" by "];
-        [musicObject.songData appendString:musicObject.artist];
-    }*/
-    //[comm updateParty:musicObject.songData];
-    NSLog(@"iojfphow98wfhp289hfpoihefwpiohfewqiouefhwiouweqfhiuowqhofeiuwhqwefoiuhfqwoiuqefhfqweoiuh");
 }
 
 - (IBAction)guestVote_DontSkip:(id)sender {
