@@ -21,7 +21,7 @@ BOOL joinparty = false;
 
 @implementation XYZViewController
 
-
+//handles when the host presses Skip Song, skips current song and updates local song data
 - (IBAction)skipButtonPressed:(id)sender {
     musicDetails *musicObject = [[musicDetails alloc] init];
     [musicObject nextSong:(id)sender];
@@ -79,6 +79,7 @@ BOOL joinparty = false;
     return YES;
 }
 
+//called when each view loads, handles setting text and music info
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -139,7 +140,7 @@ BOOL joinparty = false;
         self.guest_party_nowplaying_textbox.text = [comm valueForKeyPath:@"song_data.song_title"];
     }
 }
-
+//handles what happens on the 1s timer loop
 - (void) timerFired:(NSTimer*)theTimer
 {
     if (hostingparty)
@@ -184,7 +185,7 @@ BOOL joinparty = false;
     
     
 }
-
+//handles joining a party - making sure server responds before joining
 - (IBAction)JoinParty:(id)sender
 {
     NSString *rsp;
@@ -207,7 +208,7 @@ BOOL joinparty = false;
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }
-
+//handles party creation - making sure server has responded before returning a party
 - (IBAction)CreateParty:(id)sender
 {
     NSString *rsp;
@@ -228,7 +229,7 @@ BOOL joinparty = false;
         
     }
 }
-
+//handles when host presses the PartyInfo button
 - (IBAction)PartyInfo:(id)sender
 {
     //self.host_partyinfo_partyid.text = @"lol";
