@@ -135,7 +135,7 @@
 		8FA78C4919676DE000CFC22C = {
 			isa = PBXGroup;
 			children = (
-				8FA78C5B19676DE000CFC22C /* Party Skiper */,
+				8FA78C5B19676DE000CFC22C /* weTunes */,
 				8FA78C7419676DE000CFC22C /* Party SkiperTests */,
 				8FA78C5419676DE000CFC22C /* Frameworks */,
 				8FA78C5319676DE000CFC22C /* Products */,
@@ -165,7 +165,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8FA78C5B19676DE000CFC22C /* Party Skiper */ = {
+		8FA78C5B19676DE000CFC22C /* weTunes */ = {
 			isa = PBXGroup;
 			children = (
 				8F95299C19898C22003C547A /* Classes */,
@@ -176,6 +176,7 @@
 				8FA78C8419676E0100CFC22C /* iPhoneMain.storyboard */,
 				8FA78C5C19676DE000CFC22C /* Supporting Files */,
 			);
+			name = weTunes;
 			path = "Party Skiper";
 			sourceTree = "<group>";
 		};
