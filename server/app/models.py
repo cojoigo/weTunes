@@ -91,7 +91,7 @@ class Party(db.Model):
         print song_data
         song_data.pop("skip_votes", None)
         song_data.pop("dont_skip_votes", None)
-        if "song_title" in song_data and song_data["song_title"] != self.song_data["song_title"]:
+        if "song_title" in song_data and song_data["song_title"] != self.song_data.get("song_title", None):
             song_data["uuid"] = str(uuid.uuid4())
             song_data["skip_votes"] = 0
             song_data["dont_skip_votes"] = 0
