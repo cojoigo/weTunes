@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8FA78C5119676DE000CFC22C"
-            BuildableName = "Party Skiper.app"
-            BlueprintName = "Party Skiper"
-            ReferencedContainer = "container:Party Skiper.xcodeproj">
+            BuildableName = "weTunes.app"
+            BlueprintName = "weTunes"
+            ReferencedContainer = "container:weTunes.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8FA78C5119676DE000CFC22C"
-            BuildableName = "Party Skiper.app"
-            BlueprintName = "Party Skiper"
-            ReferencedContainer = "container:Party Skiper.xcodeproj">
+            BuildableName = "weTunes.app"
+            BlueprintName = "weTunes"
+            ReferencedContainer = "container:weTunes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

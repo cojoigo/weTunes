@@ -201,7 +201,6 @@ NSArray *parties;
                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                                 {
                                     NSLog(@"Get Parties Success");
-                                    //parties = mappingResult.array;
                                 }
                      failure:^(RKObjectRequestOperation *operation, NSError *error)
                                 {
@@ -233,7 +232,6 @@ NSArray *parties;
     //We need to append the party name to the end of the join_party url
     NSString *partyPathBase = @"/join_party/";
     
-    //IMPORTANT: we need to update the other party methods to have this ID as well!
     NSString *partyPathUrl = [partyPathBase stringByAppendingString:ID];
     
     //register mappings with the provider using a response descriptor
@@ -426,10 +424,6 @@ NSArray *parties;
     NSDictionary *queryParams = @{
                                   @"password" : _party_password
                                   };
-    
-    //Due to the nature of refreshParty, we have to call this function repeatedly.
-    //Not sure how to best go about that...
-    
 
     [objectManager postObject:nil
                          path:partyPathUrl
@@ -476,9 +470,7 @@ NSArray *parties;
     
     //We need to append the party name to the end of the join_party url
     NSString *partyPathBase = @"/vote/";
-    
-    //IMPORTANT: we need user to input the party id - NOT THE NAME - to the url.
-    //How do we get that?
+
     NSString *partyPathUrl = [partyPathBase stringByAppendingString:_party_id];
     
     //register mappings with the provider using a response descriptor
@@ -511,7 +503,7 @@ NSArray *parties;
     //queryParams is the message sent to the server as part of the POST
     NSDictionary *queryParams = @{
                                   @"song_title" : songname, //song_title requires data from media player
-                                  @"vote" : votedecision //vote should be 1 for skip or -1 for don't skip, depending on user input
+                                  @"vote" : votedecision //vote will be 1 for skip or -1 for don't skip, depending on user input
                                   };
     
     [objectManager postObject:nil

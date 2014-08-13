@@ -56,20 +56,20 @@
 		8F9529A11990149D003C547A /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
 		8F9529A21990149D003C547A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		8F9529A31990149D003C547A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		8FA78C5219676DE000CFC22C /* Party Skiper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Party Skiper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FA78C5219676DE000CFC22C /* weTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FA78C5519676DE000CFC22C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8FA78C5719676DE000CFC22C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8FA78C5919676DE000CFC22C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8FA78C5D19676DE000CFC22C /* Party Skiper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Party Skiper-Info.plist"; sourceTree = "<group>"; };
+		8FA78C5D19676DE000CFC22C /* weTunes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "weTunes-Info.plist"; sourceTree = "<group>"; };
 		8FA78C5F19676DE000CFC22C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8FA78C6119676DE000CFC22C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8FA78C6319676DE000CFC22C /* Party Skiper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Party Skiper-Prefix.pch"; sourceTree = "<group>"; };
+		8FA78C6319676DE000CFC22C /* weTunes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "weTunes-Prefix.pch"; sourceTree = "<group>"; };
 		8FA78C6419676DE000CFC22C /* XYZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYZAppDelegate.h; sourceTree = "<group>"; };
 		8FA78C6519676DE000CFC22C /* XYZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYZAppDelegate.m; sourceTree = "<group>"; };
 		8FA78C6719676DE000CFC22C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8FA78C6D19676DE000CFC22C /* Party SkiperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Party SkiperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FA78C6D19676DE000CFC22C /* weTunesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weTunesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FA78C6E19676DE000CFC22C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8FA78C7619676DE000CFC22C /* Party SkiperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Party SkiperTests-Info.plist"; sourceTree = "<group>"; };
+		8FA78C7619676DE000CFC22C /* weTunesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "weTunesTests-Info.plist"; sourceTree = "<group>"; };
 		8FA78C7819676DE000CFC22C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8FA78C7A19676DE000CFC22C /* Party_SkiperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Party_SkiperTests.m; sourceTree = "<group>"; };
 		8FA78C8419676E0100CFC22C /* iPhoneMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneMain.storyboard; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		8FA78C5319676DE000CFC22C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8FA78C5219676DE000CFC22C /* Party Skiper.app */,
-				8FA78C6D19676DE000CFC22C /* Party SkiperTests.xctest */,
+				8FA78C5219676DE000CFC22C /* weTunes.app */,
+				8FA78C6D19676DE000CFC22C /* weTunesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,10 +182,10 @@
 		8FA78C5C19676DE000CFC22C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8FA78C5D19676DE000CFC22C /* Party Skiper-Info.plist */,
+				8FA78C5D19676DE000CFC22C /* weTunes-Info.plist */,
 				8FA78C5E19676DE000CFC22C /* InfoPlist.strings */,
 				8FA78C6119676DE000CFC22C /* main.m */,
-				8FA78C6319676DE000CFC22C /* Party Skiper-Prefix.pch */,
+				8FA78C6319676DE000CFC22C /* weTunes-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -202,7 +202,7 @@
 		8FA78C7519676DE000CFC22C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8FA78C7619676DE000CFC22C /* Party SkiperTests-Info.plist */,
+				8FA78C7619676DE000CFC22C /* weTunesTests-Info.plist */,
 				8FA78C7719676DE000CFC22C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -211,9 +211,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8FA78C5119676DE000CFC22C /* Party Skiper */ = {
+		8FA78C5119676DE000CFC22C /* weTunes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8FA78C7E19676DE000CFC22C /* Build configuration list for PBXNativeTarget "Party Skiper" */;
+			buildConfigurationList = 8FA78C7E19676DE000CFC22C /* Build configuration list for PBXNativeTarget "weTunes" */;
 			buildPhases = (
 				0DBAF4D03DF64D9B852A7D06 /* Check Pods Manifest.lock */,
 				8FA78C4E19676DE000CFC22C /* Sources */,
@@ -225,14 +225,14 @@
 			);
 			dependencies = (
 			);
-			name = "Party Skiper";
+			name = weTunes;
 			productName = "Party Skiper";
-			productReference = 8FA78C5219676DE000CFC22C /* Party Skiper.app */;
+			productReference = 8FA78C5219676DE000CFC22C /* weTunes.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8FA78C6C19676DE000CFC22C /* Party SkiperTests */ = {
+		8FA78C6C19676DE000CFC22C /* weTunesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8FA78C8119676DE000CFC22C /* Build configuration list for PBXNativeTarget "Party SkiperTests" */;
+			buildConfigurationList = 8FA78C8119676DE000CFC22C /* Build configuration list for PBXNativeTarget "weTunesTests" */;
 			buildPhases = (
 				8FA78C6919676DE000CFC22C /* Sources */,
 				8FA78C6A19676DE000CFC22C /* Frameworks */,
@@ -243,9 +243,9 @@
 			dependencies = (
 				8FA78C7319676DE000CFC22C /* PBXTargetDependency */,
 			);
-			name = "Party SkiperTests";
+			name = weTunesTests;
 			productName = "Party SkiperTests";
-			productReference = 8FA78C6D19676DE000CFC22C /* Party SkiperTests.xctest */;
+			productReference = 8FA78C6D19676DE000CFC22C /* weTunesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -263,7 +263,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8FA78C4D19676DE000CFC22C /* Build configuration list for PBXProject "Party Skiper" */;
+			buildConfigurationList = 8FA78C4D19676DE000CFC22C /* Build configuration list for PBXProject "weTunes" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -275,8 +275,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8FA78C5119676DE000CFC22C /* Party Skiper */,
-				8FA78C6C19676DE000CFC22C /* Party SkiperTests */,
+				8FA78C5119676DE000CFC22C /* weTunes */,
+				8FA78C6C19676DE000CFC22C /* weTunesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -365,7 +365,7 @@
 /* Begin PBXTargetDependency section */
 		8FA78C7319676DE000CFC22C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8FA78C5119676DE000CFC22C /* Party Skiper */;
+			target = 8FA78C5119676DE000CFC22C /* weTunes */;
 			targetProxy = 8FA78C7219676DE000CFC22C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -469,9 +469,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Party Skiper/Party Skiper-Prefix.pch";
-				INFOPLIST_FILE = "Party Skiper/Party Skiper-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Party Skiper/weTunes-Prefix.pch";
+				INFOPLIST_FILE = "Party Skiper/weTunes-Info.plist";
+				PRODUCT_NAME = weTunes;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -483,9 +483,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Party Skiper/Party Skiper-Prefix.pch";
-				INFOPLIST_FILE = "Party Skiper/Party Skiper-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Party Skiper/weTunes-Prefix.pch";
+				INFOPLIST_FILE = "Party Skiper/weTunes-Info.plist";
+				PRODUCT_NAME = weTunes;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -505,8 +505,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Party SkiperTests/Party SkiperTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Party SkiperTests/weTunesTests-Info.plist";
+				PRODUCT_NAME = weTunesTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -523,8 +523,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Party Skiper/Party Skiper-Prefix.pch";
-				INFOPLIST_FILE = "Party SkiperTests/Party SkiperTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Party SkiperTests/weTunesTests-Info.plist";
+				PRODUCT_NAME = weTunesTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -533,7 +533,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8FA78C4D19676DE000CFC22C /* Build configuration list for PBXProject "Party Skiper" */ = {
+		8FA78C4D19676DE000CFC22C /* Build configuration list for PBXProject "weTunes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8FA78C7C19676DE000CFC22C /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8FA78C7E19676DE000CFC22C /* Build configuration list for PBXNativeTarget "Party Skiper" */ = {
+		8FA78C7E19676DE000CFC22C /* Build configuration list for PBXNativeTarget "weTunes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8FA78C7F19676DE000CFC22C /* Debug */,
@@ -551,7 +551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8FA78C8119676DE000CFC22C /* Build configuration list for PBXNativeTarget "Party SkiperTests" */ = {
+		8FA78C8119676DE000CFC22C /* Build configuration list for PBXNativeTarget "weTunesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8FA78C8219676DE000CFC22C /* Debug */,

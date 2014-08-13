@@ -121,7 +121,7 @@ BOOL joinparty = false;
             [comm updateParty:musicObject.songData];
         }
         //Update the party info for guest and host!!
-        [NSTimer scheduledTimerWithTimeInterval:10
+        [NSTimer scheduledTimerWithTimeInterval:1
                                      target:self
                                    selector:@selector(timerFired:)
                                    userInfo:nil
@@ -130,7 +130,7 @@ BOOL joinparty = false;
     }
     if (joinparty)
     {
-        [NSTimer scheduledTimerWithTimeInterval:10
+        [NSTimer scheduledTimerWithTimeInterval:1
                                          target:self
                                        selector:@selector(timerFired:)
                                        userInfo:nil
