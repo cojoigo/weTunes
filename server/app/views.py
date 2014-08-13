@@ -222,6 +222,4 @@ def add_user_to_party(user, party):
     user.party = party
     db.session.add(user)
     db.session.add(party)
-    db.session.commit
-
-    
+    db.session.commit()
