@@ -3,6 +3,10 @@ weTunes
 
 Software Engineering 1 project
 
+Bugs
+---
+A list of known bugs can be found in the bugs.txt file.
+
 
 Networking
 ---
