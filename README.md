@@ -3,6 +3,7 @@ weTunes
 
 Software Engineering 1 project
 
+All relevant code for the app will be in the "Party Skiper/Party Skiper" directory, particularly the XYZViewController.m file.
 
 Networking
 ---

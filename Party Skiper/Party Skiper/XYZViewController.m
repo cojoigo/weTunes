@@ -96,7 +96,6 @@ BOOL joinparty = false;
     self.host_partyinfo_partyid.text = comm.party_id;
     self.host_partyinfo_partyname_label.text = comm.party_name;
     
-    //[self.host_party_skip_button addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
     if (hostingparty)
     {
         musicDetails *musicObject = [[musicDetails alloc] init];

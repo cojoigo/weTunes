@@ -17,29 +17,24 @@
     [musicPlayer skipToNextItem];
 }
 
+//This function is triggered whenever the song changes in the music player.
+//It retrieves the song information from the music player, and puts it in a string in the format "<Title> by <Artist>".
 - (void)handleNowPlayingItemChanged:(id)notification {
      musicDetails *musicObject = [[musicDetails alloc] init];
      musicObject.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
      musicObject.musicPlayer.nowPlayingItem = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
-    
-     /*NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-     [notificationCenter addObserver:self
-     selector:@selector(handleNowPlayingItemChanged:)
-     name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-     object:musicObject.musicPlayer];*/
-     
-     //MPMediaItem *currentItem = musicObject.musicPlayer.nowPlayingItem;
+         
      musicObject.title = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
      musicObject.artist = [musicObject.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
      musicObject.songData = [NSMutableString string];
-     NSLog(@"111songtitle: %@", musicObject.title);
+     NSLog(@"songtitle: %@", musicObject.title);
      if (musicObject.title != nil){
      [musicObject.songData appendString:musicObject.title];
      [musicObject.songData appendString:@" by "];
      [musicObject.songData appendString:musicObject.artist];
      }
     //[comm updateParty:musicObject.songData];
-    NSLog(@"iojfphow98wfhp289hfpoihefwpiohfewqiouefhwiouweqfhiuowqhofeiuwhqwefoiuhfqwoiuqefhfqweoiuh");
+    
 }
 
 @end
