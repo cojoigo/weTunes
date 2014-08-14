@@ -1,0 +1,40 @@
+This file contains a list of all known bugs with weTunes.
+
+Bug #1
+Steps:
+1. Join a party, 
+2. Back out to the main screen, 
+3. Join a new party. 
+Issue: The client will continue to request refreshParty for both parties.
+SOLUTION: Stop the loop that continually calls refreshParty when a guest backs out of the Party view.
+
+
+Bug #2
+Steps
+1. User creates a party
+2. User backs out to the main window. 
+Issue: There is no way for them to get back to the party they created. They will need to make a new party.
+SOLUTION: Add a login feature for hosts, to allow them to go back to parties they’ve created.
+
+
+Bug #3
+Steps
+1. Play a song or create a party with a long name.
+Issue:In several places, if a string is too long, it will get cut off in the label. For example, “My Really Long Song Na…”. This occurs in Guest and Host party pages for song names, and Party Info for Party Name.
+SOLUTION: Make textboxes dynamically resize OR make text dynamically resize. Scrolling text, somehow?
+
+
+Bug #4
+Steps
+1. Host a party and play a song
+2. Let the song end and naturally progress to the next song.
+Issue: The new song information does not get updated and sent to the server. This means that the song title on the Guest view will not update, because the server does not have the new song information.
+SOLUTION: We are hooking into the iOS API incorrectly. Find out how to get system notification that a new song is being played.
+
+
+Bug #5
+Steps
+1. Host a party and play a song
+2. Press the Skip Song button repeatedly
+Issue: The songs will skip multiple times, but will get out of sync with the server.
+SOLUTION: Need a delay after skipping a song so that the new song information can be processed.

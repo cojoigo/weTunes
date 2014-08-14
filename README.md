@@ -5,6 +5,11 @@ Software Engineering 1 project
 
 All relevant code for the app will be in the "Party Skiper/Party Skiper" directory, particularly the XYZViewController.m file.
 
+=======
+Bugs
+---
+A list of known bugs can be found in the bugs.txt file.
+
 Networking
 ---
 To interface with the RESTful web server, the client networking module uses an iOS framework called RestKit. RestKit has a powerful Object Mapping functionality that maps the response object to a corresponding object on the client’s side. In this way, we ensure that the data we store on the device is the same as the data stored on the server. RestKit’s RKObjectManager class takes care of the mapping and the actual sending of requests to the web server.
